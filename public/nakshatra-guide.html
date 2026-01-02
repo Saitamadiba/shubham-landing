@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Complete Nakshatra Guide - Discover Your Lunar Destiny</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0a0a0f;
+      --secondary: #12121a;
+      --cosmic: #1a1a2e;
+      --sacred-gold: #d4af37;
+      --saffron: #ff9933;
+      --neon-cyan: #00d4ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--cosmic) 50%, var(--secondary) 100%);
+      color: #e0e0e0;
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cinzel', serif;
+      color: var(--sacred-gold);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      text-align: center;
+      margin-bottom: 10px;
+      text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.2em;
+      color: #888;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--sacred-gold);
+    }
+
+    h3 {
+      font-size: 1.4em;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      color: var(--saffron);
+    }
+
+    h4 {
+      font-size: 1.1em;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: var(--neon-cyan);
+    }
+
+    p {
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    .intro-box {
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--sacred-gold);
+      border-radius: 10px;
+      padding: 25px;
+      margin: 30px 0;
+    }
+
+    .calculator-box {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(212, 175, 55, 0.1));
+      border: 2px solid var(--neon-cyan);
+      border-radius: 10px;
+      padding: 25px;
+      margin: 30px 0;
+    }
+
+    .calculator-box h3 {
+      color: var(--neon-cyan);
+      margin-top: 0;
+    }
+
+    .calculator-box a {
+      color: var(--neon-cyan);
+      font-weight: bold;
+    }
+
+    .calculator-box ol {
+      margin-left: 20px;
+      margin-top: 15px;
+    }
+
+    .calculator-box li {
+      margin-bottom: 10px;
+    }
+
+    .sign-card {
+      background: rgba(26, 26, 46, 0.8);
+      border-left: 4px solid var(--sacred-gold);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .sign-card h4 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sign-symbol {
+      font-size: 1.5em;
+    }
+
+    .nakshatra-card {
+      background: rgba(18, 18, 26, 0.9);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+
+    .nakshatra-card h4 {
+      margin-top: 0;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding-bottom: 10px;
+    }
+
+    .nakshatra-meta {
+      font-size: 0.9em;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, var(--sacred-gold), var(--saffron));
+      color: var(--primary);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    .cta-box h3 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    .cta-box a {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--sacred-gold);
+      padding: 15px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 15px;
+      font-family: 'Cinzel', serif;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 0;
+      color: #666;
+      font-size: 0.9em;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      margin-top: 50px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        color: #333;
+      }
+      .sign-card, .nakshatra-card {
+        break-inside: avoid;
+      }
+      h2 {
+        break-after: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>The Complete Nakshatra Guide</h1>
+    <p class="subtitle">Discover Your Lunar Destiny Through Vedic Astrology</p>
+
+    <div class="intro-box">
+      <p><strong>Welcome, Cosmic Seeker!</strong></p>
+      <p>In Vedic astrology, the Moon represents your mind, emotions, and inner self. While Western astrology focuses primarily on your Sun sign, Vedic wisdom teaches that your <strong>Moon sign</strong> and <strong>Nakshatra</strong> (lunar mansion) reveal the deeper truths about your personality, emotional patterns, and life path.</p>
+      <p>This guide will help you understand your lunar placement and begin your journey into the profound wisdom of Jyotish (Vedic astrology).</p>
+    </div>
+
+    <div class="calculator-box">
+      <h3>Step 1: Calculate Your Sidereal Birth Chart</h3>
+      <p>Before exploring the meanings below, you need to know your Moon sign and Nakshatra. Use this free calculator:</p>
+      <p><a href="https://horoscopes.astro-seek.com/sidereal-astrology-chart-calculator" target="_blank">https://horoscopes.astro-seek.com/sidereal-astrology-chart-calculator</a></p>
+      <ol>
+        <li>Enter your birth date, exact time, and location</li>
+        <li><strong>Important:</strong> Select <strong>"Placidus"</strong> as your house system</li>
+        <li>Make sure "Sidereal" zodiac is selected (this uses the true astronomical positions)</li>
+        <li>Look for your <strong>Moon sign</strong> and <strong>Moon Nakshatra</strong> in the results</li>
+      </ol>
+      <p><em>Note: Your sidereal Moon sign may differ from your Western Moon sign by approximately one sign due to the precession of equinoxes.</em></p>
+    </div>
+
+    <h2>Part I: Moon Through the Signs</h2>
+    <p>Your Moon sign shows how you process emotions, what makes you feel secure, and your instinctive reactions to life.</p>
+
+    <div class="sign-card">
+      <h4><span class="sign-symbol">♈</span> Moon in Aries (Mesha)</h4>
+      <p>You possess an emotionally courageous and pioneering spirit. Your feelings are direct, passionate, and often impulsive. You need independence and action to feel emotionally fulfilled. Boredom is your enemy—you thrive when pursuing new challenges. Your emotional responses are quick and fiery, though they may cool just as fast. You're naturally protective of those you love and aren't afraid to fight for what matters to you.</p>
+    </div>
+
+    <div class="sign-card">
+      <h4><span class="sign-symbol">♉</span> Moon in Taurus (Vrishabha)</h4>
+      <p>The Moon is exalted in Taurus, giving you exceptional emotional stability and sensory awareness. You find comfort in material security, nature, good food, and physical pleasures. Change unsettles you—you prefer steady, predictable environments. Your loyalty runs deep, and once you commit emotionally, you rarely waver. You have a gift for creating beauty and comfort wherever you go. Patience is your strength, though stubbornness can be your challenge.</p>
+    </div>
+
+    <div class="sign-card">
+      <h4><span class="sign-symbol">♊</span> Moon in Gemini (Mithuna)</h4>
+      <p>Your mind and emotions are intertwined—you process feelings through communication and intellectual understanding. Variety stimulates you emotionally; monotony drains you. You're naturally curious about people and ideas, often juggling multiple interests simultaneously. Your mood can shift like the wind, adapting to your environment. Social connections nourish your soul, and you have a gift for making others feel heard and understood.</p>
+    </div>
+
+    <div class="sign-card">
+      <h4><span class="sign-symbol">♋</span> Moon in Cancer (Karka)</h4>
+      <p>The Moon rules Cancer, making this its most powerful placement. Your emotional depth is profound—you feel everything intensely and remember emotional experiences vividly. Home, family, and roots are sacred to you. You possess remarkable intuition and can sense others' feelings without words. Your nurturing instinct is strong, though you must guard against emotional overwhelm and the tendency to retreat into your shell when hurt.</p>
+    </div>
+
+    <div class="sign-card">
+      <h4><span class="sign-symbol">♌</span> Moon in Leo (Simha)</h4>
+      <p>You need to shine emotionally and crave recognition for who you truly are. Your heart is generous and warm—you love dramatically and expect loyalty in return. Creativity and self-expression are emotional necessities, not luxuries. You have natural dignity and take pride in your emotional responses. While you can be theatrical about your feelings, your warmth is genuine. Being ignored or feeling ordinary wounds you deeply.</p>
+    </div>
+
+    <div class="sign-card">
+      <h4><span class="sign-symbol">♍</span> Moon in Virgo (Kanya)</h4>
+      <p>You process emotions through analysis and seek to understand the "why" behind every feeling. Service to others brings you emotional satisfaction—you show love through practical help. You're sensitive to criticism and can be your own harshest judge. Order and routine comfort you; chaos creates anxiety. Your attention to detail extends to emotional matters, sometimes causing you to overthink feelings rather than simply experiencing them.</p>
+    </div>
+
+    <div class="sign-card">
+      <h4><span class="sign-symbol">♎</span> Moon in Libra (Tula)</h4>
+      <p>Harmony and partnership are essential to your emotional well-being. You instinctively seek balance and can see all sides of emotional situations. Conflict disturbs you deeply—you're a natural peacemaker. Beauty in all forms soothes your soul. You may struggle with decisions, weighing options endlessly. Relationships define much of your emotional life; you feel most complete when sharing your world with a significant other.</p>
+    </div>
+
+    <div class="sign-card">
+      <h4><span class="sign-symbol">♏</span> Moon in Scorpio (Vrishchika)</h4>
+      <p>Your emotions run deeper than most can fathom. You experience life with intense passion and aren't afraid of the darker aspects of human nature. Trust is earned slowly, but once given, your loyalty is absolute. You have powerful instincts and can detect dishonesty instantly. Transformation through emotional crisis is a recurring theme—you're skilled at dying and being reborn psychologically. Forgiveness doesn't come easily; betrayal is never forgotten.</p>
+    </div>
+
+    <div class="sign-card">
+      <h4><span class="sign-symbol">♐</span> Moon in Sagittarius (Dhanu)</h4>
+      <p>Freedom and meaning are your emotional oxygen. You need room to explore, both physically and philosophically. Optimism colors your emotional landscape—you believe things will work out, and they often do. You're honest about your feelings, sometimes to the point of bluntness. Routine and emotional heaviness suffocate you. You find emotional fulfillment through learning, travel, and connecting with something greater than yourself.</p>
+    </div>
+
+    <div class="sign-card">
+      <h4><span class="sign-symbol">♑</span> Moon in Capricorn (Makara)</h4>
+      <p>Emotional maturity came to you early—you may have felt like an old soul even as a child. You process feelings with practicality and rarely let emotions override reason. Achievement and respect matter deeply to you. You can appear emotionally reserved, but beneath the surface lies profound sensitivity. Security through accomplishment drives you. With time, you learn to balance ambition with emotional warmth.</p>
+    </div>
+
+    <div class="sign-card">
+      <h4><span class="sign-symbol">♒</span> Moon in Aquarius (Kumbha)</h4>
+      <p>You experience emotions from a slightly detached, observational perspective. Your feelings connect to humanity as a whole—causes and ideals move you deeply. You need intellectual freedom and resist emotional possessiveness. Unconventional in your emotional expression, you may puzzle those expecting traditional responses. Friendship means more to you than passionate attachment. Your emotional well-being links to feeling part of something meaningful beyond yourself.</p>
+    </div>
+
+    <div class="sign-card">
+      <h4><span class="sign-symbol">♓</span> Moon in Pisces (Meena)</h4>
+      <p>You possess oceanic emotional sensitivity—boundaries between self and others blur easily. Compassion flows naturally from you; others' pain becomes your own. Creative and spiritual pursuits nourish your soul. You may escape into fantasy, art, or spirituality when reality becomes too harsh. Your intuition is extraordinary, bordering on psychic. Learning to protect your emotional boundaries while remaining open-hearted is your lifelong journey.</p>
+    </div>
+
+    <h2>Part II: The 27 Nakshatras</h2>
+    <p>While your Moon sign gives the broad strokes, your Nakshatra reveals the finer details of your lunar nature. Each Nakshatra spans 13°20' of the zodiac and carries its own deity, symbol, and cosmic energy.</p>
+
+    <div class="nakshatra-card">
+      <h4>1. Ashwini (0°00' - 13°20' Aries)</h4>
+      <p class="nakshatra-meta">Symbol: Horse's Head | Deity: Ashwini Kumaras (Divine Physicians) | Ruler: Ketu</p>
+      <p>You are a natural healer with remarkable speed and initiative. Quick to act and blessed with youthful energy throughout life, you possess an innate ability to help others recover—whether physically, emotionally, or spiritually. Impatience may be your challenge, but your pioneering spirit opens doors others cannot see.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>2. Bharani (13°20' - 26°40' Aries)</h4>
+      <p class="nakshatra-meta">Symbol: Yoni (Womb) | Deity: Yama (God of Death) | Ruler: Venus</p>
+      <p>You understand life's cycles of creation, preservation, and transformation. There's a powerful creative and sensual energy within you, along with the ability to bear great burdens. You're unafraid of life's darker aspects and possess the strength to guide others through difficult transitions.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>3. Krittika (26°40' Aries - 10°00' Taurus)</h4>
+      <p class="nakshatra-meta">Symbol: Razor/Flame | Deity: Agni (Fire God) | Ruler: Sun</p>
+      <p>You have a sharp, penetrating nature that cuts through illusion to reach truth. Your criticism, while sometimes harsh, aims to purify and improve. Like fire, you can illuminate or burn—learning to temper your intensity is key. You're fiercely protective of those under your care.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>4. Rohini (10°00' - 23°20' Taurus)</h4>
+      <p class="nakshatra-meta">Symbol: Ox Cart/Chariot | Deity: Brahma (Creator) | Ruler: Moon</p>
+      <p>You embody growth, fertility, and material abundance. There's a magnetic, attractive quality to your presence. You appreciate beauty, comfort, and the finer things in life. Creativity flows naturally, and you have the ability to nurture ideas and projects to fruition. Possessiveness may need watching.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>5. Mrigashira (23°20' Taurus - 6°40' Gemini)</h4>
+      <p class="nakshatra-meta">Symbol: Deer's Head | Deity: Soma (Moon God) | Ruler: Mars</p>
+      <p>You are the eternal seeker, always searching for something just beyond reach. Curiosity drives you—you collect experiences, knowledge, and sensations. There's gentleness combined with alertness in your nature. You may struggle with restlessness and the tendency to always want what you don't have.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>6. Ardra (6°40' - 20°00' Gemini)</h4>
+      <p class="nakshatra-meta">Symbol: Teardrop/Diamond | Deity: Rudra (Storm God) | Ruler: Rahu</p>
+      <p>You've known storms—emotional tempests that have transformed you. There's intensity and passion in your nature, along with intellectual brilliance. You may experience more than your share of sorrow, but from this emerges profound wisdom and the ability to help others through their darkness.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>7. Punarvasu (20°00' Gemini - 3°20' Cancer)</h4>
+      <p class="nakshatra-meta">Symbol: Bow and Quiver | Deity: Aditi (Mother of Gods) | Ruler: Jupiter</p>
+      <p>You possess remarkable resilience—the ability to return, restore, and begin again. Optimism is your gift; you believe in second chances and redemption. There's something nurturing and protective in your nature. You may experience cycles of gain and loss, but you always recover.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>8. Pushya (3°20' - 16°40' Cancer)</h4>
+      <p class="nakshatra-meta">Symbol: Cow's Udder/Lotus | Deity: Brihaspati (Jupiter) | Ruler: Saturn</p>
+      <p>Considered the most auspicious Nakshatra, you embody nourishment in all forms. You have a natural ability to nurture, teach, and support others' growth. Generosity defines you, though you must ensure you don't deplete yourself. Traditional values and spiritual wisdom attract you.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>9. Ashlesha (16°40' - 30°00' Cancer)</h4>
+      <p class="nakshatra-meta">Symbol: Coiled Serpent | Deity: Nagas (Serpent Deities) | Ruler: Mercury</p>
+      <p>You possess hypnotic magnetism and penetrating psychological insight. Like the serpent, you can shed old skins and transform completely. There's wisdom in you that others sense, though they may also feel wary of your power. Learning to use your considerable influence ethically is your path.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>10. Magha (0°00' - 13°20' Leo)</h4>
+      <p class="nakshatra-meta">Symbol: Royal Throne | Deity: Pitris (Ancestors) | Ruler: Ketu</p>
+      <p>You carry ancestral power and have a strong connection to lineage and tradition. There's natural authority and regality in your bearing. You command respect and expect to be treated with dignity. Honoring the past while creating your own legacy is your journey.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>11. Purva Phalguni (13°20' - 26°40' Leo)</h4>
+      <p class="nakshatra-meta">Symbol: Hammock/Front Legs of Bed | Deity: Bhaga (God of Fortune) | Ruler: Venus</p>
+      <p>You understand the art of enjoyment and relaxation. Creativity, romance, and pleasure are your domains. You're generous and warm-hearted, with a talent for celebration and bringing joy to others. Learning to balance indulgence with responsibility is your challenge.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>12. Uttara Phalguni (26°40' Leo - 10°00' Virgo)</h4>
+      <p class="nakshatra-meta">Symbol: Back Legs of Bed | Deity: Aryaman (God of Contracts) | Ruler: Sun</p>
+      <p>You value commitment, friendship, and social contracts. There's nobility and helpfulness in your nature—you support others' success genuinely. Partnership and cooperation come naturally to you. You seek to build lasting structures in relationships and society.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>13. Hasta (10°00' - 23°20' Virgo)</h4>
+      <p class="nakshatra-meta">Symbol: Hand/Fist | Deity: Savitar (Sun God) | Ruler: Moon</p>
+      <p>You have remarkable manual dexterity and skill—whether in crafts, healing arts, or any work requiring precision. Resourcefulness defines you; you can manifest what you need. There's cleverness and adaptability in your nature, along with the ability to grasp opportunities.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>14. Chitra (23°20' Virgo - 6°40' Libra)</h4>
+      <p class="nakshatra-meta">Symbol: Bright Jewel/Pearl | Deity: Vishwakarma (Divine Architect) | Ruler: Mars</p>
+      <p>You are drawn to beauty, design, and creating visually striking things. There's artistic talent and an eye for aesthetics. You may be concerned with appearance—both your own and the beauty you create in the world. You have the ability to craft lasting, beautiful works.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>15. Swati (6°40' - 20°00' Libra)</h4>
+      <p class="nakshatra-meta">Symbol: Young Plant Blown by Wind | Deity: Vayu (Wind God) | Ruler: Rahu</p>
+      <p>Independence and self-reliance define you. Like a young plant, you've learned to be flexible yet rooted. You value freedom above almost everything else. There's adaptability and diplomatic skill in your nature, along with the ability to thrive in various environments.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>16. Vishakha (20°00' Libra - 3°20' Scorpio)</h4>
+      <p class="nakshatra-meta">Symbol: Triumphal Arch/Potter's Wheel | Deity: Indra-Agni | Ruler: Jupiter</p>
+      <p>You possess single-minded determination and the ability to pursue goals relentlessly. Ambition burns within you. You can be patient when necessary, shaping circumstances like a potter shapes clay. Victory through perseverance is your destiny, though you must watch for obsessiveness.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>17. Anuradha (3°20' - 16°40' Scorpio)</h4>
+      <p class="nakshatra-meta">Symbol: Lotus | Deity: Mitra (God of Friendship) | Ruler: Saturn</p>
+      <p>Like a lotus rising from muddy waters, you bloom beautifully despite challenging circumstances. Friendship and devotion are sacred to you. You have the ability to succeed far from your birthplace. Organizational skills and the capacity for deep, lasting bonds define your nature.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>18. Jyeshtha (16°40' - 30°00' Scorpio)</h4>
+      <p class="nakshatra-meta">Symbol: Circular Amulet/Umbrella | Deity: Indra (King of Gods) | Ruler: Mercury</p>
+      <p>You carry the energy of the chief, the eldest, the most powerful. There's protective authority in your nature—you defend those under your care fiercely. You may struggle with pride or the burden of responsibility. Your courage in facing life's battles is remarkable.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>19. Mula (0°00' - 13°20' Sagittarius)</h4>
+      <p class="nakshatra-meta">Symbol: Bunch of Roots/Tied Roots | Deity: Nirrti (Goddess of Destruction) | Ruler: Ketu</p>
+      <p>You seek to get to the root of things—truth, meaning, the fundamental nature of existence. Destruction of illusion is your gift, though this process can be painful. You're unafraid to question everything. Spiritual seeking often defines your path.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>20. Purva Ashadha (13°20' - 26°40' Sagittarius)</h4>
+      <p class="nakshatra-meta">Symbol: Elephant Tusk/Fan | Deity: Apas (Water Goddess) | Ruler: Venus</p>
+      <p>Invincibility and the ability to energize others define you. You're persuasive, with a talent for winning people to your cause. There's pride and confidence in your nature—you believe in your ability to triumph. Purification and improvement drive many of your actions.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>21. Uttara Ashadha (26°40' Sagittarius - 10°00' Capricorn)</h4>
+      <p class="nakshatra-meta">Symbol: Elephant Tusk/Small Bed | Deity: Vishvadevas (Universal Gods) | Ruler: Sun</p>
+      <p>Final victory belongs to you—not the quick win, but the lasting triumph. You possess endurance, integrity, and the ability to lead righteously. Success comes through ethical means and patience. You're respected for your principles and your ability to achieve lasting results.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>22. Shravana (10°00' - 23°20' Capricorn)</h4>
+      <p class="nakshatra-meta">Symbol: Ear/Three Footprints | Deity: Vishnu (Preserver) | Ruler: Moon</p>
+      <p>Listening and learning are your superpowers. You absorb knowledge through what you hear and have a talent for connecting disparate pieces of information. There's a methodical, step-by-step approach to how you achieve your goals. You preserve and transmit wisdom.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>23. Dhanishta (23°20' Capricorn - 6°40' Aquarius)</h4>
+      <p class="nakshatra-meta">Symbol: Drum | Deity: Eight Vasus (Elemental Gods) | Ruler: Mars</p>
+      <p>Wealth, music, and rhythm flow through your life. You have a talent for keeping time—whether in music, business, or life's natural cycles. Prosperity often comes to you, along with fame or recognition. Your generous nature leads you to share your abundance.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>24. Shatabhisha (6°40' - 20°00' Aquarius)</h4>
+      <p class="nakshatra-meta">Symbol: Empty Circle/1000 Flowers | Deity: Varuna (God of Cosmic Waters) | Ruler: Rahu</p>
+      <p>You possess healing powers and the ability to keep secrets. There's something mysterious and self-contained about you—you can appear as an empty vessel while holding vast knowledge within. Truth and cosmic law matter deeply to you. You may walk a solitary path.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>25. Purva Bhadrapada (20°00' Aquarius - 3°20' Pisces)</h4>
+      <p class="nakshatra-meta">Symbol: Sword/Front Legs of Funeral Cot | Deity: Aja Ekapada (One-Footed Goat) | Ruler: Jupiter</p>
+      <p>Intensity and the ability to endure extreme circumstances define you. You can be fierce when necessary, willing to burn bridges for transformation. There's a mystical, otherworldly quality to your nature. You understand that sometimes destruction precedes creation.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>26. Uttara Bhadrapada (3°20' - 16°40' Pisces)</h4>
+      <p class="nakshatra-meta">Symbol: Back Legs of Funeral Cot/Twins | Deity: Ahir Budhnya (Serpent of the Deep) | Ruler: Saturn</p>
+      <p>Deep wisdom and control over the hidden realms of consciousness define you. There's a contemplative, perhaps solitary quality to your nature. You understand the depths—psychological, spiritual, and cosmic. Self-discipline and the ability to access transcendent states are your gifts.</p>
+    </div>
+
+    <div class="nakshatra-card">
+      <h4>27. Revati (16°40' - 30°00' Pisces)</h4>
+      <p class="nakshatra-meta">Symbol: Fish/Drum | Deity: Pushan (Nourisher/Protector) | Ruler: Mercury</p>
+      <p>You complete the cosmic cycle with gentleness, protection, and the ability to guide safe journeys. There's sweetness and compassion in your nature—you genuinely wish well for all beings. You may have talent for travel, animal care, or guiding others to their destination. You represent the end that enables new beginnings.</p>
+    </div>
+
+    <div class="cta-box">
+      <h3>Go Deeper: Discover Your Pada</h3>
+      <p>Each Nakshatra is divided into <strong>4 Padas</strong> (quarters), each adding another layer of specificity to your lunar nature. Your Pada reveals even more precise insights about your emotional patterns, karmic lessons, and life purpose.</p>
+      <p>Our comprehensive birth chart readings include detailed Pada analysis along with:</p>
+      <ul style="text-align: left; display: inline-block; margin: 15px 0;">
+        <li>Complete planetary analysis</li>
+        <li>Dasha predictions (planetary periods)</li>
+        <li>Relationship compatibility</li>
+        <li>Career guidance</li>
+        <li>Remedial measures</li>
+      </ul>
+      <br>
+      <a href="https://shubham-landing.vercel.app/#pricing">Get Your Complete Reading</a>
+    </div>
+
+    <h2>What's Next?</h2>
+    <p>Now that you understand your Moon sign and Nakshatra, you have the foundation for deeper Vedic astrological study. Remember that this is just the beginning—a complete birth chart analysis considers:</p>
+    <ul style="margin-left: 20px; margin-bottom: 20px;">
+      <li>All nine planets (Grahas) and their positions</li>
+      <li>The Ascendant (Lagna) and its Nakshatra</li>
+      <li>Planetary aspects and conjunctions</li>
+      <li>Divisional charts (Vargas) for specific life areas</li>
+      <li>Current planetary periods (Dashas)</li>
+      <li>Transit influences</li>
+    </ul>
+    <p>The Moon is your emotional core, but it's one instrument in the cosmic orchestra of your chart. To hear the full symphony, a complete reading is essential.</p>
+
+    <div class="footer">
+      <p>© 2024 Shubham Method Vedic Astrology</p>
+      <p>May the stars illuminate your path.</p>
+    </div>
+  </div>
+</body>
+</html>
