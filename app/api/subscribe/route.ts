@@ -28,15 +28,16 @@ export async function POST(request: Request) {
       )
 
       if (!ckResponse.ok) {
-        const errorData = await ckResponse.json()
-        console.error('ConvertKit error:', errorData)
-        return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 })
+        const errorText = await ckResponse.text()
+        console.error('ConvertKit error:', ckResponse.status, errorText)
+        // Don't fail the whole request - email is still captured in logs
+      } else {
+        const ckData = await ckResponse.json()
+        console.log('ConvertKit subscription successful:', ckData.subscription?.subscriber?.id)
       }
-
-      const ckData = await ckResponse.json()
-      console.log('ConvertKit subscription successful:', ckData.subscription?.subscriber?.id)
     } else {
       console.warn('ConvertKit not configured - CONVERTKIT_API_SECRET required')
+      // Still succeed - email is logged
     }
 
     return NextResponse.json({ success: true, message: 'Subscribed successfully' })
