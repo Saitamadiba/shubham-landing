@@ -22,26 +22,28 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid plan selected' }, { status: 400 })
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://shubham-landing.vercel.app'
+    // Hardcode the base URL since env vars may not be available at runtime
+    const baseUrl = 'https://shubham-landing.vercel.app'
 
     // Use fetch API directly instead of Stripe SDK
+    const formData = new URLSearchParams()
+    formData.append('payment_method_types[0]', 'card')
+    formData.append('line_items[0][price]', priceId)
+    formData.append('line_items[0][quantity]', '1')
+    formData.append('mode', 'payment')
+    formData.append('success_url', `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`)
+    formData.append('cancel_url', `${baseUrl}/#pricing`)
+    formData.append('customer_email', email)
+    formData.append('metadata[plan]', plan)
+    formData.append('metadata[birthData]', JSON.stringify(birthData))
+
     const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${stripeKey}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: new URLSearchParams({
-        'payment_method_types[0]': 'card',
-        'line_items[0][price]': priceId,
-        'line_items[0][quantity]': '1',
-        'mode': 'payment',
-        'success_url': `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
-        'cancel_url': `${baseUrl}/#pricing`,
-        'customer_email': email,
-        'metadata[plan]': plan,
-        'metadata[birthData]': JSON.stringify(birthData),
-      }).toString(),
+      body: formData.toString(),
     })
 
     if (!response.ok) {
