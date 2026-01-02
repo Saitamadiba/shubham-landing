@@ -8,27 +8,35 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Valid email required' }, { status: 400 })
     }
 
-    // TODO: Integrate with email service (Mailchimp, ConvertKit, etc.)
-    // For now, we'll log and return success
-    // In production, you would:
-    // 1. Add to Mailchimp: await mailchimp.lists.addListMember(listId, { email_address: email })
-    // 2. Or ConvertKit: await fetch('https://api.convertkit.com/v3/forms/{form_id}/subscribe', ...)
-    // 3. Or send via your own SMTP
-
     console.log('New subscriber:', email)
 
-    // You can also store in a database or send to a webhook
-    // Example webhook to Zapier/Make:
-    if (process.env.WEBHOOK_URL) {
-      await fetch(process.env.WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          source: 'nakshatra-guide',
-          timestamp: new Date().toISOString()
-        }),
-      }).catch(console.error)
+    // ConvertKit Integration - Tag-based subscription
+    const convertKitApiSecret = process.env.CONVERTKIT_API_SECRET
+    const convertKitTagId = process.env.CONVERTKIT_TAG_ID || '13994780' // nakshatra-guide tag
+
+    if (convertKitApiSecret) {
+      const ckResponse = await fetch(
+        `https://api.convertkit.com/v3/tags/${convertKitTagId}/subscribe`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            api_secret: convertKitApiSecret,
+            email: email,
+          }),
+        }
+      )
+
+      if (!ckResponse.ok) {
+        const errorData = await ckResponse.json()
+        console.error('ConvertKit error:', errorData)
+        return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 })
+      }
+
+      const ckData = await ckResponse.json()
+      console.log('ConvertKit subscription successful:', ckData.subscription?.subscriber?.id)
+    } else {
+      console.warn('ConvertKit not configured - CONVERTKIT_API_SECRET required')
     }
 
     return NextResponse.json({ success: true, message: 'Subscribed successfully' })
