@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
-})
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 // Stripe Price IDs - created via API
 const PRICE_IDS = {
@@ -43,6 +41,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ sessionId: session.id, url: session.url })
   } catch (error) {
     console.error('Stripe checkout error:', error)
-    return NextResponse.json({ error: 'Failed to create checkout session' }, { status: 500 })
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+    return NextResponse.json({ error: 'Failed to create checkout session', details: errorMessage }, { status: 500 })
   }
 }
