@@ -5,31 +5,20 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2023-10-16',
 })
 
-const PRODUCTS = {
-  essential: {
-    name: 'Shubham Method - Essential Report',
-    description: '5-Phase Vedic Astrology Analysis (25+ pages)',
-    price: 6700, // in cents
-  },
-  complete: {
-    name: 'Shubham Method - Complete Report',
-    description: '14-Phase Full Shubham Method Analysis (80+ pages)',
-    price: 19700,
-  },
-  premium: {
-    name: 'Shubham Method - Premium Package',
-    description: 'Complete Report + 60-min Video Consultation',
-    price: 49700,
-  },
+// Stripe Price IDs - created via API
+const PRICE_IDS = {
+  essential: process.env.STRIPE_PRICE_ESSENTIAL || 'price_1SlFF3BTRJszg4YGWURFFCAN',
+  complete: process.env.STRIPE_PRICE_COMPLETE || 'price_1SlFF8BTRJszg4YG9IRMvY9x',
+  premium: process.env.STRIPE_PRICE_PREMIUM || 'price_1SlFFIBTRJszg4YG4el0W7s5',
 }
 
 export async function POST(request: Request) {
   try {
     const { plan, email, birthData } = await request.json()
 
-    const product = PRODUCTS[plan as keyof typeof PRODUCTS]
+    const priceId = PRICE_IDS[plan as keyof typeof PRICE_IDS]
 
-    if (!product) {
+    if (!priceId) {
       return NextResponse.json({ error: 'Invalid plan selected' }, { status: 400 })
     }
 
@@ -37,14 +26,7 @@ export async function POST(request: Request) {
       payment_method_types: ['card'],
       line_items: [
         {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: product.name,
-              description: product.description,
-            },
-            unit_amount: product.price,
-          },
+          price: priceId,
           quantity: 1,
         },
       ],
