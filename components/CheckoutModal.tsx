@@ -2,21 +2,23 @@
 
 import { useState } from 'react'
 import { X, Loader2 } from 'lucide-react'
-import { loadStripe } from '@stripe/stripe-js'
-
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+import { useLanguage } from '@/lib/LanguageContext'
 
 interface CheckoutModalProps {
   isOpen: boolean
   onClose: () => void
-  plan: {
-    name: string
-    price: number
-    id: string
-  }
+  plan: string
+  planKey: string
 }
 
-export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalProps) {
+const prices: Record<string, number> = {
+  essential: 67,
+  complete: 197,
+  premium: 497,
+}
+
+export default function CheckoutModal({ isOpen, onClose, plan, planKey }: CheckoutModalProps) {
+  const { t } = useLanguage()
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
@@ -35,7 +37,7 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          plan: plan.id,
+          plan: planKey,
           email: formData.email,
           birthData: {
             name: formData.name,
@@ -61,6 +63,8 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
 
   if (!isOpen) return null
 
+  const price = prices[planKey] || 0
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
@@ -82,15 +86,27 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
         {/* Header */}
         <div className="text-center mb-6">
           <h2 className="font-cinzel text-2xl font-bold text-sacred-gold mb-2">
-            {plan.name} Report
+            {t.checkout.title}
           </h2>
-          <p className="text-3xl font-bold text-white">${plan.price}</p>
+          <p className="text-gray-400 text-sm mb-2">{t.checkout.subtitle}</p>
+          <p className="text-xl font-semibold text-white">{plan} - <span className="text-sacred-gold">${price}</span></p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm text-gray-400 mb-1">Email Address</label>
+            <label className="block text-sm text-gray-400 mb-1">{t.checkout.fullName}</label>
+            <input
+              type="text"
+              required
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="w-full bg-cosmic border border-sacred-gold/30 rounded-lg px-4 py-3 text-white focus:border-sacred-gold focus:outline-none transition"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm text-gray-400 mb-1">{t.checkout.email}</label>
             <input
               type="email"
               required
@@ -101,21 +117,9 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
             />
           </div>
 
-          <div>
-            <label className="block text-sm text-gray-400 mb-1">Full Name</label>
-            <input
-              type="text"
-              required
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full bg-cosmic border border-sacred-gold/30 rounded-lg px-4 py-3 text-white focus:border-sacred-gold focus:outline-none transition"
-              placeholder="Your name"
-            />
-          </div>
-
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm text-gray-400 mb-1">Birth Date</label>
+              <label className="block text-sm text-gray-400 mb-1">{t.checkout.birthDate}</label>
               <input
                 type="date"
                 required
@@ -125,7 +129,7 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
               />
             </div>
             <div>
-              <label className="block text-sm text-gray-400 mb-1">Birth Time</label>
+              <label className="block text-sm text-gray-400 mb-1">{t.checkout.birthTime}</label>
               <input
                 type="time"
                 required
@@ -137,31 +141,40 @@ export default function CheckoutModal({ isOpen, onClose, plan }: CheckoutModalPr
           </div>
 
           <div>
-            <label className="block text-sm text-gray-400 mb-1">Birth Place (City, Country)</label>
+            <label className="block text-sm text-gray-400 mb-1">{t.checkout.birthPlace}</label>
             <input
               type="text"
               required
               value={formData.birthPlace}
               onChange={(e) => setFormData({ ...formData, birthPlace: e.target.value })}
               className="w-full bg-cosmic border border-sacred-gold/30 rounded-lg px-4 py-3 text-white focus:border-sacred-gold focus:outline-none transition"
-              placeholder="e.g., Paris, France"
+              placeholder="Paris, France"
             />
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-gradient-to-r from-sacred-gold to-saffron text-primary py-4 rounded-xl font-bold text-lg hover:shadow-sacred transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-          >
-            {loading ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Processing...
-              </>
-            ) : (
-              <>Proceed to Payment</>
-            )}
-          </button>
+          <div className="flex gap-3 pt-2">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 border-2 border-gray-600 text-gray-400 py-3 rounded-xl font-semibold hover:border-gray-500 hover:text-gray-300 transition"
+            >
+              {t.checkout.cancel}
+            </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex-1 bg-gradient-to-r from-sacred-gold to-saffron text-primary py-3 rounded-xl font-bold hover:shadow-sacred transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  {t.checkout.processing}
+                </>
+              ) : (
+                t.checkout.proceed
+              )}
+            </button>
+          </div>
         </form>
 
         <p className="text-center text-gray-500 text-xs mt-4">
