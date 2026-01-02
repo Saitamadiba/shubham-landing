@@ -16,7 +16,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Stripe not configured' }, { status: 500 })
     }
 
-    const stripe = new Stripe(stripeKey)
+    const stripe = new Stripe(stripeKey, {
+      timeout: 30000,
+      maxNetworkRetries: 3,
+    })
 
     const { plan, email, birthData } = await request.json()
 
