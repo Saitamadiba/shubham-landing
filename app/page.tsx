@@ -18,6 +18,7 @@ import {
 import { useLanguage } from '@/lib/LanguageContext'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
 import CheckoutModal from '@/components/CheckoutModal'
+import LeadMagnet from '@/components/LeadMagnet'
 
 // Price data (not translated)
 const priceData = [
@@ -174,6 +175,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Lead Magnet */}
+      <LeadMagnet />
 
       {/* Sample Report Preview */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-secondary/50">

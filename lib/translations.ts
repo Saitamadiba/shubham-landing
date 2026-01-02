@@ -205,6 +205,23 @@ export const translations = {
       proceed: 'Proceed to Payment',
       cancel: 'Cancel',
     },
+    // Lead Magnet
+    leadMagnet: {
+      badge: 'FREE GUIDE',
+      title: 'Discover Your Nakshatra',
+      subtitle: 'Learn the secrets of the 27 lunar mansions and how your birth star shapes your personality, relationships, and life path.',
+      features: [
+        'Complete guide to all 27 Nakshatras',
+        'Your Moon sign personality traits',
+        'Nakshatra compatibility insights',
+        'Remedial measures for each star',
+      ],
+      placeholder: 'Enter your email',
+      button: 'Get Free Guide',
+      sending: 'Sending...',
+      success: 'Check your inbox!',
+      privacy: 'We respect your privacy. Unsubscribe anytime.',
+    },
   },
   fr: {
     // Navigation
@@ -409,6 +426,23 @@ export const translations = {
       processing: 'Traitement en cours...',
       proceed: 'Procéder au Paiement',
       cancel: 'Annuler',
+    },
+    // Lead Magnet
+    leadMagnet: {
+      badge: 'GUIDE GRATUIT',
+      title: 'Découvrez Votre Nakshatra',
+      subtitle: 'Apprenez les secrets des 27 demeures lunaires et comment votre étoile de naissance façonne votre personnalité, vos relations et votre chemin de vie.',
+      features: [
+        'Guide complet des 27 Nakshatras',
+        'Traits de personnalité de votre signe lunaire',
+        'Aperçus de compatibilité Nakshatra',
+        'Mesures remédiales pour chaque étoile',
+      ],
+      placeholder: 'Entrez votre email',
+      button: 'Obtenir le Guide Gratuit',
+      sending: 'Envoi en cours...',
+      success: 'Vérifiez votre boîte mail !',
+      privacy: 'Nous respectons votre vie privée. Désabonnement possible à tout moment.',
     },
   },
 }
