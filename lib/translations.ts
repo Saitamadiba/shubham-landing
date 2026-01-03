@@ -231,7 +231,7 @@ export const translations = {
       ethNote: 'Ethereum/ERC-20 Network',
       stablecoinsNote: 'USDT & USDC accepted on ERC-20',
       backToCheckout: 'Back to Checkout',
-      contactEmail: 'shubham.astrology@proton.me',
+      contactEmail: 'Vedastro@pm.me',
     },
     // Lead Magnet
     leadMagnet: {
@@ -481,7 +481,7 @@ export const translations = {
       ethNote: 'Réseau Ethereum/ERC-20',
       stablecoinsNote: 'USDT & USDC acceptés sur ERC-20',
       backToCheckout: 'Retour au Paiement',
-      contactEmail: 'shubham.astrology@proton.me',
+      contactEmail: 'Vedastro@pm.me',
     },
     // Lead Magnet
     leadMagnet: {
