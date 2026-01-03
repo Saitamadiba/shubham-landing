@@ -8,7 +8,8 @@
   <style>
     @page {
       size: A4;
-      margin: 2cm 1.5cm;
+      margin: 0;
+      background: linear-gradient(180deg, #1a1a2e 0%, #16162a 50%, #1e1e3a 100%);
     }
 
     * {
@@ -17,18 +18,24 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      background: #1a1a2e;
+    }
+
     body {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      background: #0d0d14;
+      background: linear-gradient(180deg, #1a1a2e 0%, #16162a 50%, #1e1e3a 100%);
       color: #e8e8e8;
       line-height: 1.7;
       font-size: 11pt;
+      min-height: 100vh;
     }
 
     .container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 2cm 1.5cm;
+      background: transparent;
     }
 
     .header {
