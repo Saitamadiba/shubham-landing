@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { X, Loader2 } from 'lucide-react'
+import { X, Loader2, CreditCard, Bitcoin } from 'lucide-react'
 import { useLanguage } from '@/lib/LanguageContext'
+import { useRouter } from 'next/navigation'
 
 interface CheckoutModalProps {
   isOpen: boolean
@@ -18,8 +19,10 @@ const prices: Record<string, number> = {
 }
 
 export default function CheckoutModal({ isOpen, onClose, plan, planKey }: CheckoutModalProps) {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'crypto'>('card')
   const [formData, setFormData] = useState({
     email: '',
     name: '',
@@ -33,6 +36,25 @@ export default function CheckoutModal({ isOpen, onClose, plan, planKey }: Checko
     setLoading(true)
 
     try {
+      if (paymentMethod === 'crypto') {
+        // Redirect to crypto checkout page with order details
+        const params = new URLSearchParams({
+          plan: planKey,
+          planName: plan,
+          price: String(prices[planKey] || 0),
+          email: formData.email,
+          name: formData.name,
+          birthDate: formData.birthDate,
+          birthTime: formData.birthTime,
+          birthPlace: formData.birthPlace,
+          lang: language,
+        })
+        router.push(`/crypto-checkout?${params.toString()}`)
+        onClose()
+        return
+      }
+
+      // Card payment via Stripe
       const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -94,6 +116,40 @@ export default function CheckoutModal({ isOpen, onClose, plan, planKey }: Checko
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Payment Method Selector */}
+          <div>
+            <label className="block text-sm text-gray-400 mb-2">{t.checkout.paymentMethod}</label>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setPaymentMethod('card')}
+                className={`flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 transition ${
+                  paymentMethod === 'card'
+                    ? 'border-sacred-gold bg-sacred-gold/10 text-sacred-gold'
+                    : 'border-gray-600 text-gray-400 hover:border-gray-500'
+                }`}
+              >
+                <CreditCard className="w-5 h-5" />
+                <span className="font-medium">{t.checkout.payWithCard}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setPaymentMethod('crypto')}
+                className={`flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 transition ${
+                  paymentMethod === 'crypto'
+                    ? 'border-sacred-gold bg-sacred-gold/10 text-sacred-gold'
+                    : 'border-gray-600 text-gray-400 hover:border-gray-500'
+                }`}
+              >
+                <Bitcoin className="w-5 h-5" />
+                <span className="font-medium">{t.checkout.payWithCrypto}</span>
+              </button>
+            </div>
+            <p className="text-xs text-gray-500 mt-1 text-center">
+              {paymentMethod === 'card' ? t.checkout.cardSecure : t.checkout.cryptoOptions}
+            </p>
+          </div>
+
           <div>
             <label className="block text-sm text-gray-400 mb-1">{t.checkout.fullName}</label>
             <input
@@ -178,7 +234,9 @@ export default function CheckoutModal({ isOpen, onClose, plan, planKey }: Checko
         </form>
 
         <p className="text-center text-gray-500 text-xs mt-4">
-          Secure payment powered by Stripe
+          {paymentMethod === 'card'
+            ? 'Secure payment powered by Stripe'
+            : 'BTC • ETH • USDT • USDC accepted'}
         </p>
       </div>
     </div>
