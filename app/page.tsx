@@ -72,6 +72,7 @@ export default function LandingPage() {
               <a href="#pricing" className="text-gray-300 hover:text-sacred-gold transition">{t.nav.pricing}</a>
               <a href="#testimonials" className="text-gray-300 hover:text-sacred-gold transition">{t.nav.reviews}</a>
               <a href="#faq" className="text-gray-300 hover:text-sacred-gold transition">{t.nav.faq}</a>
+              <a href="/blog" className="text-gray-300 hover:text-sacred-gold transition">{t.nav.blog}</a>
               <LanguageSwitcher />
               <a
                 href="#pricing"
@@ -102,6 +103,7 @@ export default function LandingPage() {
               <a href="#pricing" className="text-gray-300 hover:text-sacred-gold transition py-2">{t.nav.pricing}</a>
               <a href="#testimonials" className="text-gray-300 hover:text-sacred-gold transition py-2">{t.nav.reviews}</a>
               <a href="#faq" className="text-gray-300 hover:text-sacred-gold transition py-2">{t.nav.faq}</a>
+              <a href="/blog" className="text-gray-300 hover:text-sacred-gold transition py-2">{t.nav.blog}</a>
               <a
                 href="#pricing"
                 className="bg-gradient-to-r from-sacred-gold to-saffron text-primary px-6 py-3 rounded-full font-semibold text-center"

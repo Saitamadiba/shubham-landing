@@ -8,6 +8,7 @@ export const translations = {
       pricing: 'Pricing',
       reviews: 'Reviews',
       faq: 'FAQ',
+      blog: 'Blog',
       getReport: 'Get Your Report',
     },
     // Hero
@@ -258,6 +259,7 @@ export const translations = {
       pricing: 'Tarifs',
       reviews: 'Avis',
       faq: 'FAQ',
+      blog: 'Blog',
       getReport: 'Obtenir Votre Rapport',
     },
     // Hero
