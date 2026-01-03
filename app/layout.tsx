@@ -4,6 +4,8 @@ import './globals.css'
 import { LanguageProvider } from '@/lib/LanguageContext'
 import { OrganizationJsonLd, ServiceJsonLd, FAQJsonLd, WebsiteJsonLd, PersonJsonLd, ReviewJsonLd } from '@/components/JsonLd'
 import { WebVitals } from '@/components/WebVitals'
+import { GoogleAnalytics } from '@/components/Analytics'
+import { CookieConsent } from '@/components/CookieConsent'
 
 // Optimized font loading with next/font - eliminates render-blocking CSS
 const cinzel = Cinzel({
@@ -93,8 +95,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // Add your verification codes here when ready
-    // google: 'your-google-verification-code',
+    // Google Search Console - Add your verification code from:
+    // https://search.google.com/search-console → Settings → Ownership verification
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    // Bing Webmaster Tools
     // yandex: 'your-yandex-verification-code',
   },
 }
@@ -111,6 +115,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://js.stripe.com" />
         <link rel="dns-prefetch" href="https://api.stripe.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
         {/* Structured Data */}
         <OrganizationJsonLd />
@@ -121,10 +126,12 @@ export default function RootLayout({
         <ReviewJsonLd />
       </head>
       <body className={`${rajdhani.className} text-gray-100 antialiased`}>
+        <GoogleAnalytics />
         <WebVitals />
         <LanguageProvider>
           {children}
         </LanguageProvider>
+        <CookieConsent />
       </body>
     </html>
   )
