@@ -3,6 +3,9 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getBlogPost, getAllBlogPosts } from '@/lib/blog'
 import { Calendar, Clock, ArrowLeft, ArrowRight, Tag } from 'lucide-react'
+import { SocialShare } from '@/components/SocialShare'
+
+const BASE_URL = 'https://shubham-landing.vercel.app'
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>
@@ -25,60 +28,136 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     }
   }
 
+  const articleUrl = `${BASE_URL}/blog/${slug}`
+
   return {
     title: post.title,
     description: post.description,
     keywords: post.tags,
-    authors: [{ name: post.author }],
+    authors: [{ name: post.author, url: BASE_URL }],
+    creator: post.author,
+    publisher: 'Shubham Method',
+    alternates: {
+      canonical: articleUrl,
+    },
     openGraph: {
       title: post.title,
       description: post.description,
+      url: articleUrl,
+      siteName: 'Shubham Method',
+      locale: post.lang === 'fr' ? 'fr_FR' : 'en_US',
       type: 'article',
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt || post.publishedAt,
       authors: [post.author],
+      section: post.category,
       tags: post.tags,
+      images: [
+        {
+          url: `${BASE_URL}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
+      site: '@shubhammethod',
+      creator: '@shubhammethod',
       title: post.title,
       description: post.description,
+      images: [`${BASE_URL}/og-image.png`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   }
 }
 
 function BlogPostJsonLd({ post }: { post: NonNullable<ReturnType<typeof getBlogPost>> }) {
+  const articleUrl = `${BASE_URL}/blog/${post.slug}`
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
+    '@id': articleUrl,
     headline: post.title,
     description: post.description,
+    image: `${BASE_URL}/og-image.png`,
     author: {
-      '@type': 'Organization',
-      name: post.author,
-      url: 'https://shubham-landing.vercel.app',
+      '@type': 'Person',
+      name: 'Shubham Alock',
+      url: BASE_URL,
+      jobTitle: 'Vedic Astrologer',
+      description: 'Expert Vedic astrologer specializing in birth chart analysis using the comprehensive 14-phase Shubham Method.',
+      sameAs: [
+        'https://twitter.com/shubhammethod',
+      ],
     },
     publisher: {
       '@type': 'Organization',
       name: 'Shubham Method',
-      url: 'https://shubham-landing.vercel.app',
+      url: BASE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/og-image.png`,
+      },
     },
     datePublished: post.publishedAt,
     dateModified: post.updatedAt || post.publishedAt,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://shubham-landing.vercel.app/blog/${post.slug}`,
+      '@id': articleUrl,
     },
     keywords: post.tags.join(', '),
     articleSection: post.category,
     wordCount: post.content.split(/\s+/).length,
+    inLanguage: post.lang === 'fr' ? 'fr-FR' : 'en-US',
+    isAccessibleForFree: true,
+    license: 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
+  }
+
+  // BreadcrumbList for better navigation signals
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: BASE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: `${BASE_URL}/blog`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: articleUrl,
+      },
+    ],
   }
 
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+    </>
   )
 }
 
@@ -199,6 +278,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   {tag}
                 </span>
               ))}
+            </div>
+
+            {/* Social Sharing */}
+            <div className="mt-8 pt-8 border-t border-sacred-gold/20">
+              <SocialShare
+                url={`${BASE_URL}/blog/${post.slug}`}
+                title={post.title}
+                description={post.description}
+                hashtags={['VedicAstrology', 'Jyotish', 'ShubhamMethod']}
+              />
             </div>
           </div>
         </article>

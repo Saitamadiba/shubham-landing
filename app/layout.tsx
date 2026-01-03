@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Cinzel, Rajdhani } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/lib/LanguageContext'
-import { OrganizationJsonLd, ServiceJsonLd, FAQJsonLd, WebsiteJsonLd } from '@/components/JsonLd'
+import { OrganizationJsonLd, ServiceJsonLd, FAQJsonLd, WebsiteJsonLd, PersonJsonLd, ReviewJsonLd } from '@/components/JsonLd'
 import { WebVitals } from '@/components/WebVitals'
 
 // Optimized font loading with next/font - eliminates render-blocking CSS
@@ -117,6 +117,8 @@ export default function RootLayout({
         <ServiceJsonLd />
         <FAQJsonLd />
         <WebsiteJsonLd />
+        <PersonJsonLd />
+        <ReviewJsonLd />
       </head>
       <body className={`${rajdhani.className} text-gray-100 antialiased`}>
         <WebVitals />
