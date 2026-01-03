@@ -1,7 +1,24 @@
 import type { Metadata } from 'next'
+import { Cinzel, Rajdhani } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/lib/LanguageContext'
 import { OrganizationJsonLd, ServiceJsonLd, FAQJsonLd, WebsiteJsonLd } from '@/components/JsonLd'
+import { WebVitals } from '@/components/WebVitals'
+
+// Optimized font loading with next/font - eliminates render-blocking CSS
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-cinzel',
+})
+
+const rajdhani = Rajdhani({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-rajdhani',
+})
 
 const BASE_URL = 'https://shubham-landing.vercel.app'
 
@@ -88,14 +105,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${cinzel.variable} ${rajdhani.variable}`}>
       <head>
+        {/* Performance hints for faster resource loading */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://js.stripe.com" />
+        <link rel="dns-prefetch" href="https://api.stripe.com" />
+
+        {/* Structured Data */}
         <OrganizationJsonLd />
         <ServiceJsonLd />
         <FAQJsonLd />
         <WebsiteJsonLd />
       </head>
-      <body className="font-rajdhani text-gray-100 antialiased">
+      <body className={`${rajdhani.className} text-gray-100 antialiased`}>
+        <WebVitals />
         <LanguageProvider>
           {children}
         </LanguageProvider>

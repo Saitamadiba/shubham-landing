@@ -27,8 +27,8 @@ module.exports = {
         accent: '#e94560',
       },
       fontFamily: {
-        cinzel: ['Cinzel', 'serif'],
-        rajdhani: ['Rajdhani', 'sans-serif'],
+        cinzel: ['var(--font-cinzel)', 'Cinzel', 'serif'],
+        rajdhani: ['var(--font-rajdhani)', 'Rajdhani', 'sans-serif'],
       },
       backgroundImage: {
         'sacred-gradient': 'linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(128, 0, 32, 0.15), rgba(0, 229, 204, 0.1))',
