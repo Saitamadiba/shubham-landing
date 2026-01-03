@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Complete Nakshatra Guide</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     @page {
-      size: A4;
+      size: A4 portrait;
       margin: 0;
     }
 
@@ -17,56 +17,50 @@
       box-sizing: border-box;
     }
 
-    html {
-      background: #13132a;
-    }
-
     body {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      background: #13132a;
-      color: #e8e8e8;
-      line-height: 1.65;
-      font-size: 10.5pt;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
+      color: #e8e8f0;
+      line-height: 1.6;
+      font-size: 11pt;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
     }
 
-    /* Page wrapper for consistent backgrounds */
     .page {
       width: 210mm;
-      min-height: 297mm;
-      padding: 18mm 20mm;
-      background: linear-gradient(170deg, #1a1a32 0%, #151528 40%, #1a1a35 100%);
-      page-break-after: always;
+      height: 297mm;
+      padding: 20mm 22mm;
+      background: linear-gradient(160deg, #1e1e3a 0%, #16162c 50%, #1a1a38 100%);
       position: relative;
-      overflow: hidden;
+      page-break-after: always;
     }
 
     .page:last-child {
-      page-break-after: auto;
+      page-break-after: avoid;
     }
 
-    /* Decorative corner elements */
+    /* Decorative corners */
     .page::before {
       content: '';
       position: absolute;
-      top: 12mm;
-      left: 12mm;
-      width: 25mm;
-      height: 25mm;
-      border-left: 1px solid rgba(212, 175, 55, 0.3);
-      border-top: 1px solid rgba(212, 175, 55, 0.3);
+      top: 15mm;
+      left: 15mm;
+      width: 20mm;
+      height: 20mm;
+      border-left: 1px solid rgba(212, 175, 55, 0.4);
+      border-top: 1px solid rgba(212, 175, 55, 0.4);
     }
 
     .page::after {
       content: '';
       position: absolute;
-      bottom: 12mm;
-      right: 12mm;
-      width: 25mm;
-      height: 25mm;
-      border-right: 1px solid rgba(212, 175, 55, 0.3);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      bottom: 15mm;
+      right: 15mm;
+      width: 20mm;
+      height: 20mm;
+      border-right: 1px solid rgba(212, 175, 55, 0.4);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
     }
 
     /* Cover page */
@@ -76,270 +70,253 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 30mm 25mm;
-    }
-
-    .cover-ornament {
-      width: 60mm;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #d4af37, transparent);
-      margin: 8mm 0;
+      height: 257mm;
     }
 
     .cover h1 {
       font-family: 'Cinzel', serif;
-      font-size: 32pt;
-      font-weight: 600;
+      font-size: 36pt;
       color: #d4af37;
-      letter-spacing: 3px;
-      margin-bottom: 5mm;
-      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 8mm;
+      text-shadow: 0 2px 20px rgba(212, 175, 55, 0.3);
+    }
+
+    .ornament {
+      width: 60mm;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+      margin: 8mm 0;
     }
 
     .cover .subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14pt;
+      font-size: 15pt;
+      color: #b0b0c0;
       font-style: italic;
-      color: #a0a0b0;
+      margin-bottom: 12mm;
       letter-spacing: 1px;
     }
 
     .cover .tagline {
-      font-size: 11pt;
-      color: #707080;
-      margin-top: 15mm;
-      max-width: 120mm;
+      font-size: 12pt;
+      color: #808098;
+      max-width: 130mm;
       line-height: 1.8;
     }
 
     .cover .brand {
       position: absolute;
-      bottom: 25mm;
+      bottom: 30mm;
       font-family: 'Cinzel', serif;
-      font-size: 9pt;
+      font-size: 11pt;
       color: #d4af37;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
     }
 
-    /* Section headers */
+    /* Headers */
     h2 {
       font-family: 'Cinzel', serif;
-      font-size: 16pt;
-      font-weight: 600;
+      font-size: 18pt;
       color: #d4af37;
       text-align: center;
-      margin-bottom: 6mm;
+      margin-bottom: 8mm;
       letter-spacing: 2px;
-      text-transform: uppercase;
     }
 
     h2::after {
       content: '';
       display: block;
-      width: 40mm;
+      width: 50mm;
       height: 1px;
       background: linear-gradient(90deg, transparent, #d4af37, transparent);
-      margin: 4mm auto 0;
+      margin: 5mm auto 0;
     }
 
     h3 {
       font-family: 'Cinzel', serif;
-      font-size: 11pt;
-      font-weight: 600;
-      color: #f0c050;
-      margin-bottom: 3mm;
-      letter-spacing: 1px;
-    }
-
-    h4 {
-      font-family: 'Cinzel', serif;
-      font-size: 10.5pt;
-      font-weight: 600;
-      color: #60c0d0;
-      margin-bottom: 2mm;
-    }
-
-    p {
-      margin-bottom: 3mm;
-      text-align: justify;
-      hyphens: auto;
-    }
-
-    /* Introduction box */
-    .intro-box {
-      background: rgba(212, 175, 55, 0.08);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: 3mm;
-      padding: 5mm 6mm;
-      margin: 5mm 0;
-    }
-
-    .intro-box p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Calculator instruction box */
-    .calculator-box {
-      background: rgba(96, 192, 208, 0.08);
-      border: 1px solid rgba(96, 192, 208, 0.3);
-      border-radius: 3mm;
-      padding: 5mm 6mm;
-      margin: 5mm 0;
-    }
-
-    .calculator-box h3 {
-      color: #60c0d0;
-      margin-top: 0;
-      text-align: center;
+      font-size: 12pt;
+      color: #70d0e0;
       margin-bottom: 4mm;
     }
 
-    .calculator-box a {
-      color: #60c0d0;
-      word-break: break-all;
-      font-size: 9pt;
+    p {
+      margin-bottom: 4mm;
+      text-align: justify;
     }
 
-    .calculator-box ol {
+    /* Boxes */
+    .intro-box {
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 3mm;
+      padding: 6mm 8mm;
+      margin: 6mm 0;
+    }
+
+    .calc-box {
+      background: rgba(112, 208, 224, 0.08);
+      border: 1px solid rgba(112, 208, 224, 0.3);
+      border-radius: 3mm;
+      padding: 6mm 8mm;
+      margin: 6mm 0;
+    }
+
+    .calc-box h3 {
+      text-align: center;
+      margin-bottom: 5mm;
+    }
+
+    .calc-box a {
+      color: #70d0e0;
+      font-size: 10pt;
+    }
+
+    .calc-box ol {
       margin-left: 6mm;
-      margin-top: 3mm;
+      margin-top: 4mm;
     }
 
-    .calculator-box li {
-      margin-bottom: 2mm;
-      padding-left: 2mm;
+    .calc-box li {
+      margin-bottom: 3mm;
+      font-size: 11pt;
     }
 
-    .calculator-box .note {
-      font-size: 9pt;
+    .calc-box .note {
+      font-size: 10pt;
+      color: #909098;
       font-style: italic;
-      color: #909090;
-      margin-top: 3mm;
+      margin-top: 4mm;
       margin-bottom: 0;
     }
 
-    /* Sign cards - 2 column layout */
+    /* Sign cards */
     .signs-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4mm;
+      gap: 5mm;
     }
 
     .sign-card {
-      background: rgba(26, 26, 50, 0.6);
-      border-left: 2px solid #d4af37;
-      padding: 4mm 5mm;
-      border-radius: 0 2mm 2mm 0;
+      background: rgba(30, 30, 60, 0.6);
+      border-left: 3px solid #d4af37;
+      padding: 5mm 6mm;
+      border-radius: 0 3mm 3mm 0;
     }
 
     .sign-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 11pt;
+      color: #70d0e0;
+      margin-bottom: 3mm;
       display: flex;
       align-items: center;
-      gap: 2mm;
-      margin-bottom: 2mm;
-      font-size: 9.5pt;
+      gap: 3mm;
     }
 
     .sign-card .symbol {
-      font-size: 12pt;
+      font-size: 14pt;
       color: #d4af37;
     }
 
     .sign-card p {
-      font-size: 9pt;
+      font-size: 10pt;
       line-height: 1.5;
       margin-bottom: 0;
-      color: #c8c8d0;
+      color: #c8c8d8;
+      text-align: left;
     }
 
-    /* Nakshatra cards - compact design */
-    .nakshatra-grid {
+    /* Nakshatra cards */
+    .nak-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3.5mm;
+      align-items: start;
     }
 
-    .nakshatra-card {
-      background: rgba(20, 20, 40, 0.7);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-      padding: 3.5mm 4mm;
+    .nak-card {
+      background: rgba(25, 25, 50, 0.7);
+      border: 1px solid rgba(112, 208, 224, 0.2);
       border-radius: 2mm;
+      padding: 3.5mm 4.5mm;
+      overflow: visible;
     }
 
-    .nakshatra-card h4 {
-      font-size: 9pt;
+    .nak-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 9.5pt;
+      color: #d4af37;
       margin-bottom: 1.5mm;
-      color: #60c0d0;
-      border-bottom: 1px solid rgba(96, 192, 208, 0.2);
       padding-bottom: 1.5mm;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     }
 
-    .nakshatra-card .meta {
-      font-size: 7.5pt;
-      color: #808090;
+    .nak-card .meta {
+      font-size: 8pt;
+      color: #8888a0;
       margin-bottom: 2mm;
       font-style: italic;
     }
 
-    .nakshatra-card p {
-      font-size: 8.5pt;
-      line-height: 1.45;
-      margin-bottom: 0;
-      color: #b8b8c0;
-    }
-
-    /* Full width nakshatra for important ones */
-    .nakshatra-card.featured {
-      grid-column: span 2;
-      background: rgba(212, 175, 55, 0.05);
-      border-color: rgba(212, 175, 55, 0.25);
-    }
-
-    .nakshatra-card.featured h4 {
-      color: #d4af37;
-      border-bottom-color: rgba(212, 175, 55, 0.3);
-    }
-
-    .nakshatra-card.featured p {
+    .nak-card p {
       font-size: 9pt;
+      line-height: 1.4;
+      margin-bottom: 0;
+      color: #b8b8c8;
+      text-align: left;
+    }
+
+    .nak-card.featured {
+      grid-column: span 2;
+      background: rgba(212, 175, 55, 0.06);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .nak-card.featured h4 {
+      color: #f0c050;
+      font-size: 10pt;
+    }
+
+    .nak-card.featured p {
+      font-size: 9.5pt;
     }
 
     /* CTA Box */
     .cta-box {
-      background: linear-gradient(135deg, #d4af37 0%, #c49a2c 50%, #e0b840 100%);
-      color: #0d0d14;
+      background: linear-gradient(135deg, #d4af37 0%, #b8962e 100%);
+      color: #1a1a2e;
       padding: 8mm 10mm;
-      border-radius: 3mm;
+      border-radius: 4mm;
       text-align: center;
-      margin: 6mm 0;
+      margin: 8mm 0;
     }
 
     .cta-box h3 {
       color: #1a1a2e;
-      font-size: 14pt;
+      font-size: 16pt;
       margin-bottom: 4mm;
     }
 
     .cta-box p {
-      color: #2a2a3e;
-      font-size: 10pt;
+      color: #2a2a40;
+      font-size: 11pt;
       margin-bottom: 3mm;
+      text-align: center;
     }
 
     .cta-box ul {
       text-align: left;
       display: inline-block;
       margin: 4mm 0;
+      font-size: 10pt;
       color: #1a1a2e;
-      font-size: 9.5pt;
     }
 
     .cta-box li {
-      margin-bottom: 1.5mm;
-      padding-left: 2mm;
+      margin-bottom: 2mm;
     }
 
-    .cta-box .cta-link {
+    .cta-box .link {
       display: inline-block;
       background: #1a1a2e;
       color: #d4af37;
@@ -347,82 +324,67 @@
       border-radius: 2mm;
       text-decoration: none;
       font-family: 'Cinzel', serif;
-      font-weight: 600;
       font-size: 10pt;
+      margin-top: 3mm;
       letter-spacing: 1px;
-      margin-top: 3mm;
-    }
-
-    /* Next steps section */
-    .next-steps {
-      margin-top: 5mm;
-    }
-
-    .next-steps ul {
-      margin-left: 6mm;
-      margin-top: 3mm;
-      columns: 2;
-      column-gap: 8mm;
-    }
-
-    .next-steps li {
-      margin-bottom: 2mm;
-      font-size: 9.5pt;
-      break-inside: avoid;
     }
 
     /* Footer */
     .footer {
       text-align: center;
-      padding-top: 8mm;
-      margin-top: 8mm;
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      color: #606070;
-      font-size: 9pt;
+      margin-top: 10mm;
+      padding-top: 6mm;
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
     }
 
-    .footer .brand-name {
+    .footer .brand {
       font-family: 'Cinzel', serif;
       color: #d4af37;
-      font-size: 10pt;
-      letter-spacing: 1px;
+      font-size: 12pt;
+      letter-spacing: 2px;
     }
 
-    /* Page numbers */
-    .page-number {
+    .footer p {
+      color: #707088;
+      font-size: 10pt;
+      text-align: center;
+      margin-bottom: 2mm;
+    }
+
+    /* Page number */
+    .page-num {
       position: absolute;
-      bottom: 10mm;
+      bottom: 12mm;
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Cinzel', serif;
-      font-size: 8pt;
-      color: #505060;
+      font-size: 9pt;
+      color: #606078;
     }
 
-    /* Section intro text */
     .section-intro {
       text-align: center;
-      font-size: 10pt;
-      color: #a0a0b0;
-      max-width: 140mm;
-      margin: 0 auto 6mm;
       font-style: italic;
+      color: #a0a0b8;
+      margin-bottom: 8mm;
+      font-size: 11pt;
     }
   </style>
 </head>
 <body>
 
-  <!-- COVER PAGE -->
-  <div class="page cover">
-    <div class="cover-ornament"></div>
-    <h1>The Complete<br>Nakshatra Guide</h1>
-    <div class="cover-ornament"></div>
-    <p class="subtitle">Discover Your Lunar Destiny Through Vedic Astrology</p>
-    <p class="tagline">
-      Unlock the ancient wisdom of the 27 lunar mansions and understand how your Moon sign
-      shapes your emotions, relationships, and life path.
-    </p>
-    <p class="brand">Shubham Method Vedic Astrology</p>
+  <!-- PAGE 1: COVER -->
+  <div class="page">
+    <div class="cover">
+      <div class="ornament"></div>
+      <h1>The Complete<br>Nakshatra Guide</h1>
+      <div class="ornament"></div>
+      <p class="subtitle">Discover Your Lunar Destiny Through Vedic Astrology</p>
+      <p class="tagline">
+        Unlock the ancient wisdom of the 27 lunar mansions and understand how your Moon sign shapes your emotions, relationships, and life path.
+      </p>
+      <p class="brand">Shubham Method</p>
+    </div>
   </div>
 
   <!-- PAGE 2: INTRODUCTION -->
@@ -431,10 +393,10 @@
 
     <div class="intro-box">
       <p>In Vedic astrology, the Moon represents your mind, emotions, and inner self. While Western astrology focuses primarily on your Sun sign, Vedic wisdom teaches that your <strong>Moon sign</strong> and <strong>Nakshatra</strong> (lunar mansion) reveal deeper truths about your personality, emotional patterns, and life path.</p>
-      <p>This guide will help you understand your lunar placement and begin your journey into the profound wisdom of Jyotish—the "Science of Light."</p>
+      <p style="margin-bottom: 0;">This guide will help you understand your lunar placement and begin your journey into the profound wisdom of Jyotish—the "Science of Light."</p>
     </div>
 
-    <div class="calculator-box">
+    <div class="calc-box">
       <h3>Calculate Your Sidereal Birth Chart</h3>
       <p>Before exploring the meanings below, you need to know your Moon sign and Nakshatra. Use this free calculator:</p>
       <p><a href="https://horoscopes.astro-seek.com/sidereal-astrology-chart-calculator">https://horoscopes.astro-seek.com/sidereal-astrology-chart-calculator</a></p>
@@ -447,8 +409,13 @@
       <p class="note">Note: Your sidereal Moon sign may differ from your Western Moon sign by approximately one sign due to the precession of equinoxes.</p>
     </div>
 
-    <h2>Understanding the Moon</h2>
-    <p class="section-intro">The Moon governs your emotional nature, instinctive reactions, and what makes you feel safe and nurtured. It reveals your inner world.</p>
+    <span class="page-num">2</span>
+  </div>
+
+  <!-- PAGE 3: MOON SIGNS 1-6 -->
+  <div class="page">
+    <h2>The Moon in Each Sign</h2>
+    <p class="section-intro">The Moon governs your emotional nature, instinctive reactions, and what makes you feel safe and nurtured.</p>
 
     <div class="signs-grid">
       <div class="sign-card">
@@ -476,13 +443,13 @@
         <p>You process emotions through analysis, seeking the "why" behind feelings. Service brings satisfaction—you show love through practical help. Order comforts; chaos creates anxiety.</p>
       </div>
     </div>
-    <span class="page-number">2</span>
+
+    <span class="page-num">3</span>
   </div>
 
-  <!-- PAGE 3: MORE SIGNS -->
+  <!-- PAGE 4: MOON SIGNS 7-12 -->
   <div class="page">
-    <h2>Moon Through the Signs</h2>
-    <p class="section-intro">Continued exploration of how lunar energy manifests in each zodiac sign.</p>
+    <h2>Moon Signs Continued</h2>
 
     <div class="signs-grid">
       <div class="sign-card">
@@ -511,175 +478,180 @@
       </div>
     </div>
 
-    <div style="height: 8mm;"></div>
+    <span class="page-num">4</span>
+  </div>
 
+  <!-- PAGE 5: NAKSHATRAS 1-8 -->
+  <div class="page">
     <h2>The 27 Nakshatras</h2>
-    <p class="section-intro">While your Moon sign provides broad strokes, your Nakshatra reveals the finer details. Each spans 13°20' of the zodiac with its own deity, symbol, and cosmic energy.</p>
+    <p class="section-intro">Each Nakshatra spans 13°20' of the zodiac with its own deity, symbol, and cosmic energy.</p>
 
-    <div class="nakshatra-grid">
-      <div class="nakshatra-card">
+    <div class="nak-grid">
+      <div class="nak-card">
         <h4>1. Ashwini</h4>
-        <p class="meta">0°-13°20' Aries | Horse's Head | Ketu</p>
-        <p>Natural healer with remarkable speed and initiative. Youthful energy throughout life. Innate ability to help others recover physically, emotionally, or spiritually.</p>
+        <p class="meta">0°-13°20' Aries • Ketu • Horse's Head</p>
+        <p>Natural healer with remarkable speed and initiative. Youthful energy throughout life. Innate ability to help others recover.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>2. Bharani</h4>
-        <p class="meta">13°20'-26°40' Aries | Yoni | Venus</p>
-        <p>Understanding of life's cycles: creation, preservation, transformation. Powerful creative and sensual energy. Strength to guide others through difficult transitions.</p>
+        <p class="meta">13°20'-26°40' Aries • Venus • Yoni</p>
+        <p>Understanding of life's cycles: creation, preservation, transformation. Powerful creative and sensual energy.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>3. Krittika</h4>
-        <p class="meta">26°40' Ari - 10° Tau | Flame | Sun</p>
-        <p>Sharp, penetrating nature cutting through illusion. Like fire: can illuminate or burn. Fiercely protective of those in your care.</p>
+        <p class="meta">26°40' Aries - 10° Taurus • Sun • Flame</p>
+        <p>Sharp, penetrating nature cutting through illusion. Like fire: can illuminate or burn. Fiercely protective.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>4. Rohini</h4>
-        <p class="meta">10°-23°20' Taurus | Ox Cart | Moon</p>
-        <p>Embodies growth, fertility, abundance. Magnetic, attractive presence. Appreciates beauty and comfort. Creativity flows naturally to fruition.</p>
+        <p class="meta">10°-23°20' Taurus • Moon • Ox Cart</p>
+        <p>Embodies growth, fertility, abundance. Magnetic, attractive presence. Appreciates beauty and comfort.</p>
       </div>
-    </div>
-    <span class="page-number">3</span>
-  </div>
-
-  <!-- PAGE 4: NAKSHATRAS 5-14 -->
-  <div class="page">
-    <h2>Nakshatras 5-14</h2>
-
-    <div class="nakshatra-grid">
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>5. Mrigashira</h4>
-        <p class="meta">23°20' Tau - 6°40' Gem | Deer | Mars</p>
-        <p>Eternal seeker always searching. Curiosity drives you to collect experiences and knowledge. Gentleness combined with alertness.</p>
+        <p class="meta">23°20' Taurus - 6°40' Gemini • Mars • Deer</p>
+        <p>Eternal seeker always searching. Curiosity drives you to collect experiences. Gentleness with alertness.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>6. Ardra</h4>
-        <p class="meta">6°40'-20° Gemini | Teardrop | Rahu</p>
-        <p>Known storms that transformed you. Intensity, passion, intellectual brilliance. From sorrow emerges profound wisdom.</p>
+        <p class="meta">6°40'-20° Gemini • Rahu • Teardrop</p>
+        <p>Known storms that transformed you. Intensity, passion, intellectual brilliance. From sorrow emerges wisdom.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>7. Punarvasu</h4>
-        <p class="meta">20° Gem - 3°20' Can | Bow | Jupiter</p>
-        <p>Remarkable resilience—ability to return and begin again. Optimism is your gift. Nurturing and protective nature.</p>
+        <p class="meta">20° Gemini - 3°20' Cancer • Jupiter • Bow</p>
+        <p>Remarkable resilience—ability to return and begin again. Optimism is your gift. Nurturing nature.</p>
       </div>
-      <div class="nakshatra-card featured">
-        <h4>8. Pushya — Most Auspicious Nakshatra</h4>
-        <p class="meta">3°20'-16°40' Cancer | Cow's Udder | Saturn</p>
-        <p>Considered the most auspicious of all Nakshatras. You embody nourishment in all forms with natural ability to nurture, teach, and support others' growth. Generosity defines you. Traditional values and spiritual wisdom are deeply attractive to your nature.</p>
+      <div class="nak-card">
+        <h4>8. Pushya ★</h4>
+        <p class="meta">3°20'-16°40' Cancer • Saturn • Udder</p>
+        <p>Most auspicious nakshatra. Natural ability to nurture, teach, support growth. Generosity defines you.</p>
       </div>
-      <div class="nakshatra-card">
+    </div>
+
+    <span class="page-num">5</span>
+  </div>
+
+  <!-- PAGE 6: NAKSHATRAS 9-18 -->
+  <div class="page">
+    <h2>Nakshatras Continued</h2>
+
+    <div class="nak-grid">
+      <div class="nak-card">
         <h4>9. Ashlesha</h4>
-        <p class="meta">16°40'-30° Cancer | Serpent | Mercury</p>
-        <p>Hypnotic magnetism and psychological insight. Like serpent, can shed skins and transform. Others sense your wisdom and power.</p>
+        <p class="meta">16°40'-30° Cancer • Mercury • Serpent</p>
+        <p>Hypnotic magnetism and psychological insight. Like serpent, can shed skins and transform. Deep wisdom.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>10. Magha</h4>
-        <p class="meta">0°-13°20' Leo | Throne | Ketu</p>
-        <p>Ancestral power with strong lineage connection. Natural authority and regality. Command respect; honor past while creating legacy.</p>
+        <p class="meta">0°-13°20' Leo • Ketu • Throne</p>
+        <p>Ancestral power with strong lineage connection. Natural authority and regality. Command respect.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>11. Purva Phalguni</h4>
-        <p class="meta">13°20'-26°40' Leo | Hammock | Venus</p>
-        <p>Understands art of enjoyment. Creativity, romance, pleasure are your domains. Generous, warm-hearted, talented at bringing joy.</p>
+        <p class="meta">13°20'-26°40' Leo • Venus • Hammock</p>
+        <p>Understands art of enjoyment. Creativity, romance, pleasure are your domains. Generous and warm.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>12. Uttara Phalguni</h4>
-        <p class="meta">26°40' Leo - 10° Vir | Bed | Sun</p>
-        <p>Values commitment, friendship, contracts. Nobility and helpfulness—genuinely support others' success. Partnership comes naturally.</p>
+        <p class="meta">26°40' Leo - 10° Virgo • Sun • Bed</p>
+        <p>Values commitment, friendship, contracts. Nobility—genuinely support others' success.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>13. Hasta</h4>
-        <p class="meta">10°-23°20' Virgo | Hand | Moon</p>
-        <p>Remarkable dexterity and skill—crafts, healing, precision work. Resourceful; can manifest what you need. Clever and adaptable.</p>
+        <p class="meta">10°-23°20' Virgo • Moon • Hand</p>
+        <p>Remarkable dexterity—crafts, healing, precision work. Resourceful, clever, and adaptable.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>14. Chitra</h4>
-        <p class="meta">23°20' Vir - 6°40' Lib | Jewel | Mars</p>
-        <p>Drawn to beauty, design, visual creation. Artistic talent with eye for aesthetics. Ability to craft lasting, beautiful works.</p>
+        <p class="meta">23°20' Virgo - 6°40' Libra • Mars • Jewel</p>
+        <p>Drawn to beauty, design, visual creation. Artistic talent with eye for aesthetics.</p>
       </div>
-    </div>
-    <span class="page-number">4</span>
-  </div>
-
-  <!-- PAGE 5: NAKSHATRAS 15-22 -->
-  <div class="page">
-    <h2>Nakshatras 15-22</h2>
-
-    <div class="nakshatra-grid">
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>15. Swati</h4>
-        <p class="meta">6°40'-20° Libra | Plant | Rahu</p>
-        <p>Independence and self-reliance define you. Flexible yet rooted. Value freedom above all. Diplomatic skill; thrive in various environments.</p>
+        <p class="meta">6°40'-20° Libra • Rahu • Young Plant</p>
+        <p>Independence and self-reliance define you. Flexible yet rooted. Value freedom above all.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>16. Vishakha</h4>
-        <p class="meta">20° Lib - 3°20' Sco | Arch | Jupiter</p>
-        <p>Single-minded determination pursuing goals relentlessly. Ambition burns within. Patient when necessary. Victory through perseverance.</p>
+        <p class="meta">20° Libra - 3°20' Scorpio • Jupiter • Arch</p>
+        <p>Single-minded determination pursuing goals relentlessly. Ambition burns. Victory through perseverance.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>17. Anuradha</h4>
-        <p class="meta">3°20'-16°40' Scorpio | Lotus | Saturn</p>
-        <p>Like lotus from muddy waters, bloom despite challenges. Friendship and devotion sacred. Can succeed far from birthplace.</p>
+        <p class="meta">3°20'-16°40' Scorpio • Saturn • Lotus</p>
+        <p>Like lotus from muddy waters, bloom despite challenges. Friendship and devotion sacred.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>18. Jyeshtha</h4>
-        <p class="meta">16°40'-30° Scorpio | Amulet | Mercury</p>
-        <p>Energy of the chief, the eldest, most powerful. Protective authority—defend those in your care fiercely. Remarkable courage.</p>
-      </div>
-      <div class="nakshatra-card featured">
-        <h4>19. Mula — The Root Nakshatra</h4>
-        <p class="meta">0°-13°20' Sagittarius | Roots | Ketu</p>
-        <p>You seek to get to the root of things—truth, meaning, fundamental existence. Destruction of illusion is your gift, though sometimes painful. Unafraid to question everything. Spiritual seeking often defines your path through life.</p>
-      </div>
-      <div class="nakshatra-card">
-        <h4>20. Purva Ashadha</h4>
-        <p class="meta">13°20'-26°40' Sag | Tusk | Venus</p>
-        <p>Invincibility and ability to energize others. Persuasive talent for winning people to your cause. Confidence in triumph.</p>
-      </div>
-      <div class="nakshatra-card">
-        <h4>21. Uttara Ashadha</h4>
-        <p class="meta">26°40' Sag - 10° Cap | Tusk | Sun</p>
-        <p>Final victory—not quick win but lasting triumph. Endurance, integrity, righteous leadership. Success through ethics and patience.</p>
-      </div>
-      <div class="nakshatra-card">
-        <h4>22. Shravana</h4>
-        <p class="meta">10°-23°20' Capricorn | Ear | Moon</p>
-        <p>Listening and learning are superpowers. Absorb knowledge through hearing. Methodical, step-by-step goal achievement.</p>
+        <p class="meta">16°40'-30° Scorpio • Mercury • Amulet</p>
+        <p>Energy of the chief, the eldest. Protective authority—defend those in your care fiercely.</p>
       </div>
     </div>
-    <span class="page-number">5</span>
+
+    <span class="page-num">6</span>
   </div>
 
-  <!-- PAGE 6: NAKSHATRAS 23-27 + CTA -->
+  <!-- PAGE 7: NAKSHATRAS 19-27 -->
   <div class="page">
-    <h2>Nakshatras 23-27</h2>
+    <h2>Nakshatras Final</h2>
 
-    <div class="nakshatra-grid">
-      <div class="nakshatra-card">
+    <div class="nak-grid">
+      <div class="nak-card">
+        <h4>19. Mula ★</h4>
+        <p class="meta">0°-13°20' Sagittarius • Ketu • Roots</p>
+        <p>Seek the root of things—truth, meaning, existence. Destruction of illusion is your gift. Spiritual path.</p>
+      </div>
+      <div class="nak-card">
+        <h4>20. Purva Ashadha</h4>
+        <p class="meta">13°20'-26°40' Sagittarius • Venus • Elephant Tusk</p>
+        <p>Invincibility and ability to energize others. Persuasive talent for winning people to your cause.</p>
+      </div>
+      <div class="nak-card">
+        <h4>21. Uttara Ashadha</h4>
+        <p class="meta">26°40' Sagittarius - 10° Capricorn • Sun • Tusk</p>
+        <p>Final victory—not quick win but lasting triumph. Endurance, integrity, righteous leadership.</p>
+      </div>
+      <div class="nak-card">
+        <h4>22. Shravana</h4>
+        <p class="meta">10°-23°20' Capricorn • Moon • Ear</p>
+        <p>Listening and learning are superpowers. Absorb knowledge through hearing. Methodical achievement.</p>
+      </div>
+      <div class="nak-card">
         <h4>23. Dhanishta</h4>
-        <p class="meta">23°20' Cap - 6°40' Aqu | Drum | Mars</p>
-        <p>Wealth, music, rhythm flow through life. Talent for keeping time in music, business, natural cycles. Prosperity comes; generous sharing.</p>
+        <p class="meta">23°20' Capricorn - 6°40' Aquarius • Mars • Drum</p>
+        <p>Wealth, music, rhythm flow through life. Talent for keeping time. Prosperity; generous sharing.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>24. Shatabhisha</h4>
-        <p class="meta">6°40'-20° Aquarius | Circle | Rahu</p>
-        <p>Healing powers and secret-keeping ability. Mysterious, self-contained—empty vessel holding vast knowledge. May walk solitary path.</p>
+        <p class="meta">6°40'-20° Aquarius • Rahu • Empty Circle</p>
+        <p>Healing powers and secret-keeping ability. Mysterious, self-contained. May walk solitary path.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>25. Purva Bhadrapada</h4>
-        <p class="meta">20° Aqu - 3°20' Pis | Sword | Jupiter</p>
-        <p>Intensity; endure extreme circumstances. Fierce when necessary, willing to burn bridges for transformation. Mystical quality.</p>
+        <p class="meta">20° Aquarius - 3°20' Pisces • Jupiter • Sword</p>
+        <p>Intensity; endure extreme circumstances. Fierce when necessary. Mystical quality.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>26. Uttara Bhadrapada</h4>
-        <p class="meta">3°20'-16°40' Pisces | Twins | Saturn</p>
-        <p>Deep wisdom and control over hidden consciousness. Contemplative, perhaps solitary. Understand depths—psychological, spiritual, cosmic.</p>
+        <p class="meta">3°20'-16°40' Pisces • Saturn • Twins</p>
+        <p>Deep wisdom and control over hidden consciousness. Contemplative, perhaps solitary.</p>
       </div>
-      <div class="nakshatra-card featured">
-        <h4>27. Revati — The Final Nakshatra</h4>
-        <p class="meta">16°40'-30° Pisces | Fish | Mercury</p>
-        <p>You complete the cosmic cycle with gentleness, protection, and ability to guide safe journeys. Sweetness and compassion define your nature—genuinely wishing well for all beings. Talent for travel, animal care, or guiding others. You represent the end that enables new beginnings.</p>
+      <div class="nak-card">
+        <h4>27. Revati ★</h4>
+        <p class="meta">16°40'-30° Pisces • Mercury • Fish</p>
+        <p>Complete the cosmic cycle with gentleness. Sweetness and compassion define you. Guide safe journeys.</p>
       </div>
     </div>
+
+    <span class="page-num">7</span>
+  </div>
+
+  <!-- PAGE 8: CTA + CLOSING -->
+  <div class="page">
+    <h2>Your Journey Continues</h2>
+
+    <p class="section-intro">Now that you understand your Moon sign and Nakshatra, you have the foundation for deeper Vedic astrological study.</p>
 
     <div class="cta-box">
       <h3>Discover Your Pada</h3>
@@ -692,46 +664,27 @@
         <li>Relationship compatibility assessment</li>
         <li>Career guidance and remedial measures</li>
       </ul>
-      <a href="https://shubham-landing.vercel.app/#pricing" class="cta-link">Get Your Complete Reading</a>
-    </div>
-    <span class="page-number">6</span>
-  </div>
-
-  <!-- PAGE 7: CLOSING -->
-  <div class="page">
-    <h2>Your Journey Continues</h2>
-
-    <p class="section-intro">Now that you understand your Moon sign and Nakshatra, you have the foundation for deeper Vedic astrological study. This is just the beginning.</p>
-
-    <div class="intro-box">
-      <h3 style="text-align: center; margin-bottom: 4mm;">A Complete Birth Chart Analysis Considers:</h3>
-      <div class="next-steps">
-        <ul>
-          <li>All nine planets (Grahas) and their positions</li>
-          <li>The Ascendant (Lagna) and its Nakshatra</li>
-          <li>Planetary aspects and conjunctions</li>
-          <li>Divisional charts (Vargas) for specific life areas</li>
-          <li>Current planetary periods (Dashas)</li>
-          <li>Transit influences on your natal chart</li>
-        </ul>
-      </div>
-      <p style="text-align: center; margin-top: 4mm; margin-bottom: 0;">The Moon is your emotional core, but it's one instrument in the cosmic orchestra of your chart. To hear the full symphony, a complete reading is essential.</p>
+      <a href="https://shubham-landing.vercel.app/#pricing" class="link">Get Your Complete Reading</a>
     </div>
 
-    <div style="height: 15mm;"></div>
+    <div class="intro-box" style="margin-top: 10mm;">
+      <h3 style="text-align: center; margin-bottom: 5mm; color: #d4af37;">A Complete Analysis Considers:</h3>
+      <p style="text-align: center; margin-bottom: 0;">All nine planets • The Ascendant and its Nakshatra • Planetary aspects and conjunctions • Divisional charts for specific life areas • Current planetary periods • Transit influences</p>
+    </div>
 
-    <div style="text-align: center;">
-      <div class="cover-ornament" style="margin: 0 auto;"></div>
-      <p style="font-style: italic; color: #a0a0b0; margin: 5mm 0;">May the stars illuminate your path.</p>
-      <div class="cover-ornament" style="margin: 0 auto;"></div>
+    <div style="text-align: center; margin-top: 15mm;">
+      <div class="ornament"></div>
+      <p style="font-style: italic; color: #a0a0b8; margin: 6mm 0;">May the stars illuminate your path.</p>
+      <div class="ornament"></div>
     </div>
 
     <div class="footer">
-      <p class="brand-name">Shubham Method</p>
+      <p class="brand">Shubham Method</p>
       <p>Vedic Astrology for the Modern Seeker</p>
-      <p style="margin-top: 3mm;">shubham-landing.vercel.app</p>
+      <p style="margin-top: 2mm;">shubham-landing.vercel.app</p>
     </div>
-    <span class="page-number">7</span>
+
+    <span class="page-num">8</span>
   </div>
 
 </body>

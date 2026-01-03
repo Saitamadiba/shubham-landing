@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Le Guide Complet des Nakshatras</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     @page {
-      size: A4;
+      size: A4 portrait;
       margin: 0;
     }
 
@@ -17,319 +17,306 @@
       box-sizing: border-box;
     }
 
-    html {
-      background: #13132a;
-    }
-
     body {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      background: #13132a;
-      color: #e8e8e8;
-      line-height: 1.65;
-      font-size: 10.5pt;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
+      color: #e8e8f0;
+      line-height: 1.6;
+      font-size: 11pt;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
     }
 
     .page {
       width: 210mm;
-      min-height: 297mm;
-      padding: 18mm 20mm;
-      background: linear-gradient(170deg, #1a1a32 0%, #151528 40%, #1a1a35 100%);
-      page-break-after: always;
+      height: 297mm;
+      padding: 20mm 22mm;
+      background: linear-gradient(160deg, #1e1e3a 0%, #16162c 50%, #1a1a38 100%);
       position: relative;
-      overflow: hidden;
+      page-break-after: always;
     }
 
     .page:last-child {
-      page-break-after: auto;
+      page-break-after: avoid;
     }
 
+    /* Decorative corners */
     .page::before {
       content: '';
       position: absolute;
-      top: 12mm;
-      left: 12mm;
-      width: 25mm;
-      height: 25mm;
-      border-left: 1px solid rgba(212, 175, 55, 0.3);
-      border-top: 1px solid rgba(212, 175, 55, 0.3);
+      top: 15mm;
+      left: 15mm;
+      width: 20mm;
+      height: 20mm;
+      border-left: 1px solid rgba(212, 175, 55, 0.4);
+      border-top: 1px solid rgba(212, 175, 55, 0.4);
     }
 
     .page::after {
       content: '';
       position: absolute;
-      bottom: 12mm;
-      right: 12mm;
-      width: 25mm;
-      height: 25mm;
-      border-right: 1px solid rgba(212, 175, 55, 0.3);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      bottom: 15mm;
+      right: 15mm;
+      width: 20mm;
+      height: 20mm;
+      border-right: 1px solid rgba(212, 175, 55, 0.4);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
     }
 
+    /* Cover page */
     .cover {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 30mm 25mm;
-    }
-
-    .cover-ornament {
-      width: 60mm;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #d4af37, transparent);
-      margin: 8mm 0;
+      height: 257mm;
     }
 
     .cover h1 {
       font-family: 'Cinzel', serif;
-      font-size: 30pt;
-      font-weight: 600;
+      font-size: 34pt;
       color: #d4af37;
-      letter-spacing: 3px;
-      margin-bottom: 5mm;
-      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 8mm;
+      text-shadow: 0 2px 20px rgba(212, 175, 55, 0.3);
+    }
+
+    .ornament {
+      width: 60mm;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+      margin: 8mm 0;
     }
 
     .cover .subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14pt;
+      font-size: 15pt;
+      color: #b0b0c0;
       font-style: italic;
-      color: #a0a0b0;
+      margin-bottom: 12mm;
       letter-spacing: 1px;
     }
 
     .cover .tagline {
-      font-size: 11pt;
-      color: #707080;
-      margin-top: 15mm;
-      max-width: 120mm;
+      font-size: 12pt;
+      color: #808098;
+      max-width: 130mm;
       line-height: 1.8;
     }
 
     .cover .brand {
       position: absolute;
-      bottom: 25mm;
+      bottom: 30mm;
       font-family: 'Cinzel', serif;
-      font-size: 9pt;
+      font-size: 11pt;
       color: #d4af37;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
     }
 
+    /* Headers */
     h2 {
       font-family: 'Cinzel', serif;
-      font-size: 16pt;
-      font-weight: 600;
+      font-size: 18pt;
       color: #d4af37;
       text-align: center;
-      margin-bottom: 6mm;
+      margin-bottom: 8mm;
       letter-spacing: 2px;
-      text-transform: uppercase;
     }
 
     h2::after {
       content: '';
       display: block;
-      width: 40mm;
+      width: 50mm;
       height: 1px;
       background: linear-gradient(90deg, transparent, #d4af37, transparent);
-      margin: 4mm auto 0;
+      margin: 5mm auto 0;
     }
 
     h3 {
       font-family: 'Cinzel', serif;
-      font-size: 11pt;
-      font-weight: 600;
-      color: #f0c050;
-      margin-bottom: 3mm;
-      letter-spacing: 1px;
-    }
-
-    h4 {
-      font-family: 'Cinzel', serif;
-      font-size: 10.5pt;
-      font-weight: 600;
-      color: #60c0d0;
-      margin-bottom: 2mm;
-    }
-
-    p {
-      margin-bottom: 3mm;
-      text-align: justify;
-      hyphens: auto;
-    }
-
-    .intro-box {
-      background: rgba(212, 175, 55, 0.08);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: 3mm;
-      padding: 5mm 6mm;
-      margin: 5mm 0;
-    }
-
-    .intro-box p:last-child {
-      margin-bottom: 0;
-    }
-
-    .calculator-box {
-      background: rgba(96, 192, 208, 0.08);
-      border: 1px solid rgba(96, 192, 208, 0.3);
-      border-radius: 3mm;
-      padding: 5mm 6mm;
-      margin: 5mm 0;
-    }
-
-    .calculator-box h3 {
-      color: #60c0d0;
-      margin-top: 0;
-      text-align: center;
+      font-size: 12pt;
+      color: #70d0e0;
       margin-bottom: 4mm;
     }
 
-    .calculator-box a {
-      color: #60c0d0;
-      word-break: break-all;
-      font-size: 9pt;
+    p {
+      margin-bottom: 4mm;
+      text-align: justify;
     }
 
-    .calculator-box ol {
+    /* Boxes */
+    .intro-box {
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 3mm;
+      padding: 6mm 8mm;
+      margin: 6mm 0;
+    }
+
+    .calc-box {
+      background: rgba(112, 208, 224, 0.08);
+      border: 1px solid rgba(112, 208, 224, 0.3);
+      border-radius: 3mm;
+      padding: 6mm 8mm;
+      margin: 6mm 0;
+    }
+
+    .calc-box h3 {
+      text-align: center;
+      margin-bottom: 5mm;
+    }
+
+    .calc-box a {
+      color: #70d0e0;
+      font-size: 10pt;
+    }
+
+    .calc-box ol {
       margin-left: 6mm;
-      margin-top: 3mm;
+      margin-top: 4mm;
     }
 
-    .calculator-box li {
-      margin-bottom: 2mm;
-      padding-left: 2mm;
+    .calc-box li {
+      margin-bottom: 3mm;
+      font-size: 11pt;
     }
 
-    .calculator-box .note {
-      font-size: 9pt;
+    .calc-box .note {
+      font-size: 10pt;
+      color: #909098;
       font-style: italic;
-      color: #909090;
-      margin-top: 3mm;
+      margin-top: 4mm;
       margin-bottom: 0;
     }
 
+    /* Sign cards */
     .signs-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4mm;
+      gap: 5mm;
     }
 
     .sign-card {
-      background: rgba(26, 26, 50, 0.6);
-      border-left: 2px solid #d4af37;
-      padding: 4mm 5mm;
-      border-radius: 0 2mm 2mm 0;
+      background: rgba(30, 30, 60, 0.6);
+      border-left: 3px solid #d4af37;
+      padding: 5mm 6mm;
+      border-radius: 0 3mm 3mm 0;
     }
 
     .sign-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 11pt;
+      color: #70d0e0;
+      margin-bottom: 3mm;
       display: flex;
       align-items: center;
-      gap: 2mm;
-      margin-bottom: 2mm;
-      font-size: 9.5pt;
+      gap: 3mm;
     }
 
     .sign-card .symbol {
-      font-size: 12pt;
+      font-size: 14pt;
       color: #d4af37;
     }
 
     .sign-card p {
-      font-size: 9pt;
+      font-size: 10pt;
       line-height: 1.5;
       margin-bottom: 0;
-      color: #c8c8d0;
+      color: #c8c8d8;
+      text-align: left;
     }
 
-    .nakshatra-grid {
+    /* Nakshatra cards */
+    .nak-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3.5mm;
+      align-items: start;
     }
 
-    .nakshatra-card {
-      background: rgba(20, 20, 40, 0.7);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-      padding: 3.5mm 4mm;
+    .nak-card {
+      background: rgba(25, 25, 50, 0.7);
+      border: 1px solid rgba(112, 208, 224, 0.2);
       border-radius: 2mm;
+      padding: 3.5mm 4.5mm;
+      overflow: visible;
     }
 
-    .nakshatra-card h4 {
-      font-size: 9pt;
+    .nak-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 9.5pt;
+      color: #d4af37;
       margin-bottom: 1.5mm;
-      color: #60c0d0;
-      border-bottom: 1px solid rgba(96, 192, 208, 0.2);
       padding-bottom: 1.5mm;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     }
 
-    .nakshatra-card .meta {
-      font-size: 7.5pt;
-      color: #808090;
+    .nak-card .meta {
+      font-size: 8pt;
+      color: #8888a0;
       margin-bottom: 2mm;
       font-style: italic;
     }
 
-    .nakshatra-card p {
-      font-size: 8.5pt;
-      line-height: 1.45;
-      margin-bottom: 0;
-      color: #b8b8c0;
-    }
-
-    .nakshatra-card.featured {
-      grid-column: span 2;
-      background: rgba(212, 175, 55, 0.05);
-      border-color: rgba(212, 175, 55, 0.25);
-    }
-
-    .nakshatra-card.featured h4 {
-      color: #d4af37;
-      border-bottom-color: rgba(212, 175, 55, 0.3);
-    }
-
-    .nakshatra-card.featured p {
+    .nak-card p {
       font-size: 9pt;
+      line-height: 1.4;
+      margin-bottom: 0;
+      color: #b8b8c8;
+      text-align: left;
     }
 
+    .nak-card.featured {
+      grid-column: span 2;
+      background: rgba(212, 175, 55, 0.06);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .nak-card.featured h4 {
+      color: #f0c050;
+      font-size: 10pt;
+    }
+
+    .nak-card.featured p {
+      font-size: 9.5pt;
+    }
+
+    /* CTA Box */
     .cta-box {
-      background: linear-gradient(135deg, #d4af37 0%, #c49a2c 50%, #e0b840 100%);
-      color: #0d0d14;
+      background: linear-gradient(135deg, #d4af37 0%, #b8962e 100%);
+      color: #1a1a2e;
       padding: 8mm 10mm;
-      border-radius: 3mm;
+      border-radius: 4mm;
       text-align: center;
-      margin: 6mm 0;
+      margin: 8mm 0;
     }
 
     .cta-box h3 {
       color: #1a1a2e;
-      font-size: 14pt;
+      font-size: 16pt;
       margin-bottom: 4mm;
     }
 
     .cta-box p {
-      color: #2a2a3e;
-      font-size: 10pt;
+      color: #2a2a40;
+      font-size: 11pt;
       margin-bottom: 3mm;
+      text-align: center;
     }
 
     .cta-box ul {
       text-align: left;
       display: inline-block;
       margin: 4mm 0;
+      font-size: 10pt;
       color: #1a1a2e;
-      font-size: 9.5pt;
     }
 
     .cta-box li {
-      margin-bottom: 1.5mm;
-      padding-left: 2mm;
+      margin-bottom: 2mm;
     }
 
-    .cta-box .cta-link {
+    .cta-box .link {
       display: inline-block;
       background: #1a1a2e;
       color: #d4af37;
@@ -337,78 +324,67 @@
       border-radius: 2mm;
       text-decoration: none;
       font-family: 'Cinzel', serif;
-      font-weight: 600;
       font-size: 10pt;
+      margin-top: 3mm;
       letter-spacing: 1px;
-      margin-top: 3mm;
     }
 
-    .next-steps {
-      margin-top: 5mm;
-    }
-
-    .next-steps ul {
-      margin-left: 6mm;
-      margin-top: 3mm;
-      columns: 2;
-      column-gap: 8mm;
-    }
-
-    .next-steps li {
-      margin-bottom: 2mm;
-      font-size: 9.5pt;
-      break-inside: avoid;
-    }
-
+    /* Footer */
     .footer {
       text-align: center;
-      padding-top: 8mm;
-      margin-top: 8mm;
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      color: #606070;
-      font-size: 9pt;
+      margin-top: 10mm;
+      padding-top: 6mm;
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
     }
 
-    .footer .brand-name {
+    .footer .brand {
       font-family: 'Cinzel', serif;
       color: #d4af37;
-      font-size: 10pt;
-      letter-spacing: 1px;
+      font-size: 12pt;
+      letter-spacing: 2px;
     }
 
-    .page-number {
+    .footer p {
+      color: #707088;
+      font-size: 10pt;
+      text-align: center;
+      margin-bottom: 2mm;
+    }
+
+    /* Page number */
+    .page-num {
       position: absolute;
-      bottom: 10mm;
+      bottom: 12mm;
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Cinzel', serif;
-      font-size: 8pt;
-      color: #505060;
+      font-size: 9pt;
+      color: #606078;
     }
 
     .section-intro {
       text-align: center;
-      font-size: 10pt;
-      color: #a0a0b0;
-      max-width: 140mm;
-      margin: 0 auto 6mm;
       font-style: italic;
+      color: #a0a0b8;
+      margin-bottom: 8mm;
+      font-size: 11pt;
     }
   </style>
 </head>
 <body>
 
-  <!-- PAGE DE COUVERTURE -->
-  <div class="page cover">
-    <div class="cover-ornament"></div>
-    <h1>Le Guide Complet<br>des Nakshatras</h1>
-    <div class="cover-ornament"></div>
-    <p class="subtitle">Découvrez Votre Destinée Lunaire à Travers l'Astrologie Védique</p>
-    <p class="tagline">
-      Accédez à la sagesse ancienne des 27 mansions lunaires et comprenez comment votre signe
-      lunaire façonne vos émotions, vos relations et votre chemin de vie.
-    </p>
-    <p class="brand">Méthode Shubham - Astrologie Védique</p>
+  <!-- PAGE 1: COVER -->
+  <div class="page">
+    <div class="cover">
+      <div class="ornament"></div>
+      <h1>Le Guide Complet<br>des Nakshatras</h1>
+      <div class="ornament"></div>
+      <p class="subtitle">Découvrez Votre Destinée Lunaire à Travers l'Astrologie Védique</p>
+      <p class="tagline">
+        Déverrouillez la sagesse ancestrale des 27 demeures lunaires et comprenez comment votre signe lunaire façonne vos émotions, relations et chemin de vie.
+      </p>
+      <p class="brand">Méthode Shubham</p>
+    </div>
   </div>
 
   <!-- PAGE 2: INTRODUCTION -->
@@ -416,308 +392,299 @@
     <h2>Bienvenue, Chercheur Cosmique</h2>
 
     <div class="intro-box">
-      <p>Dans l'astrologie védique, la Lune représente votre mental, vos émotions et votre moi intérieur. Alors que l'astrologie occidentale se concentre sur le signe solaire, la sagesse védique enseigne que votre <strong>signe lunaire</strong> et votre <strong>Nakshatra</strong> (mansion lunaire) révèlent des vérités profondes sur votre personnalité et votre chemin de vie.</p>
-      <p>Ce guide vous aidera à comprendre votre placement lunaire et à commencer votre voyage dans la sagesse profonde du Jyotish — la « Science de la Lumière ».</p>
+      <p>En astrologie védique, la Lune représente votre mental, vos émotions et votre moi intérieur. Alors que l'astrologie occidentale se concentre sur votre signe solaire, la sagesse védique enseigne que votre <strong>signe lunaire</strong> et votre <strong>Nakshatra</strong> (demeure lunaire) révèlent des vérités plus profondes sur votre personnalité, vos patterns émotionnels et votre chemin de vie.</p>
+      <p style="margin-bottom: 0;">Ce guide vous aidera à comprendre votre placement lunaire et à commencer votre voyage dans la sagesse profonde du Jyotish — la « Science de la Lumière ».</p>
     </div>
 
-    <div class="calculator-box">
+    <div class="calc-box">
       <h3>Calculez Votre Thème Sidéral</h3>
-      <p>Avant d'explorer les significations, vous devez connaître votre signe lunaire et Nakshatra. Utilisez ce calculateur gratuit :</p>
+      <p>Avant d'explorer les significations ci-dessous, vous devez connaître votre signe lunaire et Nakshatra. Utilisez ce calculateur gratuit :</p>
       <p><a href="https://horoscopes.astro-seek.com/sidereal-astrology-chart-calculator">https://horoscopes.astro-seek.com/sidereal-astrology-chart-calculator</a></p>
       <ol>
         <li>Entrez votre date de naissance, heure exacte et lieu</li>
         <li><strong>Important :</strong> Sélectionnez <strong>« Placidus »</strong> comme système de maisons</li>
-        <li>Assurez-vous que le zodiaque « Sidereal » est sélectionné</li>
-        <li>Trouvez votre <strong>signe lunaire</strong> et <strong>Nakshatra de la Lune</strong></li>
+        <li>Assurez-vous que le zodiaque « Sidéral » est sélectionné (positions astronomiques réelles)</li>
+        <li>Trouvez votre <strong>signe lunaire</strong> et <strong>Nakshatra de la Lune</strong> dans les résultats</li>
       </ol>
-      <p class="note">Note : Votre signe lunaire sidéral peut différer de votre signe occidental d'environ un signe en raison de la précession des équinoxes.</p>
+      <p class="note">Note : Votre signe lunaire sidéral peut différer de votre signe lunaire occidental d'environ un signe en raison de la précession des équinoxes.</p>
     </div>
 
-    <h2>Comprendre la Lune</h2>
-    <p class="section-intro">La Lune gouverne votre nature émotionnelle, vos réactions instinctives et ce qui vous fait sentir en sécurité. Elle révèle votre monde intérieur.</p>
+    <span class="page-num">2</span>
+  </div>
+
+  <!-- PAGE 3: MOON SIGNS 1-6 -->
+  <div class="page">
+    <h2>La Lune dans Chaque Signe</h2>
+    <p class="section-intro">La Lune gouverne votre nature émotionnelle, vos réactions instinctives et ce qui vous fait vous sentir en sécurité.</p>
 
     <div class="signs-grid">
       <div class="sign-card">
         <h4><span class="symbol">♈</span> Lune en Bélier</h4>
-        <p>Émotionnellement courageux et pionnier. Sentiments directs et passionnés avec réactions impulsives. Besoin d'indépendance et d'action. Réponses rapides qui peuvent se refroidir vite.</p>
+        <p>Émotionnellement courageux et pionnier. Sentiments directs et passionnés avec réactions impulsives. Besoin d'indépendance et d'action pour vous sentir épanoui. Réponses rapides qui peuvent refroidir tout aussi vite.</p>
       </div>
       <div class="sign-card">
         <h4><span class="symbol">♉</span> Lune en Taureau</h4>
-        <p>La Lune est exaltée ici, offrant une stabilité émotionnelle exceptionnelle. Confort dans la sécurité, la nature, les plaisirs physiques. Loyauté profonde une fois engagé. Patient mais parfois têtu.</p>
+        <p>La Lune est exaltée ici, accordant une stabilité émotionnelle exceptionnelle. Vous trouvez le confort dans la sécurité, la nature et les plaisirs physiques. Loyauté profonde une fois engagé. Patient mais parfois têtu.</p>
       </div>
       <div class="sign-card">
         <h4><span class="symbol">♊</span> Lune en Gémeaux</h4>
-        <p>Mental et émotions entrelacés — traitement des sentiments par la communication. La variété stimule ; la monotonie épuise. Curieux et adaptable, humeur changeante.</p>
+        <p>Mental et émotions entrelacés — vous traitez les sentiments par la communication. La variété vous stimule ; la monotonie vous épuise. Curieux et adaptable, votre humeur change avec votre environnement.</p>
       </div>
       <div class="sign-card">
         <h4><span class="symbol">♋</span> Lune en Cancer</h4>
-        <p>La Lune gouverne le Cancer — son placement le plus puissant. Profondeur émotionnelle avec mémoire vive. Foyer et famille sacrés. Intuition remarquable.</p>
+        <p>La Lune gouverne le Cancer — son placement le plus puissant. Profondeur émotionnelle avec mémoire vive. Foyer et famille sont sacrés. Intuition remarquable qui ressent les émotions des autres.</p>
       </div>
       <div class="sign-card">
         <h4><span class="symbol">♌</span> Lune en Lion</h4>
-        <p>Besoin de briller émotionnellement et désir de reconnaissance. Amour généreux qui attend la loyauté. Créativité et expression de soi sont des nécessités.</p>
+        <p>Besoin de briller émotionnellement et désir de reconnaissance. Amour généreux et chaleureux qui attend la loyauté. Créativité et expression de soi sont des nécessités émotionnelles, pas des luxes.</p>
       </div>
       <div class="sign-card">
         <h4><span class="symbol">♍</span> Lune en Vierge</h4>
-        <p>Traitement des émotions par l'analyse, cherchant le « pourquoi ». Le service apporte satisfaction — l'amour par l'aide pratique. L'ordre réconforte ; le chaos crée l'anxiété.</p>
+        <p>Vous traitez les émotions par l'analyse, cherchant le « pourquoi » derrière les sentiments. Le service apporte satisfaction — vous montrez l'amour par l'aide pratique. L'ordre réconforte ; le chaos crée l'anxiété.</p>
       </div>
     </div>
-    <span class="page-number">2</span>
+
+    <span class="page-num">3</span>
   </div>
 
-  <!-- PAGE 3 -->
+  <!-- PAGE 4: MOON SIGNS 7-12 -->
   <div class="page">
-    <h2>La Lune à Travers les Signes</h2>
-    <p class="section-intro">Suite de l'exploration de l'énergie lunaire dans chaque signe du zodiaque.</p>
+    <h2>Signes Lunaires (Suite)</h2>
 
     <div class="signs-grid">
       <div class="sign-card">
         <h4><span class="symbol">♎</span> Lune en Balance</h4>
-        <p>Harmonie et partenariat essentiels au bien-être. Pacificateur naturel voyant tous les côtés. La beauté apaise l'âme. Les relations définissent la vie émotionnelle.</p>
+        <p>L'harmonie et le partenariat sont essentiels au bien-être. Pacificateur naturel qui voit tous les côtés. La beauté apaise votre âme. Les relations définissent votre vie émotionnelle ; vous vous sentez complet en partageant.</p>
       </div>
       <div class="sign-card">
         <h4><span class="symbol">♏</span> Lune en Scorpion</h4>
-        <p>Émotions plus profondes que la plupart ne peuvent concevoir. Passion intense sans peur de l'obscurité. Confiance gagnée lentement ; loyauté absolue. Instincts puissants.</p>
+        <p>Les émotions coulent plus profondément que la plupart ne peuvent sonder. Passion intense sans peur de l'obscurité. Confiance gagnée lentement ; loyauté absolue une fois donnée. Instincts puissants détectent la malhonnêteté.</p>
       </div>
       <div class="sign-card">
         <h4><span class="symbol">♐</span> Lune en Sagittaire</h4>
-        <p>Liberté et sens sont votre oxygène émotionnel. L'optimisme colore votre paysage. Honnête sur les sentiments, parfois directement. La routine étouffe.</p>
+        <p>La liberté et le sens sont votre oxygène émotionnel. L'optimisme colore votre paysage — vous croyez que tout ira bien. Honnête sur les sentiments, parfois abruptement. La routine vous étouffe.</p>
       </div>
       <div class="sign-card">
         <h4><span class="symbol">♑</span> Lune en Capricorne</h4>
-        <p>Maturité émotionnelle précoce — énergie de vieille âme. Traitement pratique laissant rarement l'émotion dominer. Accomplissement et respect comptent profondément.</p>
+        <p>La maturité émotionnelle est venue tôt — énergie de vieille âme. Traitement pratique laissant rarement l'émotion dominer la raison. L'accomplissement et le respect comptent profondément. Extérieur réservé, sensibilité profonde à l'intérieur.</p>
       </div>
       <div class="sign-card">
         <h4><span class="symbol">♒</span> Lune en Verseau</h4>
-        <p>Perspective émotionnelle légèrement détachée. Sentiments connectés à l'humanité — les causes vous touchent. Besoin de liberté intellectuelle. Expression non conventionnelle.</p>
+        <p>Perspective émotionnelle légèrement détachée, observationnelle. Les sentiments se connectent à l'humanité — les causes vous touchent profondément. Besoin de liberté intellectuelle ; résistez à la possessivité.</p>
       </div>
       <div class="sign-card">
         <h4><span class="symbol">♓</span> Lune en Poissons</h4>
-        <p>Sensibilité émotionnelle océanique où les frontières s'estompent. Compassion naturelle ; la douleur des autres devient vôtre. Intuition extraordinaire, presque psychique.</p>
+        <p>Sensibilité émotionnelle océanique où les frontières s'estompent. La compassion coule naturellement ; la douleur des autres devient la vôtre. Les poursuites créatives et spirituelles nourrissent. Intuition extraordinaire, presque psychique.</p>
       </div>
     </div>
 
-    <div style="height: 8mm;"></div>
+    <span class="page-num">4</span>
+  </div>
 
+  <!-- PAGE 5: NAKSHATRAS 1-8 -->
+  <div class="page">
     <h2>Les 27 Nakshatras</h2>
-    <p class="section-intro">Votre signe lunaire donne les grandes lignes, votre Nakshatra révèle les détails. Chaque Nakshatra couvre 13°20' avec sa propre divinité et énergie cosmique.</p>
+    <p class="section-intro">Chaque Nakshatra couvre 13°20' du zodiaque avec sa propre divinité, symbole et énergie cosmique.</p>
 
-    <div class="nakshatra-grid">
-      <div class="nakshatra-card">
+    <div class="nak-grid">
+      <div class="nak-card">
         <h4>1. Ashwini</h4>
-        <p class="meta">0°-13°20' Bélier | Tête de Cheval | Ketu</p>
-        <p>Guérisseur naturel avec rapidité et initiative remarquables. Énergie juvénile tout au long de la vie. Capacité innée d'aider au rétablissement.</p>
+        <p class="meta">0°-13°20' Bélier • Ketu • Tête de Cheval</p>
+        <p>Guérisseur naturel avec vitesse et initiative remarquables. Énergie juvénile tout au long de la vie. Capacité innée à aider les autres à récupérer.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>2. Bharani</h4>
-        <p class="meta">13°20'-26°40' Bélier | Yoni | Vénus</p>
-        <p>Compréhension des cycles : création, préservation, transformation. Énergie créative et sensuelle puissante. Force pour guider les transitions.</p>
+        <p class="meta">13°20'-26°40' Bélier • Vénus • Yoni</p>
+        <p>Compréhension des cycles de la vie : création, préservation, transformation. Puissante énergie créative et sensuelle.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>3. Krittika</h4>
-        <p class="meta">26°40' Bél - 10° Tau | Flamme | Soleil</p>
-        <p>Nature vive et pénétrante coupant à travers l'illusion. Comme le feu : peut illuminer ou brûler. Protection féroce des proches.</p>
+        <p class="meta">26°40' Bélier - 10° Taureau • Soleil • Flamme</p>
+        <p>Nature tranchante et pénétrante coupant à travers l'illusion. Comme le feu : peut illuminer ou brûler. Fiercely protecteur.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>4. Rohini</h4>
-        <p class="meta">10°-23°20' Taureau | Char | Lune</p>
-        <p>Incarne croissance, fertilité, abondance. Présence magnétique et attractive. Apprécie beauté et confort. Créativité naturelle.</p>
+        <p class="meta">10°-23°20' Taureau • Lune • Chariot</p>
+        <p>Incarne croissance, fertilité, abondance. Présence magnétique et attirante. Apprécie la beauté et le confort.</p>
       </div>
-    </div>
-    <span class="page-number">3</span>
-  </div>
-
-  <!-- PAGE 4: NAKSHATRAS 5-14 -->
-  <div class="page">
-    <h2>Nakshatras 5-14</h2>
-
-    <div class="nakshatra-grid">
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>5. Mrigashira</h4>
-        <p class="meta">23°20' Tau - 6°40' Gém | Cerf | Mars</p>
-        <p>Chercheur éternel toujours en quête. La curiosité pousse à collecter expériences et connaissances. Douceur combinée à la vigilance.</p>
+        <p class="meta">23°20' Taureau - 6°40' Gémeaux • Mars • Cerf</p>
+        <p>Chercheur éternel toujours en quête. La curiosité vous pousse à collecter les expériences. Douceur avec vigilance.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>6. Ardra</h4>
-        <p class="meta">6°40'-20° Gémeaux | Larme | Rahu</p>
-        <p>Tempêtes connues qui vous ont transformé. Intensité, passion, brillance intellectuelle. De la peine émerge une sagesse profonde.</p>
+        <p class="meta">6°40'-20° Gémeaux • Rahu • Larme</p>
+        <p>Tempêtes connues qui vous ont transformé. Intensité, passion, brillance intellectuelle. De la douleur émerge la sagesse.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>7. Punarvasu</h4>
-        <p class="meta">20° Gém - 3°20' Can | Arc | Jupiter</p>
-        <p>Résilience remarquable — capacité de revenir et recommencer. L'optimisme est votre don. Nature nourrissante et protectrice.</p>
+        <p class="meta">20° Gémeaux - 3°20' Cancer • Jupiter • Arc</p>
+        <p>Résilience remarquable — capacité à revenir et recommencer. L'optimisme est votre don. Nature nourricière.</p>
       </div>
-      <div class="nakshatra-card featured">
-        <h4>8. Pushya — Le Nakshatra le Plus Auspicieux</h4>
-        <p class="meta">3°20'-16°40' Cancer | Pis de Vache | Saturne</p>
-        <p>Considéré comme le plus auspicieux de tous. Vous incarnez la nourriture sous toutes ses formes avec une capacité naturelle à nourrir, enseigner et soutenir la croissance. La générosité vous définit. Les valeurs traditionnelles et la sagesse spirituelle vous attirent profondément.</p>
+      <div class="nak-card">
+        <h4>8. Pushya ★</h4>
+        <p class="meta">3°20'-16°40' Cancer • Saturne • Mamelle</p>
+        <p>Nakshatra le plus auspicieux. Capacité naturelle à nourrir, enseigner, soutenir. La générosité vous définit.</p>
       </div>
-      <div class="nakshatra-card">
+    </div>
+
+    <span class="page-num">5</span>
+  </div>
+
+  <!-- PAGE 6: NAKSHATRAS 9-18 -->
+  <div class="page">
+    <h2>Nakshatras (Suite)</h2>
+
+    <div class="nak-grid">
+      <div class="nak-card">
         <h4>9. Ashlesha</h4>
-        <p class="meta">16°40'-30° Cancer | Serpent | Mercure</p>
-        <p>Magnétisme hypnotique et perspicacité psychologique. Comme le serpent, peut muer et se transformer. Les autres sentent votre sagesse et pouvoir.</p>
+        <p class="meta">16°40'-30° Cancer • Mercure • Serpent</p>
+        <p>Magnétisme hypnotique et perspicacité psychologique. Comme le serpent, peut muer et se transformer. Sagesse profonde.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>10. Magha</h4>
-        <p class="meta">0°-13°20' Lion | Trône | Ketu</p>
-        <p>Pouvoir ancestral avec forte connexion lignée. Autorité et majesté naturelles. Commande le respect ; honore le passé en créant son héritage.</p>
+        <p class="meta">0°-13°20' Lion • Ketu • Trône</p>
+        <p>Pouvoir ancestral avec forte connexion au lignage. Autorité et majesté naturelles. Commande le respect.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>11. Purva Phalguni</h4>
-        <p class="meta">13°20'-26°40' Lion | Hamac | Vénus</p>
-        <p>Comprend l'art du plaisir. Créativité, romance sont vos domaines. Généreux, chaleureux, talentueux pour apporter la joie.</p>
+        <p class="meta">13°20'-26°40' Lion • Vénus • Hamac</p>
+        <p>Comprend l'art de la jouissance. Créativité, romance, plaisir sont vos domaines. Généreux et chaleureux.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>12. Uttara Phalguni</h4>
-        <p class="meta">26°40' Lion - 10° Vier | Lit | Soleil</p>
-        <p>Valorise engagement, amitié, contrats. Noblesse et serviabilité — soutient sincèrement le succès des autres. Partenariat naturel.</p>
+        <p class="meta">26°40' Lion - 10° Vierge • Soleil • Lit</p>
+        <p>Valorise engagement, amitié, contrats. Noblesse — soutient sincèrement le succès des autres.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>13. Hasta</h4>
-        <p class="meta">10°-23°20' Vierge | Main | Lune</p>
-        <p>Dextérité remarquable — artisanat, guérison, travail de précision. Ingénieux ; peut manifester ce dont vous avez besoin. Adaptable.</p>
+        <p class="meta">10°-23°20' Vierge • Lune • Main</p>
+        <p>Dextérité remarquable — artisanat, guérison, travail de précision. Ingénieux, astucieux et adaptable.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>14. Chitra</h4>
-        <p class="meta">23°20' Vier - 6°40' Bal | Bijou | Mars</p>
-        <p>Attiré par beauté, design, création visuelle. Talent artistique avec œil pour l'esthétique. Capacité de créer des œuvres durables.</p>
+        <p class="meta">23°20' Vierge - 6°40' Balance • Mars • Joyau</p>
+        <p>Attiré par la beauté, le design, la création visuelle. Talent artistique avec sens de l'esthétique.</p>
       </div>
-    </div>
-    <span class="page-number">4</span>
-  </div>
-
-  <!-- PAGE 5: NAKSHATRAS 15-22 -->
-  <div class="page">
-    <h2>Nakshatras 15-22</h2>
-
-    <div class="nakshatra-grid">
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>15. Swati</h4>
-        <p class="meta">6°40'-20° Balance | Plante | Rahu</p>
-        <p>Indépendance et autonomie vous définissent. Flexible mais enraciné. Valorise la liberté par-dessus tout. Compétences diplomatiques.</p>
+        <p class="meta">6°40'-20° Balance • Rahu • Jeune Plante</p>
+        <p>L'indépendance et l'autonomie vous définissent. Flexible mais enraciné. Valorise la liberté par-dessus tout.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>16. Vishakha</h4>
-        <p class="meta">20° Bal - 3°20' Sco | Arc | Jupiter</p>
-        <p>Détermination poursuivant objectifs sans relâche. L'ambition brûle. Patient quand nécessaire. Victoire par persévérance.</p>
+        <p class="meta">20° Balance - 3°20' Scorpion • Jupiter • Arche</p>
+        <p>Détermination acharnée poursuivant les objectifs sans relâche. L'ambition brûle. Victoire par persévérance.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>17. Anuradha</h4>
-        <p class="meta">3°20'-16°40' Scorpion | Lotus | Saturne</p>
-        <p>Comme le lotus des eaux boueuses, fleurit malgré les défis. Amitié et dévotion sacrées. Peut réussir loin du lieu de naissance.</p>
+        <p class="meta">3°20'-16°40' Scorpion • Saturne • Lotus</p>
+        <p>Comme le lotus des eaux boueuses, fleurit malgré les défis. Amitié et dévotion sacrées.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>18. Jyeshtha</h4>
-        <p class="meta">16°40'-30° Scorpion | Amulette | Mercure</p>
-        <p>Énergie du chef, de l'aîné, du plus puissant. Autorité protectrice — défend férocement les proches. Courage remarquable.</p>
-      </div>
-      <div class="nakshatra-card featured">
-        <h4>19. Mula — Le Nakshatra Racine</h4>
-        <p class="meta">0°-13°20' Sagittaire | Racines | Ketu</p>
-        <p>Vous cherchez la racine des choses — vérité, sens, existence fondamentale. La destruction de l'illusion est votre don, parfois douloureux. Sans peur de tout remettre en question. La quête spirituelle définit souvent votre chemin de vie.</p>
-      </div>
-      <div class="nakshatra-card">
-        <h4>20. Purva Ashadha</h4>
-        <p class="meta">13°20'-26°40' Sag | Défense | Vénus</p>
-        <p>Invincibilité et capacité d'énergiser les autres. Talent persuasif pour rallier les gens. Confiance dans le triomphe.</p>
-      </div>
-      <div class="nakshatra-card">
-        <h4>21. Uttara Ashadha</h4>
-        <p class="meta">26°40' Sag - 10° Cap | Défense | Soleil</p>
-        <p>Victoire finale — pas rapide mais durable. Endurance, intégrité, leadership juste. Succès par éthique et patience.</p>
-      </div>
-      <div class="nakshatra-card">
-        <h4>22. Shravana</h4>
-        <p class="meta">10°-23°20' Capricorne | Oreille | Lune</p>
-        <p>Écoute et apprentissage sont vos superpouvoirs. Absorbe les connaissances par l'audition. Accomplissement méthodique des objectifs.</p>
+        <p class="meta">16°40'-30° Scorpion • Mercure • Amulette</p>
+        <p>Énergie du chef, de l'aîné. Autorité protectrice — défend ceux sous votre garde avec férocité.</p>
       </div>
     </div>
-    <span class="page-number">5</span>
+
+    <span class="page-num">6</span>
   </div>
 
-  <!-- PAGE 6: NAKSHATRAS 23-27 + CTA -->
+  <!-- PAGE 7: NAKSHATRAS 19-27 -->
   <div class="page">
-    <h2>Nakshatras 23-27</h2>
+    <h2>Nakshatras (Fin)</h2>
 
-    <div class="nakshatra-grid">
-      <div class="nakshatra-card">
+    <div class="nak-grid">
+      <div class="nak-card">
+        <h4>19. Mula ★</h4>
+        <p class="meta">0°-13°20' Sagittaire • Ketu • Racines</p>
+        <p>Cherchez la racine des choses — vérité, sens, existence. Destruction de l'illusion est votre don. Quête spirituelle.</p>
+      </div>
+      <div class="nak-card">
+        <h4>20. Purva Ashadha</h4>
+        <p class="meta">13°20'-26°40' Sagittaire • Vénus • Défense d'Éléphant</p>
+        <p>Invincibilité et capacité à énergiser les autres. Talent persuasif pour rallier les gens à votre cause.</p>
+      </div>
+      <div class="nak-card">
+        <h4>21. Uttara Ashadha</h4>
+        <p class="meta">26°40' Sagittaire - 10° Capricorne • Soleil • Défense</p>
+        <p>Victoire finale — pas un gain rapide mais un triomphe durable. Endurance, intégrité, leadership juste.</p>
+      </div>
+      <div class="nak-card">
+        <h4>22. Shravana</h4>
+        <p class="meta">10°-23°20' Capricorne • Lune • Oreille</p>
+        <p>Écouter et apprendre sont vos superpouvoirs. Absorbe la connaissance par l'écoute. Accomplissement méthodique.</p>
+      </div>
+      <div class="nak-card">
         <h4>23. Dhanishta</h4>
-        <p class="meta">23°20' Cap - 6°40' Ver | Tambour | Mars</p>
-        <p>Richesse, musique, rythme coulent dans la vie. Talent pour garder le temps. La prospérité vient ; partage généreux.</p>
+        <p class="meta">23°20' Capricorne - 6°40' Verseau • Mars • Tambour</p>
+        <p>Richesse, musique, rythme coulent dans la vie. Talent pour garder le temps. Prospérité ; partage généreux.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>24. Shatabhisha</h4>
-        <p class="meta">6°40'-20° Verseau | Cercle | Rahu</p>
-        <p>Pouvoirs de guérison et capacité à garder les secrets. Mystérieux, autonome — vase vide contenant vaste connaissance. Chemin solitaire.</p>
+        <p class="meta">6°40'-20° Verseau • Rahu • Cercle Vide</p>
+        <p>Pouvoirs de guérison et capacité à garder les secrets. Mystérieux, autonome. Peut suivre un chemin solitaire.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>25. Purva Bhadrapada</h4>
-        <p class="meta">20° Ver - 3°20' Poi | Épée | Jupiter</p>
-        <p>Intensité ; endure circonstances extrêmes. Féroce quand nécessaire, prêt à brûler les ponts pour transformation. Qualité mystique.</p>
+        <p class="meta">20° Verseau - 3°20' Poissons • Jupiter • Épée</p>
+        <p>Intensité ; endure des circonstances extrêmes. Féroce quand nécessaire. Qualité mystique.</p>
       </div>
-      <div class="nakshatra-card">
+      <div class="nak-card">
         <h4>26. Uttara Bhadrapada</h4>
-        <p class="meta">3°20'-16°40' Poissons | Jumeaux | Saturne</p>
-        <p>Sagesse profonde et contrôle sur conscience cachée. Contemplatif, peut-être solitaire. Comprend les profondeurs cosmiques.</p>
+        <p class="meta">3°20'-16°40' Poissons • Saturne • Jumeaux</p>
+        <p>Sagesse profonde et contrôle sur la conscience cachée. Contemplatif, peut-être solitaire.</p>
       </div>
-      <div class="nakshatra-card featured">
-        <h4>27. Revati — Le Nakshatra Final</h4>
-        <p class="meta">16°40'-30° Poissons | Poisson | Mercure</p>
-        <p>Vous complétez le cycle cosmique avec douceur, protection et capacité de guider les voyages sûrs. Douceur et compassion définissent votre nature — souhaitant sincèrement le bien de tous. Talent pour le voyage, le soin des animaux, ou guider les autres. Vous représentez la fin qui permet de nouveaux commencements.</p>
+      <div class="nak-card">
+        <h4>27. Revati ★</h4>
+        <p class="meta">16°40'-30° Poissons • Mercure • Poisson</p>
+        <p>Complétez le cycle cosmique avec douceur. La compassion vous définit. Guide les voyages sûrs.</p>
       </div>
     </div>
+
+    <span class="page-num">7</span>
+  </div>
+
+  <!-- PAGE 8: CTA + CLOSING -->
+  <div class="page">
+    <h2>Votre Voyage Continue</h2>
+
+    <p class="section-intro">Maintenant que vous comprenez votre signe lunaire et Nakshatra, vous avez la fondation pour une étude astrologique védique plus profonde.</p>
 
     <div class="cta-box">
       <h3>Découvrez Votre Pada</h3>
-      <p>Chaque Nakshatra se divise en <strong>4 Padas</strong> (quartiers), ajoutant une spécificité précise. Votre Pada révèle des insights sur les schémas émotionnels, leçons karmiques et but de vie.</p>
-      <p><strong>Nos lectures complètes incluent :</strong></p>
+      <p>Chaque Nakshatra se divise en <strong>4 Padas</strong> (quartiers), ajoutant une spécificité précise à votre nature lunaire. Votre Pada révèle des aperçus plus profonds sur les patterns émotionnels, les leçons karmiques et le but de vie.</p>
+      <p><strong>Nos lectures complètes du thème natal incluent :</strong></p>
       <ul>
         <li>Analyse détaillée des Padas pour toutes les planètes</li>
         <li>Positions et aspects planétaires complets</li>
         <li>Prédictions Dasha (périodes planétaires)</li>
         <li>Évaluation de compatibilité relationnelle</li>
-        <li>Orientation de carrière et mesures correctives</li>
+        <li>Guidance carrière et mesures correctives</li>
       </ul>
-      <a href="https://shubham-landing.vercel.app/#pricing" class="cta-link">Obtenez Votre Lecture Complète</a>
-    </div>
-    <span class="page-number">6</span>
-  </div>
-
-  <!-- PAGE 7: CONCLUSION -->
-  <div class="page">
-    <h2>Votre Voyage Continue</h2>
-
-    <p class="section-intro">Maintenant que vous comprenez votre signe lunaire et Nakshatra, vous avez la base pour une étude astrologique védique plus approfondie. Ce n'est que le début.</p>
-
-    <div class="intro-box">
-      <h3 style="text-align: center; margin-bottom: 4mm;">Une Analyse Complète du Thème Considère :</h3>
-      <div class="next-steps">
-        <ul>
-          <li>Les neuf planètes (Grahas) et leurs positions</li>
-          <li>L'Ascendant (Lagna) et son Nakshatra</li>
-          <li>Les aspects et conjonctions planétaires</li>
-          <li>Les cartes divisionnaires (Vargas)</li>
-          <li>Les périodes planétaires actuelles (Dashas)</li>
-          <li>Les influences de transit sur votre thème</li>
-        </ul>
-      </div>
-      <p style="text-align: center; margin-top: 4mm; margin-bottom: 0;">La Lune est votre cœur émotionnel, mais c'est un instrument dans l'orchestre cosmique de votre thème. Pour entendre la symphonie complète, une lecture est essentielle.</p>
+      <a href="https://shubham-landing.vercel.app/#pricing" class="link">Obtenez Votre Lecture Complète</a>
     </div>
 
-    <div style="height: 15mm;"></div>
+    <div class="intro-box" style="margin-top: 10mm;">
+      <h3 style="text-align: center; margin-bottom: 5mm; color: #d4af37;">Une Analyse Complète Considère :</h3>
+      <p style="text-align: center; margin-bottom: 0;">Les neuf planètes • L'Ascendant et son Nakshatra • Aspects et conjonctions planétaires • Cartes divisionnelles pour des domaines de vie spécifiques • Périodes planétaires actuelles • Influences de transit</p>
+    </div>
 
-    <div style="text-align: center;">
-      <div class="cover-ornament" style="margin: 0 auto;"></div>
-      <p style="font-style: italic; color: #a0a0b0; margin: 5mm 0;">Que les étoiles illuminent votre chemin.</p>
-      <div class="cover-ornament" style="margin: 0 auto;"></div>
+    <div style="text-align: center; margin-top: 15mm;">
+      <div class="ornament"></div>
+      <p style="font-style: italic; color: #a0a0b8; margin: 6mm 0;">Que les étoiles illuminent votre chemin.</p>
+      <div class="ornament"></div>
     </div>
 
     <div class="footer">
-      <p class="brand-name">Méthode Shubham</p>
+      <p class="brand">Méthode Shubham</p>
       <p>Astrologie Védique pour le Chercheur Moderne</p>
-      <p style="margin-top: 3mm;">shubham-landing.vercel.app</p>
+      <p style="margin-top: 2mm;">shubham-landing.vercel.app</p>
     </div>
-    <span class="page-number">7</span>
+
+    <span class="page-num">8</span>
   </div>
 
 </body>
