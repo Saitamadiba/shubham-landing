@@ -1,3 +1,5 @@
+import { Language } from './translations'
+
 export interface BlogPost {
   slug: string
   title: string
@@ -10,9 +12,11 @@ export interface BlogPost {
   tags: string[]
   readingTime: string
   featured?: boolean
+  lang: Language
 }
 
 export const blogPosts: BlogPost[] = [
+  // ENGLISH ARTICLES
   {
     slug: 'what-is-nakshatra-lunar-mansions-vedic-astrology',
     title: 'What is Nakshatra? Understanding the 27 Lunar Mansions in Vedic Astrology',
@@ -23,6 +27,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2024-12-15',
     readingTime: '8 min read',
     featured: true,
+    lang: 'en',
     content: `
 ## The Foundation of Vedic Astrology
 
@@ -91,6 +96,7 @@ Ready to discover your Nakshatra? [Get your free Nakshatra guide](/guide) or exp
     author: 'Shubham Method',
     publishedAt: '2024-12-20',
     readingTime: '10 min read',
+    lang: 'en',
     content: `
 ## Introduction
 
@@ -202,6 +208,7 @@ The Shubham Method provides comprehensive Vedic astrology analysis using traditi
     publishedAt: '2025-01-02',
     readingTime: '12 min read',
     featured: true,
+    lang: 'en',
     content: `
 ## The Art of Cosmic Timing
 
@@ -313,18 +320,331 @@ The Dasha system transforms astrology from vague predictions into a practical ti
 Ready to discover your Dasha timeline? Our [Complete Analysis](/#pricing) includes full Dasha interpretation with practical guidance for your current and upcoming periods.
     `,
   },
+
+  // FRENCH ARTICLES
+  {
+    slug: 'quest-ce-que-nakshatra-27-demeures-lunaires-astrologie-vedique',
+    title: 'Qu\'est-ce qu\'un Nakshatra ? Comprendre les 27 Demeures Lunaires en Astrologie Védique',
+    description: 'Découvrez la sagesse ancienne des Nakshatras - les 27 demeures lunaires qui révèlent le but profond de votre âme, vos traits de personnalité et votre chemin de vie.',
+    category: 'Fondamentaux',
+    tags: ['nakshatra', 'demeures lunaires', 'bases astrologie védique', 'signe lunaire'],
+    author: 'Shubham Method',
+    publishedAt: '2024-12-15',
+    readingTime: '8 min de lecture',
+    featured: true,
+    lang: 'fr',
+    content: `
+## Le Fondement de l'Astrologie Védique
+
+En astrologie védique (Jyotish), les Nakshatras sont 27 demeures lunaires ou amas d'étoiles que la Lune traverse durant son cycle mensuel. Contrairement à l'astrologie occidentale qui se concentre principalement sur les 12 signes du zodiaque, l'astrologie védique accorde une importance immense à ces Nakshatras pour comprendre la nature profonde d'une personne.
+
+Le mot « Nakshatra » vient du sanskrit : « Naks » signifiant ciel et « Shetra » signifiant région ou champ. Ensemble, ils représentent les demeures célestes qui influencent notre conscience et nos expériences de vie.
+
+## Pourquoi Votre Nakshatra Est Important
+
+Votre Nakshatra de naissance (Janma Nakshatra) est déterminé par la position de la Lune au moment exact de votre naissance. Ceci est considéré comme encore plus significatif que votre signe solaire car :
+
+- **La Lune représente l'esprit** - Dans la philosophie védique, la Lune gouverne nos émotions, nos instincts et nos schémas subconscients
+- **Des aperçus de personnalité plus profonds** - Alors que les signes du zodiaque donnent de grandes lignes, les Nakshatras révèlent des traits de personnalité nuancés
+- **Le timing des événements** - Le système Dasha, qui prédit les périodes de vie, est basé sur votre Nakshatra de naissance
+- **La compatibilité** - La compatibilité matrimoniale traditionnelle (Kundli matching) repose fortement sur l'analyse des Nakshatras
+
+## Les 27 Nakshatras en Bref
+
+Chaque Nakshatra s'étend sur 13°20' du zodiaque et possède des caractéristiques uniques :
+
+1. **Ashwini** (0°-13°20' Bélier) - Les Guérisseurs
+2. **Bharani** (13°20'-26°40' Bélier) - Les Porteurs de Vie
+3. **Krittika** (26°40' Bélier - 10° Taureau) - Les Tranchants
+4. **Rohini** (10°-23°20' Taureau) - Celle qui Croît
+5. **Mrigashira** (23°20' Taureau - 6°40' Gémeaux) - L'Étoile Chercheuse
+
+...et 22 autres, chacun avec sa propre divinité, son symbole et ses qualités.
+
+## Comment les Nakshatras Influencent Votre Vie
+
+### Carrière et But de Vie
+Chaque Nakshatra a des inclinations naturelles vers certaines professions. Par exemple, les natifs d'Ashwini excellent souvent dans les professions de guérison, tandis que les natifs de Vishakha s'épanouissent dans des carrières orientées vers des objectifs nécessitant de la détermination.
+
+### Relations
+La compatibilité des Nakshatras va au-delà de l'attraction superficielle. Elle examine l'harmonie énergétique fondamentale entre deux âmes, en tenant compte de facteurs comme le tempérament, les valeurs et les objectifs de vie.
+
+### Croissance Spirituelle
+Les Nakshatras sont également liés à des pratiques et des chemins spirituels spécifiques. Comprendre votre Nakshatra peut vous guider vers des pratiques qui résonnent avec la nature de votre âme.
+
+## Découvrir Votre Nakshatra
+
+Pour trouver votre Nakshatra, vous avez besoin de :
+- Votre date de naissance exacte
+- L'heure de naissance précise (la précision compte !)
+- Le lieu de naissance
+
+Le rapport Shubham Method inclut une analyse complète des Nakshatras, révélant :
+- Votre Nakshatra lunaire et sa signification
+- Le seigneur du Nakshatra et son influence
+- L'analyse du Pada (quart) pour des prédictions affinées
+- Les Nakshatras compatibles et difficiles
+
+## Conclusion
+
+Les Nakshatras offrent un prisme profond pour la compréhension de soi qui va bien au-delà des horoscopes superficiels. Que vous cherchiez des conseils de carrière, des aperçus relationnels ou une direction spirituelle, comprendre votre Nakshatra est une première étape inestimable dans votre voyage cosmique.
+
+Prêt à découvrir votre Nakshatra ? [Obtenez votre guide gratuit des Nakshatras](/guide) ou explorez notre [analyse complète du thème natal](/#pricing).
+    `,
+  },
+  {
+    slug: 'astrologie-vedique-vs-occidentale-7-differences-cles',
+    title: 'Astrologie Védique vs Occidentale : 7 Différences Clés à Connaître',
+    description: 'Explorez les différences fondamentales entre l\'astrologie védique (Jyotish) et occidentale, des calculs du zodiaque aux techniques prédictives et fondements philosophiques.',
+    category: 'Comparaison',
+    tags: ['astrologie védique', 'astrologie occidentale', 'jyotish', 'zodiaque sidéral', 'zodiaque tropical'],
+    author: 'Shubham Method',
+    publishedAt: '2024-12-20',
+    readingTime: '10 min de lecture',
+    lang: 'fr',
+    content: `
+## Introduction
+
+Si vous vous êtes déjà demandé pourquoi votre thème védique montre un signe solaire différent de votre horoscope occidental, vous n'êtes pas seul. Ces deux systèmes anciens, bien qu'ayant des racines communes, ont évolué vers des approches distinctement différentes pour comprendre le cosmos et notre place en son sein.
+
+## 1. Le Système du Zodiaque : Sidéral vs Tropical
+
+**La différence la plus fondamentale** réside dans la façon dont chaque système calcule le zodiaque :
+
+### Astrologie Occidentale (Tropicale)
+- Basée sur les saisons et la relation du Soleil avec la Terre
+- Le zodiaque commence quand le Soleil traverse l'équateur céleste à l'équinoxe de printemps
+- Fixé aux saisons terrestres, pas aux positions réelles des étoiles
+
+### Astrologie Védique (Sidérale)
+- Basée sur les positions réelles des étoiles et des constellations
+- Tient compte de la précession des équinoxes (l'oscillation lente de l'axe terrestre)
+- Actuellement environ 24° en retard par rapport au zodiaque tropical (appelé Ayanamsa)
+
+**Ce que cela signifie :** Si vous êtes Taureau en astrologie occidentale, vous pourriez être Bélier en astrologie védique !
+
+## 2. La Lune vs Le Soleil
+
+### Emphase Occidentale
+- Le signe solaire est l'identifiant principal
+- « Quel est ton signe ? » fait référence au placement du Soleil
+- Interprétation centrée sur le Soleil
+
+### Emphase Védique
+- Le signe lunaire (Rashi) est aussi ou plus important
+- Le Nakshatra (demeure lunaire) ajoute des couches de personnalité plus profondes
+- L'esprit et les émotions (domaine de la Lune) prennent le devant de la scène
+
+## 3. Considérations Planétaires
+
+### L'Astrologie Occidentale Utilise :
+- Soleil, Lune, Mercure, Vénus, Mars, Jupiter, Saturne
+- Uranus, Neptune, Pluton (planètes extérieures)
+- Parfois des astéroïdes comme Chiron
+
+### L'Astrologie Védique Utilise :
+- Soleil, Lune, Mercure, Vénus, Mars, Jupiter, Saturne
+- Rahu et Ketu (nœuds lunaires) - considérés comme extrêmement importants
+- N'utilise généralement pas les planètes extérieures dans la pratique traditionnelle
+
+## 4. Systèmes de Maisons
+
+L'astrologie occidentale utilise divers systèmes de maisons (Placidus, Signe Entier, Koch), tandis que l'astrologie védique utilise traditionnellement le système de maisons en Signe Entier, où chaque maison équivaut exactement à un signe.
+
+## 5. Techniques Prédictives
+
+### Méthodes Occidentales
+- Transits et progressions
+- Révolutions solaires
+- Timing général basé sur les mouvements planétaires
+
+### Méthodes Védiques
+- **Système Dasha** - Périodes planétaires précises uniques à chaque individu
+- **Transits (Gochara)** - Analysés depuis le signe lunaire
+- **Varshaphala** - Thèmes annuels (similaires aux révolutions solaires)
+- Beaucoup plus d'emphase sur le timing précis et la prédiction
+
+## 6. Cartes Divisionnaires (Vargas)
+
+L'astrologie védique emploie un système extensif de cartes divisionnaires :
+- **D9 (Navamsa)** - Mariage et dharma
+- **D10 (Dasamsa)** - Carrière
+- **D7 (Saptamsa)** - Enfants
+- Et bien d'autres...
+
+L'astrologie occidentale se concentre typiquement sur le thème natal principal.
+
+## 7. Fondement Philosophique
+
+### Astrologie Occidentale
+- Souvent psychologique dans son approche
+- Focus sur la personnalité et le potentiel
+- « Les étoiles inclinent, elles ne contraignent pas »
+
+### Astrologie Védique
+- Enracinée dans la philosophie védique/hindoue
+- Le karma et le dharma sont des concepts centraux
+- Inclut des mesures correctives (mantras, pierres précieuses, rituels)
+- Plus fataliste mais offre des outils d'atténuation
+
+## Quel Système est « Meilleur » ?
+
+Aucun n'est intrinsèquement supérieur—ce sont des outils différents pour des buts différents :
+
+- **Choisissez l'Occidental** si vous voulez des aperçus psychologiques et une compréhension de la personnalité
+- **Choisissez le Védique** si vous voulez des prédictions de timing précises et un cadre basé sur le karma
+
+De nombreux praticiens étudient les deux systèmes, trouvant qu'ils se complètent magnifiquement.
+
+## Découvrez une Analyse Védique Authentique
+
+La Méthode Shubham fournit une analyse d'astrologie védique complète utilisant des techniques traditionnelles affinées pour les chercheurs modernes. Notre méthodologie en 14 phases honore la sagesse ancienne tout en délivrant des aperçus pertinents pour la vie contemporaine.
+
+[Explorez nos rapports](/#pricing) pour expérimenter la profondeur de l'interprétation Jyotish authentique.
+    `,
+  },
+  {
+    slug: 'comprendre-systeme-dasha-timing-astrologie-vedique',
+    title: 'Comprendre le Système Dasha : Comment l\'Astrologie Védique Prédit le Timing de Vie',
+    description: 'Apprenez comment le système Vimshottari Dasha en astrologie védique révèle le timing des événements majeurs de la vie, des opportunités et des défis avec une précision remarquable.',
+    category: 'Avancé',
+    tags: ['système dasha', 'vimshottari', 'prédiction astrologie védique', 'périodes planétaires', 'timing de vie'],
+    author: 'Shubham Method',
+    publishedAt: '2025-01-02',
+    readingTime: '12 min de lecture',
+    featured: true,
+    lang: 'fr',
+    content: `
+## L'Art du Timing Cosmique
+
+L'un des outils les plus puissants de l'astrologie védique est sa capacité à prédire *quand* les événements se dérouleront dans votre vie. Alors que l'astrologie occidentale parle souvent en termes généraux d'influences et d'énergies, le système Dasha de l'astrologie védique fournit une chronologie précise unique à chaque individu.
+
+## Qu'est-ce que le Système Dasha ?
+
+Le mot « Dasha » signifie « état » ou « condition » en sanskrit. Le système Dasha divise votre vie en périodes planétaires, chacune gouvernée par une planète spécifique. Durant chaque période, les thèmes, promesses et défis de cette planète s'activent dans votre vie.
+
+### Le Vimshottari Dasha
+
+Le système le plus couramment utilisé est le Vimshottari Dasha, qui s'étend sur 120 ans et attribue des périodes spécifiques à chaque planète :
+
+| Planète | Durée de la Période |
+|---------|---------------------|
+| Ketu | 7 ans |
+| Vénus | 20 ans |
+| Soleil | 6 ans |
+| Lune | 10 ans |
+| Mars | 7 ans |
+| Rahu | 18 ans |
+| Jupiter | 16 ans |
+| Saturne | 19 ans |
+| Mercure | 17 ans |
+
+**Total : 120 ans**
+
+## Comment Votre Dasha de Départ Est Déterminé
+
+Votre séquence Dasha commence en fonction du Nakshatra de votre Lune à la naissance. Chaque Nakshatra est gouverné par une planète spécifique, et vous commencez la vie dans le Dasha de cette planète, à un point déterminé par exactement où se trouvait la Lune dans ce Nakshatra.
+
+C'est pourquoi une heure de naissance précise est cruciale—même quelques minutes peuvent vous faire basculer dans une période Dasha différente.
+
+## La Hiérarchie : Mahadasha, Antardasha et Au-delà
+
+### Mahadasha (Période Majeure)
+La période planétaire principale durant des années ou des décennies. Cette planète définit le thème général.
+
+### Antardasha (Sous-Période)
+Chaque Mahadasha est divisé en sous-périodes gouvernées par les neuf planètes en séquence. Celles-ci durent des mois à des années.
+
+### Pratyantardasha (Sous-Sous-Période)
+Des divisions supplémentaires pour un timing plus précis, durant des semaines à des mois.
+
+Ce système en couches permet aux astrologues de déterminer le timing avec une précision remarquable.
+
+## Exemples Concrets
+
+### Mahadasha de Saturne
+Quand la période de 19 ans de Saturne arrive, attendez-vous à :
+- Le travail acharné et la discipline deviennent nécessaires
+- Restructuration ou solidification de carrière
+- Leçons sur la responsabilité et la maturité
+- Possibles retards qui s'avèrent finalement bénéfiques
+- Questions de santé nécessitant attention (surtout os, articulations)
+
+### Mahadasha de Jupiter
+La période de 16 ans de Jupiter apporte souvent :
+- Expansion dans la carrière et la connaissance
+- Croissance spirituelle et sagesse
+- Mariage ou enfants (si promis dans le thème)
+- Amélioration financière par des moyens légitimes
+- Rôles d'enseignant ou de mentor
+
+### Mahadasha de Vénus
+La période de 20 ans de Vénus peut activer :
+- Relations et mariage
+- Poursuites artistiques ou créatives
+- Conforts matériels et luxes
+- Carrière dans la beauté, les arts ou la finance
+- Appréciation accrue des plaisirs de la vie
+
+## Pourquoi l'Analyse Dasha Est Importante
+
+Comprendre vos Dashas actuels et à venir vous aide à :
+
+1. **Prendre des décisions éclairées** - Savoir quand avancer ou attendre patiemment
+2. **Se préparer aux défis** - Les périodes difficiles peuvent être naviguées avec conscience
+3. **Maximiser les opportunités** - Les périodes favorables sont idéales pour les initiatives majeures
+4. **Comprendre les schémas passés** - Donner du sens à pourquoi les choses se sont produites quand elles l'ont fait
+5. **Planifier les événements majeurs** - Mariage, changements de carrière, investissements
+
+## L'Approche Méthode Shubham
+
+Nos rapports Complet et Premium incluent une analyse Dasha détaillée :
+
+- Interprétation du Mahadasha et Antardasha actuels
+- Aperçus des périodes à venir pour les prochaines années
+- Comment les Dashas interagissent avec votre thème spécifique
+- Conseils pratiques pour naviguer chaque période
+- Superpositions de transits pour une précision de prédiction améliorée
+
+## Considérations Importantes
+
+### Les Dashas Montrent le Potentiel, Pas les Garanties
+Un « bon » Dasha n'apportera pas automatiquement des résultats positifs si la planète est mal placée dans votre thème. Inversement, un Dasha « difficile » d'une planète bien placée peut apporter la croissance à travers les défis.
+
+### Le Contexte Est Tout
+Les résultats Dasha doivent être interprétés dans le contexte de :
+- La dignité de la planète dans votre thème
+- Les maisons qu'elle gouverne et occupe
+- Les aspects des autres planètes
+- Les transits actuels (Gochara)
+
+## Conclusion
+
+Le système Dasha transforme l'astrologie de prédictions vagues en un outil de timing pratique. En comprenant quelles énergies planétaires sont actives dans votre vie et quand elles changeront, vous gagnez une perspective inestimable pour naviguer le voyage de la vie.
+
+Prêt à découvrir votre chronologie Dasha ? Notre [Analyse Complète](/#pricing) inclut une interprétation Dasha complète avec des conseils pratiques pour vos périodes actuelles et à venir.
+    `,
+  },
 ]
 
-export function getBlogPost(slug: string): BlogPost | undefined {
-  return blogPosts.find(post => post.slug === slug)
+export function getBlogPost(slug: string, lang?: Language): BlogPost | undefined {
+  return blogPosts.find(post => post.slug === slug && (!lang || post.lang === lang))
 }
 
-export function getAllBlogPosts(): BlogPost[] {
-  return blogPosts.sort((a, b) =>
+export function getAllBlogPosts(lang?: Language): BlogPost[] {
+  const filtered = lang ? blogPosts.filter(post => post.lang === lang) : blogPosts
+  return filtered.sort((a, b) =>
     new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   )
 }
 
-export function getFeaturedPosts(): BlogPost[] {
-  return blogPosts.filter(post => post.featured)
+export function getFeaturedPosts(lang?: Language): BlogPost[] {
+  const filtered = lang ? blogPosts.filter(post => post.lang === lang) : blogPosts
+  return filtered.filter(post => post.featured)
+}
+
+export function getBlogPostsByLang(lang: Language): BlogPost[] {
+  return blogPosts
+    .filter(post => post.lang === lang)
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
 }

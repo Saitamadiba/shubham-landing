@@ -1,7 +1,8 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllBlogPosts, getFeaturedPosts } from '@/lib/blog'
-import { Calendar, Clock, ArrowRight, Sparkles } from 'lucide-react'
+import { Calendar, Clock, ArrowRight, Sparkles, Globe } from 'lucide-react'
+import { Language } from '@/lib/translations'
 
 export const metadata: Metadata = {
   title: 'Vedic Astrology Blog | Learn Jyotish Wisdom',
@@ -20,17 +21,58 @@ export const metadata: Metadata = {
   },
 }
 
-export default function BlogPage() {
-  const allPosts = getAllBlogPosts()
-  const featuredPosts = getFeaturedPosts()
+const blogTranslations = {
+  en: {
+    badge: 'VEDIC WISDOM',
+    title: 'Jyotish Insights',
+    subtitle: 'Explore the ancient wisdom of Vedic astrology through our comprehensive guides and articles.',
+    featured: 'Featured Articles',
+    all: 'All Articles',
+    readMore: 'Read more',
+    ctaTitle: 'Ready for Your Personal Reading?',
+    ctaText: 'Go beyond theory with a comprehensive birth chart analysis using the Shubham Method.',
+    ctaButton: 'Get Your Report',
+  },
+  fr: {
+    badge: 'SAGESSE VÉDIQUE',
+    title: 'Perspectives Jyotish',
+    subtitle: 'Explorez la sagesse ancienne de l\'astrologie védique à travers nos guides et articles complets.',
+    featured: 'Articles en Vedette',
+    all: 'Tous les Articles',
+    readMore: 'Lire la suite',
+    ctaTitle: 'Prêt pour Votre Lecture Personnelle ?',
+    ctaText: 'Allez au-delà de la théorie avec une analyse complète de votre thème natal selon la Méthode Shubham.',
+    ctaButton: 'Obtenir Votre Rapport',
+  },
+}
+
+interface BlogPageProps {
+  searchParams: Promise<{ lang?: string }>
+}
+
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const params = await searchParams
+  const lang = (params.lang === 'fr' ? 'fr' : 'en') as Language
+  const allPosts = getAllBlogPosts(lang)
+  const featuredPosts = getFeaturedPosts(lang)
+  const t = blogTranslations[lang]
+  const otherLang = lang === 'en' ? 'fr' : 'en'
+  const dateLocale = lang === 'fr' ? 'fr-FR' : 'en-US'
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-primary via-cosmic to-primary">
       {/* Header */}
       <div className="border-b border-sacred-gold/20">
-        <div className="max-w-6xl mx-auto px-4 py-6">
-          <Link href="/" className="text-sacred-gold hover:text-saffron transition font-cinzel text-xl">
+        <div className="max-w-6xl mx-auto px-4 py-6 flex justify-between items-center">
+          <Link href={lang === 'fr' ? '/?lang=fr' : '/'} className="text-sacred-gold hover:text-saffron transition font-cinzel text-xl">
             Shubham Method
+          </Link>
+          <Link
+            href={`/blog?lang=${otherLang}`}
+            className="flex items-center gap-2 text-gray-400 hover:text-sacred-gold transition text-sm"
+          >
+            <Globe className="w-4 h-4" />
+            {lang === 'en' ? 'Français' : 'English'}
           </Link>
         </div>
       </div>
@@ -40,13 +82,13 @@ export default function BlogPage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-sacred-gold/10 border border-sacred-gold/30 rounded-full px-4 py-2 mb-6">
             <Sparkles className="w-4 h-4 text-sacred-gold" />
-            <span className="text-sacred-gold text-sm font-medium">VEDIC WISDOM</span>
+            <span className="text-sacred-gold text-sm font-medium">{t.badge}</span>
           </div>
           <h1 className="font-cinzel text-4xl md:text-5xl font-bold text-sacred-gold mb-4">
-            Jyotish Insights
+            {t.title}
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Explore the ancient wisdom of Vedic astrology through our comprehensive guides and articles.
+            {t.subtitle}
           </p>
         </div>
       </section>
@@ -55,7 +97,7 @@ export default function BlogPage() {
       {featuredPosts.length > 0 && (
         <section className="py-8 px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="font-cinzel text-2xl text-sacred-gold mb-8">Featured Articles</h2>
+            <h2 className="font-cinzel text-2xl text-sacred-gold mb-8">{t.featured}</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {featuredPosts.map((post) => (
                 <Link
@@ -81,14 +123,14 @@ export default function BlogPage() {
                   <div className="flex items-center justify-between">
                     <span className="text-gray-500 text-sm flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
-                      {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                      {new Date(post.publishedAt).toLocaleDateString(dateLocale, {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',
                       })}
                     </span>
                     <span className="text-sacred-gold flex items-center gap-1 text-sm group-hover:gap-2 transition-all">
-                      Read more <ArrowRight className="w-4 h-4" />
+                      {t.readMore} <ArrowRight className="w-4 h-4" />
                     </span>
                   </div>
                 </Link>
@@ -101,7 +143,7 @@ export default function BlogPage() {
       {/* All Posts */}
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-cinzel text-2xl text-sacred-gold mb-8">All Articles</h2>
+          <h2 className="font-cinzel text-2xl text-sacred-gold mb-8">{t.all}</h2>
           <div className="grid gap-6">
             {allPosts.map((post) => (
               <Link
@@ -125,7 +167,7 @@ export default function BlogPage() {
                 </div>
                 <div className="flex items-center gap-4 md:flex-col md:items-end">
                   <span className="text-gray-500 text-sm">
-                    {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                    {new Date(post.publishedAt).toLocaleDateString(dateLocale, {
                       month: 'short',
                       day: 'numeric',
                       year: 'numeric',
@@ -143,16 +185,16 @@ export default function BlogPage() {
       <section className="py-16 px-4">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-cinzel text-2xl text-sacred-gold mb-4">
-            Ready for Your Personal Reading?
+            {t.ctaTitle}
           </h2>
           <p className="text-gray-400 mb-6">
-            Go beyond theory with a comprehensive birth chart analysis using the Shubham Method.
+            {t.ctaText}
           </p>
           <Link
-            href="/#pricing"
+            href={lang === 'fr' ? '/?lang=fr#pricing' : '/#pricing'}
             className="inline-flex items-center gap-2 bg-gradient-to-r from-sacred-gold to-saffron text-primary px-8 py-3 rounded-xl font-bold hover:shadow-sacred transition"
           >
-            Get Your Report
+            {t.ctaButton}
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
@@ -161,13 +203,19 @@ export default function BlogPage() {
       {/* Footer */}
       <footer className="border-t border-sacred-gold/20 py-8 px-4">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <Link href="/" className="text-sacred-gold font-cinzel">
+          <Link href={lang === 'fr' ? '/?lang=fr' : '/'} className="text-sacred-gold font-cinzel">
             Shubham Method
           </Link>
           <nav className="flex gap-6 text-sm text-gray-400">
-            <Link href="/" className="hover:text-sacred-gold transition">Home</Link>
-            <Link href="/#pricing" className="hover:text-sacred-gold transition">Pricing</Link>
-            <Link href="/#faq" className="hover:text-sacred-gold transition">FAQ</Link>
+            <Link href={lang === 'fr' ? '/?lang=fr' : '/'} className="hover:text-sacred-gold transition">
+              {lang === 'fr' ? 'Accueil' : 'Home'}
+            </Link>
+            <Link href={lang === 'fr' ? '/?lang=fr#pricing' : '/#pricing'} className="hover:text-sacred-gold transition">
+              {lang === 'fr' ? 'Tarifs' : 'Pricing'}
+            </Link>
+            <Link href={lang === 'fr' ? '/?lang=fr#faq' : '/#faq'} className="hover:text-sacred-gold transition">
+              FAQ
+            </Link>
           </nav>
         </div>
       </footer>
