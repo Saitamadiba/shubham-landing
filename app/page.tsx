@@ -19,6 +19,7 @@ import { useLanguage } from '@/lib/LanguageContext'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
 import CheckoutModal from '@/components/CheckoutModal'
 import LeadMagnet from '@/components/LeadMagnet'
+import AscendantCalculator from '@/components/AscendantCalculator'
 
 // Price data (not translated)
 const priceData = [
@@ -38,7 +39,7 @@ const featureIcons = [
 ]
 
 export default function LandingPage() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [checkoutModal, setCheckoutModal] = useState<{ open: boolean; plan: string; planKey: string }>({
@@ -69,6 +70,7 @@ export default function LandingPage() {
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-6">
               <a href="#features" className="text-gray-300 hover:text-sacred-gold transition">{t.nav.features}</a>
+              <a href="#calculator" className="text-gray-300 hover:text-sacred-gold transition">{language === 'en' ? 'Calculator' : 'Calculateur'}</a>
               <a href="#pricing" className="text-gray-300 hover:text-sacred-gold transition">{t.nav.pricing}</a>
               <a href="#testimonials" className="text-gray-300 hover:text-sacred-gold transition">{t.nav.reviews}</a>
               <a href="#faq" className="text-gray-300 hover:text-sacred-gold transition">{t.nav.faq}</a>
@@ -100,6 +102,7 @@ export default function LandingPage() {
           <div className="md:hidden bg-secondary border-t border-sacred-gold/20 p-4">
             <div className="flex flex-col gap-4">
               <a href="#features" className="text-gray-300 hover:text-sacred-gold transition py-2">{t.nav.features}</a>
+              <a href="#calculator" className="text-gray-300 hover:text-sacred-gold transition py-2">{language === 'en' ? 'Calculator' : 'Calculateur'}</a>
               <a href="#pricing" className="text-gray-300 hover:text-sacred-gold transition py-2">{t.nav.pricing}</a>
               <a href="#testimonials" className="text-gray-300 hover:text-sacred-gold transition py-2">{t.nav.reviews}</a>
               <a href="#faq" className="text-gray-300 hover:text-sacred-gold transition py-2">{t.nav.faq}</a>
@@ -267,6 +270,11 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Ascendant Calculator */}
+      <AscendantCalculator onGetReport={() => {
+        document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+      }} />
 
       {/* Pricing Section */}
       <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
