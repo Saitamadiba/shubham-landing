@@ -1,92 +1,112 @@
 import { NextResponse } from 'next/server'
-import { spawn } from 'child_process'
-import path from 'path'
+import * as swe from 'swisseph-v2'
 
-// Path to Python venv with pyswisseph installed
-const PYTHON_PATH = '/Users/saitamadiba/Documents/Astro/vedic_astro_venv/bin/python'
-const SCRIPT_PATH = path.join(process.cwd(), 'scripts', 'calculate_ascendant.py')
+const SIGN_NAMES = [
+  'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
+  'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'
+]
 
-interface CalculationRequest {
+const NAKSHATRA_NAMES = [
+  'Ashwini', 'Bharani', 'Krittika', 'Rohini', 'Mrigashira', 'Ardra',
+  'Punarvasu', 'Pushya', 'Ashlesha', 'Magha', 'Purva Phalguni', 'Uttara Phalguni',
+  'Hasta', 'Chitra', 'Swati', 'Vishakha', 'Anuradha', 'Jyeshtha',
+  'Mula', 'Purva Ashadha', 'Uttara Ashadha', 'Shravana', 'Dhanishtha', 'Shatabhisha',
+  'Purva Bhadrapada', 'Uttara Bhadrapada', 'Revati'
+]
+
+function degreesToDMS(degrees: number): string {
+  const d = Math.floor(degrees)
+  const m = Math.floor((degrees - d) * 60)
+  const s = Math.floor(((degrees - d) * 60 - m) * 60)
+  return `${d}°${m.toString().padStart(2, '0')}'${s.toString().padStart(2, '0')}"`
+}
+
+function getNakshatra(longitude: number): { name: string; pada: number } {
+  const nakshatraSpan = 360 / 27 // 13.333... degrees
+  const nakshatraIndex = Math.floor(longitude / nakshatraSpan) % 27
+  const pada = Math.floor((longitude % nakshatraSpan) / (nakshatraSpan / 4)) + 1
+  return {
+    name: NAKSHATRA_NAMES[nakshatraIndex],
+    pada: Math.min(pada, 4) // Ensure pada is 1-4
+  }
+}
+
+interface CalculationParams {
   year: number
   month: number
   day: number
   hour: number
   minute: number
-  second?: number
+  second: number
   latitude: number
   longitude: number
   timezone: number
 }
 
-interface AscendantResult {
-  julian_day: number
-  ayanamsa: number
-  ayanamsa_dms: string
-  tropical: {
-    longitude: number
-    sign: string
-    sign_index: number
-    degree_in_sign: number
-    degree_dms: string
-    nakshatra: string
-    nakshatra_pada: number
+function calculateAscendant(params: CalculationParams) {
+  const { year, month, day, hour, minute, second, latitude, longitude, timezone } = params
+
+  // Convert local time to UT
+  let ut = hour + minute / 60 + second / 3600 - timezone
+  let adjustedDay = day
+
+  // Handle day overflow/underflow
+  if (ut < 0) {
+    ut += 24
+    adjustedDay -= 1
+  } else if (ut >= 24) {
+    ut -= 24
+    adjustedDay += 1
   }
-  sidereal: {
-    longitude: number
-    sign: string
-    sign_index: number
-    degree_in_sign: number
-    degree_dms: string
-    nakshatra: string
-    nakshatra_pada: number
+
+  // Calculate Julian Day
+  const jd = swe.swe_julday(year, month, adjustedDay, ut, swe.SE_GREG_CAL)
+
+  // Calculate TROPICAL ascendant
+  const housesTropical = swe.swe_houses(jd, latitude, longitude, 'P')
+  const tropicalAsc = housesTropical.ascendant
+
+  const tropicalSignIndex = Math.floor(tropicalAsc / 30)
+  const tropicalDegreeInSign = tropicalAsc % 30
+  const tropicalNakshatra = getNakshatra(tropicalAsc)
+
+  // Set sidereal mode (Lahiri ayanamsa)
+  swe.swe_set_sid_mode(swe.SE_SIDM_LAHIRI, 0, 0)
+
+  // Get ayanamsa value
+  const ayanamsa = swe.swe_get_ayanamsa_ut(jd)
+
+  // Calculate SIDEREAL ascendant
+  const housesSidereal = swe.swe_houses_ex(jd, swe.SEFLG_SIDEREAL, latitude, longitude, 'P')
+  const siderealAsc = housesSidereal.ascendant
+
+  const siderealSignIndex = Math.floor(siderealAsc / 30)
+  const siderealDegreeInSign = siderealAsc % 30
+  const siderealNakshatra = getNakshatra(siderealAsc)
+
+  return {
+    julian_day: Math.round(jd * 1000000) / 1000000,
+    ayanamsa: Math.round(ayanamsa * 1000000) / 1000000,
+    ayanamsa_dms: degreesToDMS(ayanamsa),
+    tropical: {
+      longitude: Math.round(tropicalAsc * 10000) / 10000,
+      sign: SIGN_NAMES[tropicalSignIndex],
+      sign_index: tropicalSignIndex,
+      degree_in_sign: Math.round(tropicalDegreeInSign * 10000) / 10000,
+      degree_dms: degreesToDMS(tropicalDegreeInSign),
+      nakshatra: tropicalNakshatra.name,
+      nakshatra_pada: tropicalNakshatra.pada
+    },
+    sidereal: {
+      longitude: Math.round(siderealAsc * 10000) / 10000,
+      sign: SIGN_NAMES[siderealSignIndex],
+      sign_index: siderealSignIndex,
+      degree_in_sign: Math.round(siderealDegreeInSign * 10000) / 10000,
+      degree_dms: degreesToDMS(siderealDegreeInSign),
+      nakshatra: siderealNakshatra.name,
+      nakshatra_pada: siderealNakshatra.pada
+    }
   }
-}
-
-async function runPythonCalculation(params: CalculationRequest): Promise<AscendantResult> {
-  return new Promise((resolve, reject) => {
-    const inputJson = JSON.stringify(params)
-
-    const process = spawn(PYTHON_PATH, [SCRIPT_PATH, inputJson])
-
-    let stdout = ''
-    let stderr = ''
-
-    process.stdout.on('data', (data) => {
-      stdout += data.toString()
-    })
-
-    process.stderr.on('data', (data) => {
-      stderr += data.toString()
-    })
-
-    process.on('close', (code) => {
-      if (code !== 0) {
-        reject(new Error(`Python process exited with code ${code}: ${stderr}`))
-        return
-      }
-
-      try {
-        const result = JSON.parse(stdout)
-        if (result.error) {
-          reject(new Error(result.error))
-        } else {
-          resolve(result)
-        }
-      } catch {
-        reject(new Error(`Failed to parse Python output: ${stdout}`))
-      }
-    })
-
-    process.on('error', (err) => {
-      reject(new Error(`Failed to start Python process: ${err.message}`))
-    })
-
-    // Set a timeout
-    setTimeout(() => {
-      process.kill()
-      reject(new Error('Python calculation timed out'))
-    }, 10000)
-  })
 }
 
 export async function POST(request: Request) {
@@ -112,7 +132,7 @@ export async function POST(request: Request) {
       )
     }
 
-    const result = await runPythonCalculation({
+    const result = calculateAscendant({
       year: parseInt(year),
       month: parseInt(month),
       day: parseInt(day),
@@ -156,7 +176,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    const result = await runPythonCalculation({
+    const result = calculateAscendant({
       year: parseInt(year),
       month: parseInt(month),
       day: parseInt(day),

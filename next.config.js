@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // External packages for server components (native modules)
+  serverExternalPackages: ['swisseph-v2'],
+
   // Image optimization
   images: {
     remotePatterns: [
