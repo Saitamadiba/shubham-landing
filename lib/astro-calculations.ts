@@ -150,10 +150,72 @@ export interface ZodiacSign {
   element: string
   ruler: string
   description: { en: string; fr: string }
+  moonDescription: { en: string; fr: string }
 }
 
+// Moon sign descriptions (Rashi descriptions for Chandra/Moon)
+export const MOON_SIGN_DESCRIPTIONS: { en: string; fr: string }[] = [
+  { // Aries
+    en: 'Moon in Aries (Mesha Rashi) creates an emotionally impulsive and courageous nature. You react quickly and passionately, preferring action over deliberation. Your emotional needs center around independence, excitement, and being first. You may have a short temper but also recover quickly from upsets.',
+    fr: 'La Lune en Bélier (Mesha Rashi) crée une nature émotionnellement impulsive et courageuse. Vous réagissez rapidement et passionnément, préférant l\'action à la délibération. Vos besoins émotionnels sont centrés sur l\'indépendance, l\'excitation et être le premier. Vous pouvez avoir un tempérament court mais récupérez aussi rapidement des contrariétés.'
+  },
+  { // Taurus
+    en: 'Moon in Taurus (Vrishabha Rashi) is exalted, giving emotional stability and a deep need for security. You find comfort in sensory pleasures, nature, and material stability. Patient and loyal, you process emotions slowly but thoroughly. Change is difficult, but once committed, you are unwavering.',
+    fr: 'La Lune en Taureau (Vrishabha Rashi) est exaltée, donnant une stabilité émotionnelle et un profond besoin de sécurité. Vous trouvez du réconfort dans les plaisirs sensoriels, la nature et la stabilité matérielle. Patient et loyal, vous traitez les émotions lentement mais en profondeur. Le changement est difficile, mais une fois engagé, vous êtes inébranlable.'
+  },
+  { // Gemini
+    en: 'Moon in Gemini (Mithuna Rashi) creates a mentally active emotional nature. You process feelings through communication and intellectual analysis. Curious and adaptable, you need variety and mental stimulation to feel emotionally satisfied. Mood changes can be frequent as your mind constantly seeks new input.',
+    fr: 'La Lune en Gémeaux (Mithuna Rashi) crée une nature émotionnelle mentalement active. Vous traitez les sentiments par la communication et l\'analyse intellectuelle. Curieux et adaptable, vous avez besoin de variété et de stimulation mentale pour vous sentir émotionnellement satisfait. Les changements d\'humeur peuvent être fréquents car votre esprit cherche constamment de nouvelles informations.'
+  },
+  { // Cancer
+    en: 'Moon in Cancer (Karka Rashi) is in its own sign, amplifying emotional sensitivity and intuition. You are deeply nurturing, protective, and connected to family and home. Your moods fluctuate with lunar cycles. You absorb others\' emotions easily and need a secure emotional base to thrive.',
+    fr: 'La Lune en Cancer (Karka Rashi) est dans son propre signe, amplifiant la sensibilité émotionnelle et l\'intuition. Vous êtes profondément nourricier, protecteur et connecté à la famille et au foyer. Vos humeurs fluctuent avec les cycles lunaires. Vous absorbez facilement les émotions des autres et avez besoin d\'une base émotionnelle sécurisée pour prospérer.'
+  },
+  { // Leo
+    en: 'Moon in Leo (Simha Rashi) brings warmth, generosity, and a need for recognition to your emotional nature. You express feelings dramatically and openly, seeking appreciation and admiration. Pride is central to your emotional well-being. You are loyal and protective of loved ones.',
+    fr: 'La Lune en Lion (Simha Rashi) apporte chaleur, générosité et un besoin de reconnaissance à votre nature émotionnelle. Vous exprimez vos sentiments de façon dramatique et ouverte, recherchant l\'appréciation et l\'admiration. La fierté est centrale à votre bien-être émotionnel. Vous êtes loyal et protecteur envers vos proches.'
+  },
+  { // Virgo
+    en: 'Moon in Virgo (Kanya Rashi) creates a practical, analytical emotional nature. You process feelings through service and helping others. Perfectionist tendencies can lead to self-criticism. You find emotional security through routines, health practices, and being useful to others.',
+    fr: 'La Lune en Vierge (Kanya Rashi) crée une nature émotionnelle pratique et analytique. Vous traitez les sentiments par le service et l\'aide aux autres. Les tendances perfectionnistes peuvent mener à l\'autocritique. Vous trouvez la sécurité émotionnelle à travers les routines, les pratiques de santé et être utile aux autres.'
+  },
+  { // Libra
+    en: 'Moon in Libra (Tula Rashi) creates a need for harmony, partnership, and beauty in your emotional life. You seek balance and fairness, often considering others\' feelings before your own. Conflict is emotionally draining. You thrive in peaceful, aesthetically pleasing environments.',
+    fr: 'La Lune en Balance (Tula Rashi) crée un besoin d\'harmonie, de partenariat et de beauté dans votre vie émotionnelle. Vous recherchez l\'équilibre et l\'équité, considérant souvent les sentiments des autres avant les vôtres. Le conflit est émotionnellement épuisant. Vous prospérez dans des environnements paisibles et esthétiquement agréables.'
+  },
+  { // Scorpio
+    en: 'Moon in Scorpio (Vrishchika Rashi) is in its fall, creating intense, deep emotional experiences. You feel everything profoundly and may struggle with trust issues. Transformation through emotional crisis is common. Your intuition is powerful, and you see beneath surface appearances.',
+    fr: 'La Lune en Scorpion (Vrishchika Rashi) est en chute, créant des expériences émotionnelles intenses et profondes. Vous ressentez tout profondément et pouvez lutter avec des problèmes de confiance. La transformation par la crise émotionnelle est commune. Votre intuition est puissante, et vous voyez sous les apparences de surface.'
+  },
+  { // Sagittarius
+    en: 'Moon in Sagittarius (Dhanu Rashi) creates an optimistic, freedom-loving emotional nature. You need adventure, learning, and philosophical meaning to feel emotionally fulfilled. Restlessness and a dislike of emotional heaviness characterize this placement. Faith and humor sustain you.',
+    fr: 'La Lune en Sagittaire (Dhanu Rashi) crée une nature émotionnelle optimiste et éprise de liberté. Vous avez besoin d\'aventure, d\'apprentissage et de sens philosophique pour vous sentir émotionnellement épanoui. L\'agitation et une aversion pour la lourdeur émotionnelle caractérisent ce placement. La foi et l\'humour vous soutiennent.'
+  },
+  { // Capricorn
+    en: 'Moon in Capricorn (Makara Rashi) is in its detriment, creating a serious, controlled emotional nature. You may suppress feelings in favor of responsibility and achievement. Emotional security comes through accomplishment and status. You are reliable but may struggle to express vulnerability.',
+    fr: 'La Lune en Capricorne (Makara Rashi) est en détriment, créant une nature émotionnelle sérieuse et contrôlée. Vous pouvez supprimer les sentiments en faveur de la responsabilité et de l\'accomplissement. La sécurité émotionnelle vient par l\'accomplissement et le statut. Vous êtes fiable mais pouvez avoir du mal à exprimer la vulnérabilité.'
+  },
+  { // Aquarius
+    en: 'Moon in Aquarius (Kumbha Rashi) creates an emotionally detached yet humanitarian nature. You process feelings intellectually and may seem cool or aloof. You need freedom and individuality in emotional connections. Group causes and friendship fulfill your emotional needs.',
+    fr: 'La Lune en Verseau (Kumbha Rashi) crée une nature émotionnellement détachée mais humanitaire. Vous traitez les sentiments intellectuellement et pouvez sembler froid ou distant. Vous avez besoin de liberté et d\'individualité dans les connexions émotionnelles. Les causes collectives et l\'amitié comblent vos besoins émotionnels.'
+  },
+  { // Pisces
+    en: 'Moon in Pisces (Meena Rashi) creates a highly sensitive, empathic emotional nature. You absorb emotions from your environment and need regular solitude to recharge. Imagination, creativity, and spiritual connection are emotional necessities. Boundaries may be challenging to maintain.',
+    fr: 'La Lune en Poissons (Meena Rashi) crée une nature émotionnelle hautement sensible et empathique. Vous absorbez les émotions de votre environnement et avez besoin de solitude régulière pour vous ressourcer. L\'imagination, la créativité et la connexion spirituelle sont des nécessités émotionnelles. Les limites peuvent être difficiles à maintenir.'
+  },
+]
+
+// Add moon descriptions to ZODIAC_SIGNS
+ZODIAC_SIGNS.forEach((sign, index) => {
+  (sign as ZodiacSign).moonDescription = MOON_SIGN_DESCRIPTIONS[index]
+})
+
 export function getZodiacSignData(index: number): ZodiacSign {
-  return ZODIAC_SIGNS[index]
+  return ZODIAC_SIGNS[index] as ZodiacSign
+}
+
+export function getMoonSignData(index: number): { en: string; fr: string } {
+  return MOON_SIGN_DESCRIPTIONS[index]
 }
 
 export interface AscendantResult {

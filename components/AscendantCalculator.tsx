@@ -7,28 +7,27 @@ import { searchLocations, LocationResult, getTimezoneFromCoordinates } from '@/l
 import { getNakshatraData, NakshatraData } from '@/lib/nakshatra-data'
 import { Calculator, MapPin, Clock, Calendar, Star, Sparkles, ChevronRight, ChevronDown, Loader2, Search, Info } from 'lucide-react'
 
+// Planet position type
+interface PlanetPosition {
+  longitude: number
+  sign: string
+  sign_index: number
+  degree_in_sign: number
+  degree_dms: string
+  nakshatra: string
+  nakshatra_pada: number
+}
+
 // API response type from Swiss Ephemeris calculation
 interface SwissEphResult {
   julian_day: number
   ayanamsa: number
   ayanamsa_dms: string
-  tropical: {
-    longitude: number
-    sign: string
-    sign_index: number
-    degree_in_sign: number
-    degree_dms: string
-    nakshatra: string
-    nakshatra_pada: number
-  }
-  sidereal: {
-    longitude: number
-    sign: string
-    sign_index: number
-    degree_in_sign: number
-    degree_dms: string
-    nakshatra: string
-    nakshatra_pada: number
+  tropical: PlanetPosition
+  sidereal: PlanetPosition
+  moon: {
+    tropical: PlanetPosition
+    sidereal: PlanetPosition
   }
 }
 
@@ -63,8 +62,20 @@ export default function AscendantCalculator({ onGetReport }: AscendantCalculator
   const [tropicalSignData, setTropicalSignData] = useState<ZodiacSign | null>(null)
   const [siderealSignData, setSiderealSignData] = useState<ZodiacSign | null>(null)
 
+  // Moon state
+  const [moonTropicalSignData, setMoonTropicalSignData] = useState<ZodiacSign | null>(null)
+  const [moonSiderealSignData, setMoonSiderealSignData] = useState<ZodiacSign | null>(null)
+  const [moonTropicalNakshatraData, setMoonTropicalNakshatraData] = useState<NakshatraData | null>(null)
+  const [moonSiderealNakshatraData, setMoonSiderealNakshatraData] = useState<NakshatraData | null>(null)
+  const [moonTropicalNakshatraPada, setMoonTropicalNakshatraPada] = useState<number>(1)
+  const [moonSiderealNakshatraPada, setMoonSiderealNakshatraPada] = useState<number>(1)
+
   // Expanded state for sign descriptions - defaults to sidereal (Vedic)
   const [expandedSign, setExpandedSign] = useState<'tropical' | 'sidereal' | null>('sidereal')
+  const [expandedMoonSign, setExpandedMoonSign] = useState<'tropical' | 'sidereal' | null>('sidereal')
+
+  // Active tab: 'ascendant' or 'moon'
+  const [activeTab, setActiveTab] = useState<'ascendant' | 'moon'>('ascendant')
 
   // Debounced location search
   useEffect(() => {
@@ -171,6 +182,23 @@ export default function AscendantCalculator({ onGetReport }: AscendantCalculator
       // Get zodiac sign data for both tropical and sidereal
       setTropicalSignData(getZodiacSignData(ascendantResult.tropical.sign_index))
       setSiderealSignData(getZodiacSignData(ascendantResult.sidereal.sign_index))
+
+      // Process Moon data
+      if (ascendantResult.moon) {
+        // Moon tropical nakshatra
+        const moonTropicalNakshatraIndex = Math.floor(ascendantResult.moon.tropical.longitude / NAKSHATRA_SPAN) % 27
+        setMoonTropicalNakshatraData(getNakshatraData(moonTropicalNakshatraIndex))
+        setMoonTropicalNakshatraPada(ascendantResult.moon.tropical.nakshatra_pada)
+
+        // Moon sidereal nakshatra
+        const moonSiderealNakshatraIndex = Math.floor(ascendantResult.moon.sidereal.longitude / NAKSHATRA_SPAN) % 27
+        setMoonSiderealNakshatraData(getNakshatraData(moonSiderealNakshatraIndex))
+        setMoonSiderealNakshatraPada(ascendantResult.moon.sidereal.nakshatra_pada)
+
+        // Moon zodiac sign data
+        setMoonTropicalSignData(getZodiacSignData(ascendantResult.moon.tropical.sign_index))
+        setMoonSiderealSignData(getZodiacSignData(ascendantResult.moon.sidereal.sign_index))
+      }
     } catch (err) {
       console.error('Calculation error:', err)
       setError(err instanceof Error ? err.message : 'An error occurred during calculation. Please try again.')
@@ -197,6 +225,10 @@ export default function AscendantCalculator({ onGetReport }: AscendantCalculator
 
   const toggleSignExpand = (sign: 'tropical' | 'sidereal') => {
     setExpandedSign(expandedSign === sign ? null : sign)
+  }
+
+  const toggleMoonSignExpand = (sign: 'tropical' | 'sidereal') => {
+    setExpandedMoonSign(expandedMoonSign === sign ? null : sign)
   }
 
   return (
@@ -403,12 +435,48 @@ export default function AscendantCalculator({ onGetReport }: AscendantCalculator
           <div className="vedic-card p-6 md:p-8">
             {result ? (
               <div className="space-y-6">
-                <h3 className="text-xl font-cinzel text-sacred-gold mb-6 flex items-center gap-2">
-                  <Star className="w-5 h-5" />
-                  {t.calculator.results.title}
+                {/* Tab Navigation */}
+                <div className="flex gap-2 mb-4">
+                  <button
+                    onClick={() => setActiveTab('ascendant')}
+                    className={`flex-1 py-3 px-4 rounded-lg font-medium transition flex items-center justify-center gap-2 ${
+                      activeTab === 'ascendant'
+                        ? 'bg-sacred-gold/20 text-sacred-gold border border-sacred-gold/50'
+                        : 'bg-cosmic/50 text-gray-400 border border-gray-700 hover:border-gray-600'
+                    }`}
+                  >
+                    <Star className="w-4 h-4" />
+                    {language === 'en' ? 'Ascendant' : 'Ascendant'}
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('moon')}
+                    className={`flex-1 py-3 px-4 rounded-lg font-medium transition flex items-center justify-center gap-2 ${
+                      activeTab === 'moon'
+                        ? 'bg-purple-500/20 text-purple-400 border border-purple-500/50'
+                        : 'bg-cosmic/50 text-gray-400 border border-gray-700 hover:border-gray-600'
+                    }`}
+                  >
+                    <span className="text-lg">☽</span>
+                    {language === 'en' ? 'Moon Sign' : 'Signe Lunaire'}
+                  </button>
+                </div>
+
+                <h3 className="text-xl font-cinzel text-sacred-gold flex items-center gap-2">
+                  {activeTab === 'ascendant' ? (
+                    <>
+                      <Star className="w-5 h-5" />
+                      {t.calculator.results.title}
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-xl">☽</span>
+                      {language === 'en' ? 'Your Moon Signs' : 'Vos Signes Lunaires'}
+                    </>
+                  )}
                 </h3>
 
-                {/* Tropical vs Sidereal - Clickable Cards */}
+                {/* Ascendant Tab Content */}
+                {activeTab === 'ascendant' && (
                 <div className="space-y-4">
                   {/* Tropical Card */}
                   <div
@@ -493,7 +561,6 @@ export default function AscendantCalculator({ onGetReport }: AscendantCalculator
                       </div>
                     )}
                   </div>
-                </div>
 
                 {/* Ayanamsa */}
                 <div className="bg-cosmic/50 rounded-lg p-4 border border-gray-700">
@@ -602,6 +669,182 @@ export default function AscendantCalculator({ onGetReport }: AscendantCalculator
                 <p className="text-gray-500 text-sm italic">
                   {t.calculator.results.difference}
                 </p>
+                </div>
+                )}
+
+                {/* Moon Tab Content */}
+                {activeTab === 'moon' && result.moon && (
+                <div className="space-y-4">
+                  {/* Tropical Moon Card */}
+                  <div
+                    onClick={() => toggleMoonSignExpand('tropical')}
+                    className="bg-primary/50 border border-neon-cyan/30 rounded-xl p-5 cursor-pointer hover:border-neon-cyan/60 transition group"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <span className="text-4xl">{ZODIAC_SIGNS[result.moon.tropical.sign_index]?.symbol || '♈'}</span>
+                        <div>
+                          <div className="text-sm text-neon-cyan mb-1 flex items-center gap-2">
+                            {t.calculator.results.tropical}
+                            <Info className="w-3 h-3 opacity-50 group-hover:opacity-100" />
+                          </div>
+                          <div className="text-2xl font-cinzel text-white">
+                            {getSignName(result.moon.tropical.sign)}
+                          </div>
+                          <div className="text-gray-400">
+                            {result.moon.tropical.degree_dms}
+                          </div>
+                        </div>
+                      </div>
+                      <ChevronDown className={`w-5 h-5 text-neon-cyan transition-transform ${expandedMoonSign === 'tropical' ? 'rotate-180' : ''}`} />
+                    </div>
+
+                    {/* Expanded Description */}
+                    {expandedMoonSign === 'tropical' && moonTropicalSignData && (
+                      <div className="mt-4 pt-4 border-t border-neon-cyan/20 animate-fadeIn">
+                        <div className="flex gap-4 mb-3 text-sm">
+                          <span className="text-gray-400">
+                            {language === 'en' ? 'Element' : 'Élément'}: <span className="text-neon-cyan">{moonTropicalSignData.element}</span>
+                          </span>
+                          <span className="text-gray-400">
+                            {language === 'en' ? 'Ruler' : 'Maître'}: <span className="text-neon-cyan">{moonTropicalSignData.ruler}</span>
+                          </span>
+                        </div>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          {language === 'en' ? moonTropicalSignData.moonDescription?.en : moonTropicalSignData.moonDescription?.fr}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Sidereal Moon Card */}
+                  <div
+                    onClick={() => toggleMoonSignExpand('sidereal')}
+                    className="bg-primary/50 border border-purple-500/30 rounded-xl p-5 cursor-pointer hover:border-purple-500/60 transition group"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <span className="text-4xl">{ZODIAC_SIGNS[result.moon.sidereal.sign_index]?.symbol || '♈'}</span>
+                        <div>
+                          <div className="text-sm text-purple-400 mb-1 flex items-center gap-2">
+                            {t.calculator.results.sidereal}
+                            <span className="text-xs opacity-75">({language === 'en' ? 'Chandra Rashi' : 'Rashi Lunaire'})</span>
+                            <Info className="w-3 h-3 opacity-50 group-hover:opacity-100" />
+                          </div>
+                          <div className="text-2xl font-cinzel text-white">
+                            {getSignName(result.moon.sidereal.sign)}
+                          </div>
+                          <div className="text-gray-400">
+                            {result.moon.sidereal.degree_dms}
+                          </div>
+                        </div>
+                      </div>
+                      <ChevronDown className={`w-5 h-5 text-purple-400 transition-transform ${expandedMoonSign === 'sidereal' ? 'rotate-180' : ''}`} />
+                    </div>
+
+                    {/* Expanded Description */}
+                    {expandedMoonSign === 'sidereal' && moonSiderealSignData && (
+                      <div className="mt-4 pt-4 border-t border-purple-500/20 animate-fadeIn">
+                        <div className="flex gap-4 mb-3 text-sm">
+                          <span className="text-gray-400">
+                            {language === 'en' ? 'Element' : 'Élément'}: <span className="text-purple-400">{moonSiderealSignData.element}</span>
+                          </span>
+                          <span className="text-gray-400">
+                            {language === 'en' ? 'Ruler' : 'Maître'}: <span className="text-purple-400">{moonSiderealSignData.ruler}</span>
+                          </span>
+                        </div>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          {language === 'en' ? moonSiderealSignData.moonDescription?.en : moonSiderealSignData.moonDescription?.fr}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                )}
+
+                {/* Moon Nakshatra Section */}
+                {activeTab === 'moon' && result.moon && (() => {
+                  const currentMoonNakshatraData = expandedMoonSign === 'tropical' ? moonTropicalNakshatraData : moonSiderealNakshatraData
+                  const currentMoonPada = expandedMoonSign === 'tropical' ? moonTropicalNakshatraPada : moonSiderealNakshatraPada
+                  const borderColor = expandedMoonSign === 'tropical' ? 'border-neon-cyan/30' : 'border-purple-500/30'
+                  const accentColor = expandedMoonSign === 'tropical' ? 'text-neon-cyan' : 'text-purple-400'
+                  const bgGradient = expandedMoonSign === 'tropical' ? 'from-primary/60 to-cosmic/60' : 'from-purple-900/40 to-cosmic/80'
+
+                  if (!currentMoonNakshatraData) return null
+
+                  return (
+                    <div className={`bg-gradient-to-br ${bgGradient} rounded-xl p-6 border ${borderColor} mt-4`}>
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className={`text-xs px-2 py-1 rounded-full ${expandedMoonSign === 'tropical' ? 'bg-neon-cyan/20 text-neon-cyan' : 'bg-purple-500/20 text-purple-400'}`}>
+                          {expandedMoonSign === 'tropical'
+                            ? (language === 'en' ? 'Tropical Moon Nakshatra' : 'Nakshatra Lunaire Tropical')
+                            : (language === 'en' ? 'Chandra Nakshatra (Vedic)' : 'Nakshatra Chandra (Védique)')}
+                        </span>
+                      </div>
+
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className={`w-12 h-12 ${expandedMoonSign === 'tropical' ? 'bg-neon-cyan/20' : 'bg-purple-500/20'} rounded-full flex items-center justify-center text-2xl`}>
+                          ☽
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h4 className={`text-xl font-cinzel ${accentColor}`}>
+                              {currentMoonNakshatraData.name}
+                            </h4>
+                            <span className="text-sm text-gray-400">
+                              {currentMoonNakshatraData.sanskrit}
+                            </span>
+                          </div>
+                          <div className="text-sm text-gray-300">
+                            {language === 'en' ? currentMoonNakshatraData.meaning.en : currentMoonNakshatraData.meaning.fr}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Nakshatra Details */}
+                      <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">{t.calculator.results.pada}</span>
+                          <span className="text-white">{currentMoonPada}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">{t.calculator.results.lord}</span>
+                          <span className="text-white">{currentMoonNakshatraData.lord}</span>
+                        </div>
+                        <div className="flex justify-between col-span-2">
+                          <span className="text-gray-400">{t.calculator.results.deity}</span>
+                          <span className="text-white">{currentMoonNakshatraData.deity}</span>
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        {language === 'en' ? currentMoonNakshatraData.description.en : currentMoonNakshatraData.description.fr}
+                      </p>
+
+                      {/* Pada Description */}
+                      <div className={`mt-4 pt-4 border-t ${expandedMoonSign === 'tropical' ? 'border-neon-cyan/20' : 'border-purple-500/20'}`}>
+                        <div className={`text-sm ${accentColor} mb-2`}>
+                          {t.calculator.results.pada} {currentMoonPada}:
+                        </div>
+                        <p className="text-gray-400 text-sm">
+                          {language === 'en'
+                            ? currentMoonNakshatraData.padas[currentMoonPada as 1 | 2 | 3 | 4].en
+                            : currentMoonNakshatraData.padas[currentMoonPada as 1 | 2 | 3 | 4].fr}
+                        </p>
+                      </div>
+                    </div>
+                  )
+                })()}
+
+                {/* Moon Sign Explanation */}
+                {activeTab === 'moon' && (
+                  <p className="text-gray-500 text-sm italic mt-4">
+                    {language === 'en'
+                      ? 'Your Moon sign (Chandra Rashi) represents your emotional nature, mind, and inner self. In Vedic astrology, the Moon sign is considered as important as the Sun sign in Western astrology.'
+                      : 'Votre signe lunaire (Chandra Rashi) représente votre nature émotionnelle, votre mental et votre moi intérieur. En astrologie védique, le signe lunaire est considéré aussi important que le signe solaire en astrologie occidentale.'}
+                  </p>
+                )}
               </div>
             ) : (
               // Empty state

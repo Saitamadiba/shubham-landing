@@ -26,6 +26,91 @@ const normalizeAngle = (angle: number): number => {
   return result
 }
 
+/**
+ * Calculate Moon's longitude using simplified algorithm
+ * Based on Jean Meeus' "Astronomical Algorithms"
+ */
+function calculateMoonLongitude(jd: number): number {
+  // Julian centuries from J2000.0
+  const T = (jd - 2451545.0) / 36525.0
+
+  // Moon's mean longitude (L')
+  const Lp = normalizeAngle(
+    218.3164477 +
+    481267.88123421 * T -
+    0.0015786 * T * T +
+    T * T * T / 538841.0 -
+    T * T * T * T / 65194000.0
+  )
+
+  // Moon's mean anomaly (M')
+  const Mp = normalizeAngle(
+    134.9633964 +
+    477198.8675055 * T +
+    0.0087414 * T * T +
+    T * T * T / 69699.0 -
+    T * T * T * T / 14712000.0
+  )
+
+  // Sun's mean anomaly (M)
+  const M = normalizeAngle(
+    357.5291092 +
+    35999.0502909 * T -
+    0.0001536 * T * T +
+    T * T * T / 24490000.0
+  )
+
+  // Moon's argument of latitude (F)
+  const F = normalizeAngle(
+    93.2720950 +
+    483202.0175233 * T -
+    0.0036539 * T * T -
+    T * T * T / 3526000.0 +
+    T * T * T * T / 863310000.0
+  )
+
+  // Mean elongation of Moon from Sun (D)
+  const D = normalizeAngle(
+    297.8501921 +
+    445267.1114034 * T -
+    0.0018819 * T * T +
+    T * T * T / 545868.0 -
+    T * T * T * T / 113065000.0
+  )
+
+  // Sum of principal terms for longitude (simplified)
+  const sumL =
+    6288774 * Math.sin(toRadians(Mp)) +
+    1274027 * Math.sin(toRadians(2 * D - Mp)) +
+    658314 * Math.sin(toRadians(2 * D)) +
+    213618 * Math.sin(toRadians(2 * Mp)) -
+    185116 * Math.sin(toRadians(M)) -
+    114332 * Math.sin(toRadians(2 * F)) +
+    58793 * Math.sin(toRadians(2 * D - 2 * Mp)) +
+    57066 * Math.sin(toRadians(2 * D - M - Mp)) +
+    53322 * Math.sin(toRadians(2 * D + Mp)) +
+    45758 * Math.sin(toRadians(2 * D - M)) -
+    40923 * Math.sin(toRadians(M - Mp)) -
+    34720 * Math.sin(toRadians(D)) -
+    30383 * Math.sin(toRadians(M + Mp)) +
+    15327 * Math.sin(toRadians(2 * D - 2 * F)) -
+    12528 * Math.sin(toRadians(Mp + 2 * F)) +
+    10980 * Math.sin(toRadians(Mp - 2 * F)) +
+    10675 * Math.sin(toRadians(4 * D - Mp)) +
+    10034 * Math.sin(toRadians(3 * Mp)) +
+    8548 * Math.sin(toRadians(4 * D - 2 * Mp)) -
+    7888 * Math.sin(toRadians(2 * D + M - Mp)) -
+    6766 * Math.sin(toRadians(2 * D + M)) -
+    5163 * Math.sin(toRadians(D - Mp)) +
+    4987 * Math.sin(toRadians(D + M)) +
+    4036 * Math.sin(toRadians(2 * D - M + Mp))
+
+  // Moon's longitude (convert from 0.000001 degrees)
+  const moonLongitude = normalizeAngle(Lp + sumL / 1000000.0)
+
+  return moonLongitude
+}
+
 function degreesToDMS(degrees: number): string {
   const d = Math.floor(degrees)
   const m = Math.floor((degrees - d) * 60)
@@ -220,6 +305,18 @@ function calculateAscendant(params: CalculationParams) {
   const siderealDegreeInSign = siderealAsc % 30
   const siderealNakshatra = getNakshatra(siderealAsc)
 
+  // Calculate Moon position
+  const tropicalMoon = calculateMoonLongitude(jd)
+  const siderealMoon = normalizeAngle(tropicalMoon - ayanamsa)
+
+  const tropicalMoonSignIndex = Math.floor(tropicalMoon / 30) % 12
+  const tropicalMoonDegreeInSign = tropicalMoon % 30
+  const tropicalMoonNakshatra = getNakshatra(tropicalMoon)
+
+  const siderealMoonSignIndex = Math.floor(siderealMoon / 30) % 12
+  const siderealMoonDegreeInSign = siderealMoon % 30
+  const siderealMoonNakshatra = getNakshatra(siderealMoon)
+
   return {
     julian_day: Math.round(jd * 1000000) / 1000000,
     ayanamsa: Math.round(ayanamsa * 1000000) / 1000000,
@@ -241,6 +338,26 @@ function calculateAscendant(params: CalculationParams) {
       degree_dms: degreesToDMS(siderealDegreeInSign),
       nakshatra: siderealNakshatra.name,
       nakshatra_pada: siderealNakshatra.pada
+    },
+    moon: {
+      tropical: {
+        longitude: Math.round(tropicalMoon * 10000) / 10000,
+        sign: SIGN_NAMES[tropicalMoonSignIndex],
+        sign_index: tropicalMoonSignIndex,
+        degree_in_sign: Math.round(tropicalMoonDegreeInSign * 10000) / 10000,
+        degree_dms: degreesToDMS(tropicalMoonDegreeInSign),
+        nakshatra: tropicalMoonNakshatra.name,
+        nakshatra_pada: tropicalMoonNakshatra.pada
+      },
+      sidereal: {
+        longitude: Math.round(siderealMoon * 10000) / 10000,
+        sign: SIGN_NAMES[siderealMoonSignIndex],
+        sign_index: siderealMoonSignIndex,
+        degree_in_sign: Math.round(siderealMoonDegreeInSign * 10000) / 10000,
+        degree_dms: degreesToDMS(siderealMoonDegreeInSign),
+        nakshatra: siderealMoonNakshatra.name,
+        nakshatra_pada: siderealMoonNakshatra.pada
+      }
     }
   }
 }
