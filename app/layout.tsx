@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Cinzel, Rajdhani } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/lib/LanguageContext'
-import { OrganizationJsonLd, ServiceJsonLd, FAQJsonLd, WebsiteJsonLd, PersonJsonLd, ReviewJsonLd } from '@/components/JsonLd'
+import { OrganizationJsonLd, ServiceJsonLd, FAQJsonLd, WebsiteJsonLd, PersonJsonLd, ReviewJsonLd, LocalBusinessJsonLd, FAQFrenchJsonLd } from '@/components/JsonLd'
 import { WebVitals } from '@/components/WebVitals'
 import { GoogleAnalytics } from '@/components/Analytics'
 import { CookieConsent } from '@/components/CookieConsent'
@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   },
   description: 'Discover your cosmic blueprint with the Shubham Method - a comprehensive 14-phase Vedic astrology analysis. Get your personalized birth chart interpretation today.',
   keywords: [
+    // English keywords
     'vedic astrology',
     'jyotish',
     'birth chart',
@@ -44,6 +45,20 @@ export const metadata: Metadata = {
     'jyotish consultation',
     'nakshatra reading',
     'vedic horoscope online',
+    'sidereal astrology',
+    'ascendant calculator',
+    // French keywords
+    'astrologie védique',
+    'thème astral',
+    'calcul ascendant gratuit',
+    'astrologie sidérale',
+    'horoscope védique',
+    // Swiss/Geneva specific
+    'astrologie Genève',
+    'astrologue Suisse',
+    'astrologie védique Suisse romande',
+    'thème astral Genève',
+    'consultation astrologie Genève',
   ],
   authors: [{ name: 'Shubham Method' }],
   creator: 'Shubham Method',
@@ -57,6 +72,8 @@ export const metadata: Metadata = {
     languages: {
       'en': BASE_URL,
       'fr': `${BASE_URL}?lang=fr`,
+      'fr-CH': `${BASE_URL}?lang=fr`,
+      'de-CH': BASE_URL,
     },
   },
   openGraph: {
@@ -117,6 +134,19 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://api.stripe.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
+        {/* Hreflang tags for international SEO */}
+        <link rel="alternate" hrefLang="en" href="https://shubham-landing.vercel.app" />
+        <link rel="alternate" hrefLang="fr" href="https://shubham-landing.vercel.app?lang=fr" />
+        <link rel="alternate" hrefLang="fr-CH" href="https://shubham-landing.vercel.app?lang=fr" />
+        <link rel="alternate" hrefLang="fr-FR" href="https://shubham-landing.vercel.app?lang=fr" />
+        <link rel="alternate" hrefLang="x-default" href="https://shubham-landing.vercel.app" />
+
+        {/* Geo targeting for Switzerland */}
+        <meta name="geo.region" content="CH-GE" />
+        <meta name="geo.placename" content="Geneva" />
+        <meta name="geo.position" content="46.2044;6.1432" />
+        <meta name="ICBM" content="46.2044, 6.1432" />
+
         {/* Structured Data */}
         <OrganizationJsonLd />
         <ServiceJsonLd />
@@ -124,6 +154,8 @@ export default function RootLayout({
         <WebsiteJsonLd />
         <PersonJsonLd />
         <ReviewJsonLd />
+        <LocalBusinessJsonLd />
+        <FAQFrenchJsonLd />
       </head>
       <body className={`${rajdhani.className} text-gray-100 antialiased`}>
         <GoogleAnalytics />

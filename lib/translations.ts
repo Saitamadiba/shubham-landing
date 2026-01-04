@@ -316,10 +316,10 @@ export const translations = {
     },
     // Hero
     hero: {
-      badge: 'Sagesse Ancienne, Clarté Moderne',
+      badge: 'Astrologie Védique Genève & Suisse',
       title1: 'Découvrez Votre',
-      title2: 'Plan Cosmique',
-      subtitle: 'La Méthode Shubham offre la profondeur d\'une consultation Jyotish traditionnelle dans un rapport complet au design magnifique.',
+      title2: 'Thème Astral Védique',
+      subtitle: 'La Méthode Shubham offre la profondeur d\'une consultation Jyotish traditionnelle. Service d\'astrologie védique disponible en Suisse romande et à Genève.',
       motto: '|| Jyotisham Surya Chandra Manso ||',
       cta: 'Obtenir Votre Rapport',
       learnMore: 'En Savoir Plus',
@@ -438,19 +438,19 @@ export const translations = {
       title: 'Ce Que Disent Nos Clients',
       items: [
         {
+          name: 'Sophie M.',
+          location: 'Genève, Suisse',
+          text: 'Enfin un service d\'astrologie védique de qualité accessible depuis la Suisse ! Le rapport est d\'une précision remarquable et les explications sont claires.',
+        },
+        {
           name: 'Marie L.',
           location: 'Paris, France',
           text: 'La profondeur de cette analyse est incomparable. La Méthode Shubham a révélé des schémas dans ma vie que je n\'avais jamais compris auparavant.',
         },
         {
-          name: 'David K.',
-          location: 'Londres, Royaume-Uni',
-          text: 'Professionnel, précis et magnifiquement présenté. L\'analyse de carrière était parfaitement juste et m\'a aidé à prendre une décision majeure.',
-        },
-        {
-          name: 'Priya S.',
-          location: 'Mumbai, Inde',
-          text: 'En tant que personne familière avec le Jyotish, j\'ai été impressionnée par la méthodologie. L\'approche en 14 phases est complète et traditionnelle.',
+          name: 'Laurent B.',
+          location: 'Lausanne, Suisse',
+          text: 'L\'analyse des Nakshatras et le timing Dasha m\'ont beaucoup aidé dans mes décisions professionnelles. Un service sérieux et professionnel.',
         },
       ],
     },
@@ -460,24 +460,24 @@ export const translations = {
       title: 'Questions Fréquemment Posées',
       items: [
         {
+          question: 'Proposez-vous des consultations d\'astrologie à Genève ?',
+          answer: 'Oui, nous offrons des consultations d\'astrologie védique pour les clients de Genève, de Suisse romande et du monde entier. Nos rapports sont disponibles en français et en anglais. Les consultations Premium incluent des sessions vidéo personnalisées.',
+        },
+        {
           question: 'Qu\'est-ce que la Méthode Shubham ?',
           answer: 'La Méthode Shubham est un système d\'analyse astrologique védique complet en 14 phases qui combine la sagesse traditionnelle du Jyotish avec une interprétation systématique. Elle couvre tout, des positions planétaires de base aux schémas psychologiques profonds et au timing de vie.',
         },
         {
-          question: 'Quelle est la précision de l\'Astrologie Védique ?',
-          answer: 'L\'astrologie védique (Jyotish) est pratiquée depuis plus de 5 000 ans. Bien que nous présentions ceci comme une guidance plutôt qu\'une prédiction, beaucoup trouvent les insights remarquablement alignés avec leurs expériences de vie. Nous utilisons des calculs astronomiques précis avec l\'ayanamsa Lahiri.',
-        },
-        {
-          question: 'Quelles informations dois-je fournir ?',
-          answer: 'Vous aurez besoin de votre date de naissance exacte, heure de naissance (aussi précise que possible) et lieu de naissance. Plus votre heure de naissance est précise, plus votre analyse sera exacte.',
+          question: 'Quelle est la différence entre l\'astrologie védique et occidentale ?',
+          answer: 'L\'astrologie védique (Jyotish) utilise le zodiaque sidéral basé sur les positions réelles des étoiles, tandis que l\'astrologie occidentale utilise le zodiaque tropical. Le Jyotish intègre également les Nakshatras (27 demeures lunaires) et le système Dasha pour le timing des événements de vie.',
         },
         {
           question: 'Combien de temps avant de recevoir mon rapport ?',
           answer: 'Les rapports Essentiels sont livrés sous 24-48 heures. Les rapports Complets prennent 2-3 jours ouvrables. Les consultations Premium sont programmées sous 5-7 jours après l\'achat.',
         },
         {
-          question: 'Mes informations sont-elles gardées confidentielles ?',
-          answer: 'Absolument. Vos données de naissance sont utilisées uniquement pour générer votre rapport et ne sont jamais partagées avec des tiers. Nous prenons la confidentialité au sérieux et respectons les réglementations RGPD.',
+          question: 'Les rapports sont-ils disponibles en français ?',
+          answer: 'Oui, tous nos rapports sont disponibles en français. Notre interface est entièrement traduite et nos analyses sont rédigées dans un français clair et accessible, parfait pour les clients de Genève et de Suisse romande.',
         },
       ],
     },
@@ -556,9 +556,9 @@ export const translations = {
     },
     // Ascendant Calculator
     calculator: {
-      badge: 'OUTIL GRATUIT',
-      title: 'Calculateur d\'Ascendant',
-      subtitle: 'Découvrez la différence entre votre signe ascendant occidental (Tropical) et védique (Sidéral)',
+      badge: 'CALCUL ASCENDANT GRATUIT',
+      title: 'Calculateur d\'Ascendant Védique',
+      subtitle: 'Calculez gratuitement votre ascendant sidéral. Outil d\'astrologie védique disponible pour Genève et la Suisse romande.',
       form: {
         birthDate: 'Date de Naissance',
         birthTime: 'Heure de Naissance',

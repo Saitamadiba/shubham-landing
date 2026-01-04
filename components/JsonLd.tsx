@@ -193,6 +193,179 @@ export function PersonJsonLd() {
 }
 
 /**
+ * LocalBusiness schema for Geneva/Switzerland local SEO
+ * Helps Google understand service location for local search results
+ */
+export function LocalBusinessJsonLd() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': 'https://shubham-landing.vercel.app/#localbusiness',
+    name: 'Shubham Method - Astrologie Védique Genève',
+    alternateName: ['Shubham Method', 'Astrologie Védique Suisse', 'Vedic Astrology Geneva'],
+    description: 'Service professionnel d\'astrologie védique à Genève et en Suisse romande. Analyse complète du thème astral selon la méthode Shubham en 14 phases.',
+    url: 'https://shubham-landing.vercel.app',
+    email: 'Vedastro@pm.me',
+    priceRange: '$$',
+    image: 'https://shubham-landing.vercel.app/og-image.png',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Genève',
+      addressRegion: 'GE',
+      addressCountry: 'CH',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 46.2044,
+      longitude: 6.1432,
+    },
+    areaServed: [
+      {
+        '@type': 'City',
+        name: 'Genève',
+        '@id': 'https://www.wikidata.org/wiki/Q71',
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Suisse romande',
+      },
+      {
+        '@type': 'Country',
+        name: 'Suisse',
+        '@id': 'https://www.wikidata.org/wiki/Q39',
+      },
+      {
+        '@type': 'Country',
+        name: 'France',
+      },
+    ],
+    serviceType: [
+      'Astrologie védique',
+      'Thème astral',
+      'Consultation astrologique',
+      'Analyse de naissance',
+      'Vedic Astrology',
+      'Birth Chart Analysis',
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Rapports d\'astrologie védique',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Rapport Essentiel',
+            description: 'Analyse en 5 phases avec thème natal, positions planétaires et analyse Nakshatra.',
+          },
+          price: '67',
+          priceCurrency: 'USD',
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Rapport Complet',
+            description: 'Analyse complète en 14 phases selon la méthode Shubham avec tous les graphiques Varga.',
+          },
+          price: '197',
+          priceCurrency: 'USD',
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Rapport Premium',
+            description: 'Analyse complète plus consultation vidéo de 60 minutes et support par email.',
+          },
+          price: '497',
+          priceCurrency: 'USD',
+        },
+      ],
+    },
+    knowsLanguage: ['fr', 'en'],
+    availableLanguage: [
+      {
+        '@type': 'Language',
+        name: 'Français',
+        alternateName: 'fr',
+      },
+      {
+        '@type': 'Language',
+        name: 'English',
+        alternateName: 'en',
+      },
+    ],
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
+/**
+ * French FAQ schema for Swiss/French speaking audience
+ */
+export function FAQFrenchJsonLd() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Qu\'est-ce que la méthode Shubham ?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'La méthode Shubham est un système d\'analyse astrologique védique complet en 14 phases qui combine la sagesse traditionnelle du Jyotish avec une interprétation systématique. Elle couvre tout, des positions planétaires de base aux schémas psychologiques profonds et au timing de vie.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Proposez-vous des consultations d\'astrologie à Genève ?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Oui, nous offrons des consultations d\'astrologie védique pour les clients de Genève, de Suisse romande et du monde entier. Nos rapports sont disponibles en français et en anglais. Les consultations Premium incluent des sessions vidéo personnalisées.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Quelle est la différence entre l\'astrologie védique et l\'astrologie occidentale ?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'L\'astrologie védique (Jyotish) utilise le zodiaque sidéral basé sur les positions réelles des étoiles, tandis que l\'astrologie occidentale utilise le zodiaque tropical. Le Jyotish intègre également les Nakshatras (27 constellations lunaires) et le système Dasha pour le timing des événements de vie.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Comment calculez-vous mon ascendant ?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Nous utilisons l\'ayanamsa Lahiri (Chitrapaksha) pour nos calculs sidéraux. Votre ascendant est calculé à partir de votre heure et lieu de naissance exacts en utilisant des algorithmes astronomiques précis. Utilisez notre calculateur gratuit pour découvrir votre ascendant.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Combien de temps faut-il pour recevoir mon rapport ?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Les rapports Essentiels sont livrés sous 24-48 heures. Les rapports Complets prennent 2-3 jours ouvrables. Les consultations Premium sont planifiées dans les 5-7 jours suivant l\'achat.',
+        },
+      },
+    ],
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
+/**
  * AggregateRating and Review schema for social proof
  * Displays star ratings in search results
  */
