@@ -9,7 +9,7 @@ import QRCode from 'qrcode'
 
 const WALLET_ADDRESSES = {
   btc: '113TatoGaZqKM5nEwmLxr9cwKpMZkm9rcQ',
-  eth: '0xeffd497c02d15e0b15655ead1136d8a9903c13ee',
+  eth: '0xeffd380c02d15e0b15655ead1136d8a9903c13ee',
 }
 
 type CryptoOption = 'btc' | 'eth' | 'usdt' | 'usdc'

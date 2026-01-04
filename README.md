@@ -7,7 +7,7 @@ Vedic astrology report sales landing page with Stripe integration.
 ## Features
 - English/French language support
 - Stripe checkout integration
-- 3 pricing tiers ($67, $197, $497)
+- 3 pricing tiers ($67, $197, $380)
 - Mobile responsive design
 - Vedic-futuristic dark theme
 

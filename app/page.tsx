@@ -25,7 +25,7 @@ import AscendantCalculator from '@/components/AscendantCalculator'
 const priceData = [
   { price: 67, originalPrice: 97, color: 'neon-cyan', popular: false },
   { price: 197, originalPrice: 297, color: 'sacred-gold', popular: true },
-  { price: 497, originalPrice: 697, color: 'saffron', popular: false },
+  { price: 380, originalPrice: 697, color: 'saffron', popular: false },
 ]
 
 // Feature icons

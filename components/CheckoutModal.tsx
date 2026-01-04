@@ -15,7 +15,7 @@ interface CheckoutModalProps {
 const prices: Record<string, number> = {
   essential: 67,
   complete: 197,
-  premium: 497,
+  premium: 380,
 }
 
 export default function CheckoutModal({ isOpen, onClose, plan, planKey }: CheckoutModalProps) {
