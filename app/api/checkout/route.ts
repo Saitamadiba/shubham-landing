@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     }
 
     // Hardcode the base URL since env vars may not be available at runtime
-    const baseUrl = 'https://shubham-landing.vercel.app'
+    const baseUrl = 'https://vedastro.vercel.app'
 
     // Use fetch API directly instead of Stripe SDK
     const formData = new URLSearchParams()
