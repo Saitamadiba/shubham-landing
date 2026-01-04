@@ -64,7 +64,7 @@ export default function LandingPage() {
               <div className="w-8 h-8 bg-gradient-to-br from-sacred-gold to-saffron rounded-lg flex items-center justify-center">
                 <Star className="w-5 h-5 text-primary" />
               </div>
-              <span className="font-cinzel text-xl font-bold text-sacred-gold">Shubham Method</span>
+              <span className="font-cinzel text-xl font-bold text-sacred-gold">Vedic Astrology</span>
             </div>
 
             {/* Desktop Nav */}
@@ -434,7 +434,7 @@ export default function LandingPage() {
               <div className="w-8 h-8 bg-gradient-to-br from-sacred-gold to-saffron rounded-lg flex items-center justify-center">
                 <Star className="w-5 h-5 text-primary" />
               </div>
-              <span className="font-cinzel text-xl font-bold text-sacred-gold">Shubham Method</span>
+              <span className="font-cinzel text-xl font-bold text-sacred-gold">Vedic Astrology</span>
             </div>
 
             <div className="flex gap-6 text-gray-500 text-sm">
@@ -444,7 +444,7 @@ export default function LandingPage() {
             </div>
 
             <p className="text-gray-500 text-sm">
-              &copy; {new Date().getFullYear()} Shubham Method. {t.footer.rights}
+              &copy; {new Date().getFullYear()} Vedic Astrology. {t.footer.rights}
             </p>
           </div>
 
