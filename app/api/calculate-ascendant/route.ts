@@ -64,6 +64,9 @@ function calculateAscendant(params: CalculationParams) {
 
   // Calculate TROPICAL ascendant
   const housesTropical = swe.swe_houses(jd, latitude, longitude, 'P')
+  if ('error' in housesTropical) {
+    throw new Error(`Tropical calculation failed: ${housesTropical.error}`)
+  }
   const tropicalAsc = housesTropical.ascendant
 
   const tropicalSignIndex = Math.floor(tropicalAsc / 30)
@@ -78,6 +81,9 @@ function calculateAscendant(params: CalculationParams) {
 
   // Calculate SIDEREAL ascendant
   const housesSidereal = swe.swe_houses_ex(jd, swe.SEFLG_SIDEREAL, latitude, longitude, 'P')
+  if ('error' in housesSidereal) {
+    throw new Error(`Sidereal calculation failed: ${housesSidereal.error}`)
+  }
   const siderealAsc = housesSidereal.ascendant
 
   const siderealSignIndex = Math.floor(siderealAsc / 30)
