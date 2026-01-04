@@ -20,7 +20,7 @@ This document contains all the configuration steps needed to complete the SEO se
 4. Enter property name: "Shubham Method"
 5. Select your timezone and currency
 6. Choose **Web** as the platform
-7. Enter your website URL: `https://vedastro.vercel.app`
+7. Enter your website URL: `https://vedastro-ten.vercel.app`
 8. Copy your **Measurement ID** (format: `G-XXXXXXXXXX`)
 
 ### Step 2: Configure Data Streams
@@ -49,7 +49,7 @@ In GA4, go to **Configure** → **Events** and mark these as conversions:
 1. Go to [Google Search Console](https://search.google.com/search-console)
 2. Click **Add Property**
 3. Choose **URL prefix** method
-4. Enter: `https://vedastro.vercel.app`
+4. Enter: `https://vedastro-ten.vercel.app`
 
 ### Step 2: Verify Ownership
 1. Select **HTML tag** verification method

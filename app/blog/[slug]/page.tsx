@@ -5,7 +5,7 @@ import { getBlogPost, getAllBlogPosts } from '@/lib/blog'
 import { Calendar, Clock, ArrowLeft, ArrowRight, Tag } from 'lucide-react'
 import { SocialShare } from '@/components/SocialShare'
 
-const BASE_URL = 'https://vedastro.vercel.app'
+const BASE_URL = 'https://vedastro-ten.vercel.app'
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>

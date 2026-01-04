@@ -116,13 +116,13 @@ function GlossaryJsonLd() {
     '@type': 'DefinedTermSet',
     name: 'Vedic Astrology Glossary',
     description: 'Comprehensive glossary of Vedic astrology (Jyotish) terms with Sanskrit translations and definitions.',
-    url: 'https://vedastro.vercel.app/glossary',
+    url: 'https://vedastro-ten.vercel.app/glossary',
     inLanguage: 'en',
     hasDefinedTerm: glossaryTerms.map(term => ({
       '@type': 'DefinedTerm',
       name: term.term,
       description: term.definition,
-      inDefinedTermSet: 'https://vedastro.vercel.app/glossary',
+      inDefinedTermSet: 'https://vedastro-ten.vercel.app/glossary',
     })),
   }
 

@@ -22,7 +22,7 @@ const rajdhani = Rajdhani({
   variable: '--font-rajdhani',
 })
 
-const BASE_URL = 'https://vedastro.vercel.app'
+const BASE_URL = 'https://vedastro-ten.vercel.app'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -135,11 +135,11 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
         {/* Hreflang tags for international SEO */}
-        <link rel="alternate" hrefLang="en" href="https://vedastro.vercel.app" />
-        <link rel="alternate" hrefLang="fr" href="https://vedastro.vercel.app?lang=fr" />
-        <link rel="alternate" hrefLang="fr-CH" href="https://vedastro.vercel.app?lang=fr" />
-        <link rel="alternate" hrefLang="fr-FR" href="https://vedastro.vercel.app?lang=fr" />
-        <link rel="alternate" hrefLang="x-default" href="https://vedastro.vercel.app" />
+        <link rel="alternate" hrefLang="en" href="https://vedastro-ten.vercel.app" />
+        <link rel="alternate" hrefLang="fr" href="https://vedastro-ten.vercel.app?lang=fr" />
+        <link rel="alternate" hrefLang="fr-CH" href="https://vedastro-ten.vercel.app?lang=fr" />
+        <link rel="alternate" hrefLang="fr-FR" href="https://vedastro-ten.vercel.app?lang=fr" />
+        <link rel="alternate" hrefLang="x-default" href="https://vedastro-ten.vercel.app" />
 
         {/* Geo targeting for Switzerland */}
         <meta name="geo.region" content="CH-GE" />

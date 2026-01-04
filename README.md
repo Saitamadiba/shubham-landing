@@ -2,7 +2,7 @@
 
 Vedic astrology report sales landing page with Stripe integration.
 
-**Live:** https://vedastro.vercel.app
+**Live:** https://vedastro-ten.vercel.app
 
 ## Features
 - English/French language support
